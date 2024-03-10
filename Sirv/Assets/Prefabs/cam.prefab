@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 5800551165119200213}
   m_Layer: 0
   m_Name: mousefal
-  m_TagString: Untagged
+  m_TagString: Cam_mousefal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

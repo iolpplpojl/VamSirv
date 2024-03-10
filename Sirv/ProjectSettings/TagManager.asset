@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Dynamite
+  - Enemy
+  - Scene_Man
+  - Cam_mousefal
+  - Enemyspawnmanager
+  - AmmoUI
+  - SkillUI
   layers:
   - Default
   - TransparentFX
@@ -12,8 +20,8 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - Enemy
+  - Bullet
   - 
   - 
   - 

@@ -236,6 +236,8 @@ MonoBehaviour:
   skillBcooltime: 0
   shotpoint: {fileID: 6147877945480526600}
   Bullet: {fileID: 6516944877753444422, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
+  Dynamite: {fileID: 1608535200985290773, guid: ed8b0a1cb3b1ce542b6e5696e7b65058, type: 3}
+  bullethrough: 0
 --- !u!95 &4246295321929322047
 Animator:
   serializedVersion: 5

@@ -5,24 +5,65 @@ using UnityEngine;
 public class TestPlayer : Player
 {
     // Start is called before the first frame update
-
+    [Space]
     public GameObject Bullet;
+    public GameObject Dynamite;
+    public int skillADamage;
+    public int bullethrough;  // °üÅë¼ö
+    public float skillAExplodeRadius;
+    public float skillAExplodeTime;
+
+    public int SkillABuff;
+    int SkillABuffnow = 0;
+
     public override void Attack()
     {
-        Debug.Log("TestAttack");
-        GameObject Bul = Instantiate(Bullet);
-        Bul.transform.position = shotpoint.position;
-        Bul.transform.rotation = shotpoint.rotation;
-        ammo--;
-        attackspeed_now = 1.0f/attackspeed;
+        if (ammo > 0)
+        {
+            Debug.Log("TestAttack");
+            GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
+            BulletMove BulComp = Bul.GetComponent<BulletMove>();
+            BulComp.damage = damage + SkillABuffnow;
+            BulComp.bullethrough = bullethrough;
+
+            ammo--;
+            attackspeed_now = 1.0f / attackspeed;
+        }
+        if (ammo == 0 && reloading == false)
+        {
+            reloading = true;
+            reloadtimenow = reloadtime;
+        }
     }
     public override void Skill_A()
     {
-        Debug.Log("Skill_A");
-
+        ammo = maxammo;
+        reloading = false;
+        reloadtimenow = reloadtime;
+        skillAcooltimenow = skillAcooltime;
+        StartCoroutine(Panning());
+    }
+    IEnumerator Panning()
+    {
+        SkillABuffnow = SkillABuff;
+        for (int i = 0; i<=maxammo; i++)
+        {
+            Attack();
+            yield return new WaitForSeconds(0.1f);
+        }
+        SkillABuffnow = 0;
+        yield break;
     }
     public override void Skill_B()
     {
-        Debug.Log("Skill_B");
+        Debug.Log("Skill_A");
+        GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
+        Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);
+        Dynamite DynaComp = Dyna.GetComponent<Dynamite>();
+        DynaComp.damage = skillADamage;
+        DynaComp.explosionradius = skillAExplodeRadius;
+        DynaComp.explosionTime = skillAExplodeTime;
+
+        skillBcooltimenow = skillBcooltime;
     }
 }

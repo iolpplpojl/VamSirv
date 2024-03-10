@@ -19,9 +19,14 @@ public abstract class Player : MonoBehaviour
     public float speed;
     
     public float reloadtime;
-    bool reloading = false;
+    public float reloadtimenow;
+
+    protected bool reloading = false;
     public float skillAcooltime;
+    public float skillAcooltimenow;
     public float skillBcooltime;
+    public float skillBcooltimenow;
+
 
 
     public Transform shotpoint;
@@ -37,6 +42,7 @@ public abstract class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         ammo = maxammo;
+
     }
 
     // Update is called once per frame
@@ -45,20 +51,15 @@ public abstract class Player : MonoBehaviour
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetMouseButton(0) && ammo > 0 && attackspeed_now <= 0)
+        if (Input.GetMouseButton(0) && attackspeed_now <= 0)
         {
             Attack();
         }
-        else if(Input.GetMouseButton(0) && ammo == 0 && reloading == false)
-        {
-            reloading = true;
-            StartCoroutine(Reload());
-        }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && skillAcooltimenow <= 0)
         {
             Skill_A();
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
         {
             Skill_B();
         }
@@ -79,13 +80,30 @@ public abstract class Player : MonoBehaviour
         {
             attackspeed_now -= Time.fixedDeltaTime;
         }
+        if(skillAcooltimenow > 0)
+        {
+            skillAcooltimenow -= Time.fixedDeltaTime;
+        }
+        if(skillBcooltimenow > 0)
+        {
+            skillBcooltimenow -= Time.fixedDeltaTime;
+        }
+        if(reloading == true)
+        {
+            reloadtimenow -= Time.fixedDeltaTime;
+            if(reloadtimenow <= 0)
+            {
+                ammo = maxammo;
+                reloading = false;
+            }
+        }
     }
     private void Move()
     {
         Vector2 norVec = inputVec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + norVec);
     }
-    IEnumerator Reload()
+    protected IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadtime);
         ammo = maxammo;
