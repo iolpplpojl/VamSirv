@@ -39,7 +39,7 @@ public class Dynamite : MonoBehaviour
         var hit = Physics2D.OverlapCircleAll(transform.position, explosionradius);
         foreach (var HitCol in hit)
         {
-            if (HitCol.CompareTag("Enemy"))
+            if (HitCol.CompareTag("Enemy") && HitCol.isTrigger)
             {
                 var enemy = HitCol.GetComponent<Enemy>();
                 enemy.GetDamage(damage);

@@ -12,6 +12,7 @@ TagManager:
   - Enemyspawnmanager
   - AmmoUI
   - SkillUI
+  - Turretpos
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - Enemy
   - Bullet
   - 

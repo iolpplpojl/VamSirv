@@ -11,6 +11,9 @@ public class Scene_Man : MonoBehaviour
     public GameObject Spawner;
     public GameObject AmmoUI;
     public GameObject SkillUI;
+    public GameObject Turret_Manager;
+    public GameObject Moneymanager;
+    public GameObject Roundmanager;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -27,14 +30,19 @@ public class Scene_Man : MonoBehaviour
             {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("Legitgame"));
                 Instantiate(PlayerPrefs[PlayerType]);
-                Instantiate(cam);
-                GameObject.FindWithTag("Cam_mousefal").GetComponent<Cam_MouseFollow>().FindPlayer();
-                Instantiate(Spawner);
-                Instantiate(AmmoUI);
-                GameObject.FindWithTag("AmmoUI").GetComponentInChildren<AmmoUI>().getData();
-                Instantiate(SkillUI);
-                GameObject.FindWithTag("SkillUI").GetComponent<SkillUI>().getData();
-
+                GameObject m_cam = Instantiate(cam);
+                m_cam.GetComponentInChildren<Cam_MouseFollow>().FindPlayer();
+                Debug.Log("Cam");
+                GameObject m_spawn = Instantiate(Spawner);
+                GameObject m_moneymanager = Instantiate(Moneymanager);
+                m_spawn.GetComponent<EnemySpawner>().SetMoneyManager(m_moneymanager.GetComponent<Moneymanager>()) ;
+                GameObject m_ammoui =Instantiate(AmmoUI);
+                m_ammoui.GetComponentInChildren<AmmoUI>().getData();
+                GameObject m_skillui = Instantiate(SkillUI);
+                m_skillui.GetComponent<SkillUI>().getData();
+                Instantiate(Turret_Manager);
+                GameObject m_Round = Instantiate(Roundmanager);
+                m_Round.GetComponent<Roundsystem>().SetSpawner(m_spawn.GetComponent<EnemySpawner>());
                 yield break;
             }
             yield return new WaitForFixedUpdate();
