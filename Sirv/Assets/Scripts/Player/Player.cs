@@ -11,19 +11,25 @@ public abstract class Player : MonoBehaviour
     public float attackspeed; // 1 / attackspeed;
     public float attackspeed_now;
     public float attackspeedPer = 1;
+
     public int damage;
     public float damagePer = 1;
+
     public int ammo;
     public int maxammo;
     public int maxammonow;
     public float maxammoPer = 1;
-    
+
     public float speed;
+    public float speed_now;
+    public float speedPer;
+
     public float critPer = 0f;
+
     public float reloadtime;
     public float reloadtimenow;
-
     protected bool reloading = false;
+
     public float skillAcooltime;
     public float skillAcooltimenow;
     public float skillBcooltime;
@@ -32,6 +38,7 @@ public abstract class Player : MonoBehaviour
     public float GetAttckTime;
     public float GetAttackTimenow;
 
+    bool Death = false;
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
     Vector2 inputVec;
@@ -52,58 +59,64 @@ public abstract class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
+        if (!Death)
+        {
+            inputVec.x = Input.GetAxisRaw("Horizontal");
+            inputVec.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetMouseButton(0) && attackspeed_now <= 0)
-        {
-            Attack();
-        }
-        if (Input.GetMouseButtonDown(1) && skillAcooltimenow <= 0)
-        {
-            Skill_A();
-        }
-        if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
-        {
-            Skill_B();
-        }
+            if (Input.GetMouseButton(0) && attackspeed_now <= 0)
+            {
+                Attack();
+            }
+            if (Input.GetMouseButtonDown(1) && skillAcooltimenow <= 0)
+            {
+                Skill_A();
+            }
+            if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
+            {
+                Skill_B();
+            }
 
-        if(shotpoint.rotation.eulerAngles.z < 180)
-        {
-            spriteRenderer.flipX = true;
-        }
-        else
-        {
-            spriteRenderer.flipX = false;
+            if (shotpoint.rotation.eulerAngles.z < 180)
+            {
+                spriteRenderer.flipX = true;
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+            }
         }
     }
     private void FixedUpdate()
     {
-        Move();
-        if(attackspeed_now > 0)
+        if (!Death)
         {
-            attackspeed_now -= Time.fixedDeltaTime;
-        }
-        if(skillAcooltimenow > 0)
-        {
-            skillAcooltimenow -= Time.fixedDeltaTime;
-        }
-        if(skillBcooltimenow > 0)
-        {
-            skillBcooltimenow -= Time.fixedDeltaTime;
-        }
-        if (GetAttackTimenow > 0)
-        {
-            GetAttackTimenow -= Time.fixedDeltaTime;  
-        }
-
-        if (reloading == true)
-        {
-            reloadtimenow -= Time.fixedDeltaTime;
-            if(reloadtimenow <= 0)
+            Move();
+            if (attackspeed_now > 0)
             {
-                ammo = maxammonow;
-                reloading = false;
+                attackspeed_now -= Time.fixedDeltaTime;
+            }
+            if (skillAcooltimenow > 0)
+            {
+                skillAcooltimenow -= Time.fixedDeltaTime;
+            }
+            if (skillBcooltimenow > 0)
+            {
+                skillBcooltimenow -= Time.fixedDeltaTime;
+            }
+            if (GetAttackTimenow > 0)
+            {
+                GetAttackTimenow -= Time.fixedDeltaTime;
+            }
+
+            if (reloading == true)
+            {
+                reloadtimenow -= Time.fixedDeltaTime;
+                if (reloadtimenow <= 0)
+                {
+                    ammo = maxammonow;
+                    reloading = false;
+                }
             }
         }
     }
@@ -151,7 +164,16 @@ public abstract class Player : MonoBehaviour
             health -= damage;
             Debug.Log("Player Damaged : " + damage);
             GetAttackTimenow = GetAttckTime;
+            if(health < 0)
+            {
+                Dead();
+            }
         }
+    }
+    void Dead()
+    {
+        Death = true;
+        GameObject.FindWithTag("Deathmanager").GetComponent<Deathmanager>().Death();
     }
     abstract public void GetUniqueItem(int idx);
 }
