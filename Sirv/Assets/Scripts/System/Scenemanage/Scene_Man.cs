@@ -15,6 +15,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject Moneymanager;
     public GameObject Roundmanager;
     public GameObject Rewardmanager;
+    public GameObject HealthUI;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -47,6 +48,8 @@ public class Scene_Man : MonoBehaviour
                 m_Round.GetComponent<Roundsystem>().GetTurret(m_turret.GetComponent<TurretManager>());
                 GameObject m_Reward = Instantiate(Rewardmanager);
                 m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>());
+                GameObject m_health = Instantiate(HealthUI);
+                m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 yield break;
             }
             yield return new WaitForFixedUpdate();
