@@ -21,7 +21,7 @@ public class AmmoUI : MonoBehaviour
         transform.position = new Vector3(Input.mousePosition.x + (70 * (Screen.width / Originalwidth)), Input.mousePosition.y + (-40 * (Screen.height / Originalheight)), 0f);
          if(Player != null)
          {
-             Text.text = string.Format("{0}/{1}",Player.ammo,Player.maxammo);
+             Text.text = string.Format("{0}/{1}",Player.ammo,Player.maxammonow);
          }
         
     }

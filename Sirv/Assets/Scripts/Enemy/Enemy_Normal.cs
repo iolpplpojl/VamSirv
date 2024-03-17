@@ -7,11 +7,21 @@ public class Enemy_Normal : Enemy
     // Start is called before the first frame update
 
     // Update is called once per frame
-
+    public int Damage;
 
     private void FixedUpdate()
     {
         Move();
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+            if (collision.CompareTag("Player"))
+            {
+                collision.GetComponent<Player>().GetDamage(Damage);
+            }
+        
     }
     override public void Attack()
     {
@@ -19,10 +29,9 @@ public class Enemy_Normal : Enemy
     }
     public override void Move()
     {
-        Vector2 dirvec = target.position - rigid.position;
+        Vector2 dirvec = targetrigid.position - rigid.position;
         Vector2 nextvec = dirvec.normalized * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextvec);
         rigid.velocity = Vector2.zero;
-
     }
 }

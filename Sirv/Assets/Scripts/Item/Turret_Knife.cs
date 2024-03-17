@@ -42,7 +42,7 @@ public class Turret_Knife : Turret
         {
             if (Level == 0)
             {
-                transform.position = Vector3.MoveTowards(transform.position, Target, 10 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, Target, 20 * Time.deltaTime);
             }
             if (Level == 1)
             {

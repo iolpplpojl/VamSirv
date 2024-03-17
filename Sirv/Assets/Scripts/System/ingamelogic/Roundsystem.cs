@@ -6,35 +6,50 @@ public class Roundsystem : MonoBehaviour
 {
     // Start is called before the first frame update
     public int Round = 0;
-    bool Playing = false;
+    public bool Playing = false;
     EnemySpawner Spawner;
+    TurretManager Turret;
     IEnumerator Timer(float Time)
     {
         Spawner.SetSpawning(true);
+        Playing = true;
         yield return new WaitForSeconds(Time);
-        Spawner.SetSpawning(false);
+        Playing = false;
+        Spawner.RoundClear();
     }
-
+    public void GetTurret(TurretManager Tur)
+    {
+        Turret = Tur;
+    }
+    public void TurretSelect()
+    {
+        Turret.GetTurret(0);
+    }
     public void StartRound()
     {
         Round++;
         float m_Time;
-
+        float m_SpawnTime;
         switch(Round)
         {
             case 1:
                 m_Time = 15;
+                m_SpawnTime = 1.0f;
                 break;
             case 2:
                 m_Time = 20;
+                m_SpawnTime = 0.7f;
                 break;
             case 3:
                 m_Time = 25;
+                m_SpawnTime = 0.5f;
                 break;
             default:
-                m_Time = 40;
+                m_Time = 20;
+                m_SpawnTime = 0.3f;
                 break;
         }
+        Spawner.SetSpawnTime(m_SpawnTime);
         StartCoroutine(Timer(m_Time));
     }
     public void SetSpawner(EnemySpawner Spawnner)

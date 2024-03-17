@@ -186,6 +186,7 @@ MonoBehaviour:
   Turret_Manager: {fileID: 7194035424969059663, guid: 581f9c1fdcda41547b7a8825ace137af, type: 3}
   Moneymanager: {fileID: 528742292771990617, guid: 06a63e3a3549f13499224b689ed70e8e, type: 3}
   Roundmanager: {fileID: 597232473182202352, guid: 160fed6e25398b04786f20e2d8f800af, type: 3}
+  Rewardmanager: {fileID: 5252795883770239312, guid: cbfc2c3d8d441d549b77bbd802578a1d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

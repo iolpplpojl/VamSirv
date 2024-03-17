@@ -6,14 +6,18 @@ public abstract class Enemy : MonoBehaviour
 {
     public int HP;
     public float speed;
-    public Rigidbody2D target;
+    public GameObject target;
+    public Rigidbody2D targetrigid;
+    public float Value; //Drop µ· °¡Ä¡
+    public float DropPer; // Drop µ· È®·ü
     protected Rigidbody2D rigid;
     Moneymanager moneymanager;
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        target = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
+        target = GameObject.FindWithTag("Player");
+        targetrigid = target.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -31,6 +35,16 @@ public abstract class Enemy : MonoBehaviour
             Dead();
         }
     }
+    public void GetCritDamage(int Damage)
+    {
+        HP -= Damage*2;
+        Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage*2 + "nowHP:" + HP);
+
+        if (HP <= 0)
+        {
+            Dead();
+        }
+    }
     public void SetMoneymanager(Moneymanager man)
     {
         moneymanager = man;
@@ -39,7 +53,7 @@ public abstract class Enemy : MonoBehaviour
     {
         Debug.Log("Dead");
         Destroy(gameObject);
-        moneymanager.DropMoney(transform.position);
+        moneymanager.DropMoney(transform.position, Value,DropPer);
         return;
     }
 }

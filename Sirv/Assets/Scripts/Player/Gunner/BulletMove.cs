@@ -8,6 +8,7 @@ public class BulletMove : MonoBehaviour
     public float speed;
     public int damage;
     public int bullethrough;
+    public bool Crit;
     Rigidbody2D rigid;
 
     private void Start()
@@ -26,22 +27,31 @@ public class BulletMove : MonoBehaviour
             bullethrough--;
             if (bullethrough == 0)
             {
-                collision.GetComponent<Enemy>().GetDamage(damage);
+                if (Crit == false)
+                {
+                    collision.GetComponent<Enemy>().GetDamage(damage);
+                }
+                else
+                {
+                    collision.GetComponent<Enemy>().GetCritDamage(damage);
+                }
                 Destroy(gameObject);
             }
             else if( bullethrough > 0)
             {
-                collision.GetComponent<Enemy>().GetDamage(damage);
+                if (Crit == false)
+                {
+                    collision.GetComponent<Enemy>().GetDamage(damage);
+                }
+                else
+                {
+                    collision.GetComponent<Enemy>().GetCritDamage(damage);
+                }
             }
         }
-        else if (collision.CompareTag("Dynamite"))
+        if (collision.CompareTag("wall"))
         {
-            bullethrough--;
-            if (bullethrough == 0)
-            {
-                Destroy(gameObject);
-            }
-
+            Destroy(gameObject);
         }
 
     }

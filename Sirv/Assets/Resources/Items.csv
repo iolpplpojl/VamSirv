@@ -1,0 +1,6 @@
+ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE
+1,볼펜,대미지 + <color=#00ff00ff>5%</color>,24
+2,이쑤시개,공격속도 + <color=#00ff00ff>3%</color>,24
+3,주머니,최대 탄약 + <color=#00ff00ff>5%</color>,22
+4,너클,치명타 + <color=#00ff00ff>3%</color>,25
+5,과도,대미지 : 30 <br> 공격속도 : 0.2/초 <br> 근거리,40

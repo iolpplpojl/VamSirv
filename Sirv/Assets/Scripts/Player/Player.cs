@@ -10,14 +10,16 @@ public abstract class Player : MonoBehaviour
     
     public float attackspeed; // 1 / attackspeed;
     public float attackspeed_now;
-    
+    public float attackspeedPer = 1;
     public int damage;
-    
+    public float damagePer = 1;
     public int ammo;
     public int maxammo;
+    public int maxammonow;
+    public float maxammoPer = 1;
     
     public float speed;
-    
+    public float critPer = 0f;
     public float reloadtime;
     public float reloadtimenow;
 
@@ -27,7 +29,8 @@ public abstract class Player : MonoBehaviour
     public float skillBcooltime;
     public float skillBcooltimenow;
 
-
+    public float GetAttckTime;
+    public float GetAttackTimenow;
 
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
@@ -41,7 +44,8 @@ public abstract class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        ammo = maxammo;
+        maxammonow = maxammo;
+        ammo = maxammonow;
 
     }
 
@@ -88,12 +92,17 @@ public abstract class Player : MonoBehaviour
         {
             skillBcooltimenow -= Time.fixedDeltaTime;
         }
-        if(reloading == true)
+        if (GetAttackTimenow > 0)
+        {
+            GetAttackTimenow -= Time.fixedDeltaTime;  
+        }
+
+        if (reloading == true)
         {
             reloadtimenow -= Time.fixedDeltaTime;
             if(reloadtimenow <= 0)
             {
-                ammo = maxammo;
+                ammo = maxammonow;
                 reloading = false;
             }
         }
@@ -106,7 +115,43 @@ public abstract class Player : MonoBehaviour
     protected IEnumerator Reload()
     {
         yield return new WaitForSeconds(reloadtime);
-        ammo = maxammo;
+        ammo = maxammonow;
         reloading = false;
     }
+    public void GetItem(int idx)
+    {
+        switch (idx)
+        {
+            case 0:
+                damagePer += 0.05f;
+                break;
+            case 1:
+                attackspeedPer += 0.03f;
+                break;
+            case 2:
+                maxammoPer+= 0.05f;
+                maxammonow = (int)(maxammo * maxammoPer);
+                break;
+            case 3:
+                critPer += 0.03f;
+                break;
+            case 500:
+                GetUniqueItem(0);
+                break;
+            case 501:
+                GetUniqueItem(1);
+                break;
+        }
+    }
+
+    public void GetDamage(int damage)
+    {
+        if (GetAttackTimenow <= 0)
+        {
+            health -= damage;
+            Debug.Log("Player Damaged : " + damage);
+            GetAttackTimenow = GetAttckTime;
+        }
+    }
+    abstract public void GetUniqueItem(int idx);
 }

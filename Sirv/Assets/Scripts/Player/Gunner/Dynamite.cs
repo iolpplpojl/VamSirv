@@ -21,13 +21,6 @@ public class Dynamite : MonoBehaviour
         transform.Rotate(0, 0, 1 * (rigid.velocity.x+rigid.velocity.x));
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
-            Explode();
-        }
-    }
 
     IEnumerator Timer()
     {

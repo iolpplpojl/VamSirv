@@ -14,6 +14,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject Turret_Manager;
     public GameObject Moneymanager;
     public GameObject Roundmanager;
+    public GameObject Rewardmanager;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -29,7 +30,7 @@ public class Scene_Man : MonoBehaviour
             if (SceneManager.GetSceneByName("Legitgame").isLoaded)
             {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("Legitgame"));
-                Instantiate(PlayerPrefs[PlayerType]);
+                GameObject m_Player = Instantiate(PlayerPrefs[PlayerType]);
                 GameObject m_cam = Instantiate(cam);
                 m_cam.GetComponentInChildren<Cam_MouseFollow>().FindPlayer();
                 Debug.Log("Cam");
@@ -40,9 +41,12 @@ public class Scene_Man : MonoBehaviour
                 m_ammoui.GetComponentInChildren<AmmoUI>().getData();
                 GameObject m_skillui = Instantiate(SkillUI);
                 m_skillui.GetComponent<SkillUI>().getData();
-                Instantiate(Turret_Manager);
+                GameObject m_turret = Instantiate(Turret_Manager);
                 GameObject m_Round = Instantiate(Roundmanager);
                 m_Round.GetComponent<Roundsystem>().SetSpawner(m_spawn.GetComponent<EnemySpawner>());
+                m_Round.GetComponent<Roundsystem>().GetTurret(m_turret.GetComponent<TurretManager>());
+                GameObject m_Reward = Instantiate(Rewardmanager);
+                m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>());
                 yield break;
             }
             yield return new WaitForFixedUpdate();

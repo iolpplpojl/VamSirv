@@ -23,11 +23,15 @@ public class TestPlayer : Player
             Debug.Log("TestAttack");
             GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
             BulletMove BulComp = Bul.GetComponent<BulletMove>();
-            BulComp.damage = damage + SkillABuffnow;
+            BulComp.damage = (int)((damage + SkillABuffnow) * damagePer) ;
             BulComp.bullethrough = bullethrough;
+            if((int)(critPer*100) > Random.Range(0, 100))
+            {
+                BulComp.Crit = true;
+            }
 
             ammo--;
-            attackspeed_now = 1.0f / attackspeed;
+            attackspeed_now = 1.0f / (attackspeed*attackspeedPer);
         }
         if (ammo == 0 && reloading == false)
         {
@@ -37,7 +41,7 @@ public class TestPlayer : Player
     }
     public override void Skill_A()
     {
-        ammo = maxammo;
+        ammo = maxammonow;
         reloading = false;
         reloadtimenow = reloadtime;
         skillAcooltimenow = skillAcooltime;
@@ -65,5 +69,10 @@ public class TestPlayer : Player
         DynaComp.explosionTime = skillAExplodeTime;
 
         skillBcooltimenow = skillBcooltime;
+    }
+
+    public override void GetUniqueItem(int idx)
+    {
+        throw new System.NotImplementedException();
     }
 }
