@@ -15,6 +15,7 @@ TagManager:
   - Turretpos
   - wall
   - Deathmanager
+  - System
   layers:
   - Default
   - TransparentFX

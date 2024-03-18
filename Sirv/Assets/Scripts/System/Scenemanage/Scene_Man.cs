@@ -16,6 +16,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject Roundmanager;
     public GameObject Rewardmanager;
     public GameObject HealthUI;
+    public GameObject Systems;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -31,24 +32,26 @@ public class Scene_Man : MonoBehaviour
             if (SceneManager.GetSceneByName("Legitgame").isLoaded)
             {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("Legitgame"));
+                GameObject m_System = Instantiate(Systems);
                 GameObject m_Player = Instantiate(PlayerPrefs[PlayerType]);
                 GameObject m_cam = Instantiate(cam);
                 m_cam.GetComponentInChildren<Cam_MouseFollow>().FindPlayer();
                 Debug.Log("Cam");
-                GameObject m_spawn = Instantiate(Spawner);
-                GameObject m_moneymanager = Instantiate(Moneymanager);
+                GameObject m_spawn = Instantiate(Spawner, m_System.transform);
+                GameObject m_moneymanager = Instantiate(Moneymanager, m_System.transform);
                 m_spawn.GetComponent<EnemySpawner>().SetMoneyManager(m_moneymanager.GetComponent<Moneymanager>()) ;
-                GameObject m_ammoui =Instantiate(AmmoUI);
+                GameObject m_ammoui =Instantiate(AmmoUI, m_System.transform);
                 m_ammoui.GetComponentInChildren<AmmoUI>().getData();
-                GameObject m_skillui = Instantiate(SkillUI);
+                GameObject m_skillui = Instantiate(SkillUI, m_System.transform);
                 m_skillui.GetComponent<SkillUI>().getData();
-                GameObject m_turret = Instantiate(Turret_Manager);
-                GameObject m_Round = Instantiate(Roundmanager);
+                GameObject m_turret = Instantiate(Turret_Manager, m_System.transform);
+                m_turret.GetComponent<TurretManager>().GetPlayer(m_Player.GetComponent<Player>());
+                GameObject m_Round = Instantiate(Roundmanager, m_System.transform);
                 m_Round.GetComponent<Roundsystem>().SetSpawner(m_spawn.GetComponent<EnemySpawner>());
                 m_Round.GetComponent<Roundsystem>().GetTurret(m_turret.GetComponent<TurretManager>());
-                GameObject m_Reward = Instantiate(Rewardmanager);
+                GameObject m_Reward = Instantiate(Rewardmanager, m_System.transform);
                 m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>());
-                GameObject m_health = Instantiate(HealthUI);
+                GameObject m_health = Instantiate(HealthUI, m_System.transform);
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 yield break;
             }

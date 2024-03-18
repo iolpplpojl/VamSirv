@@ -7,42 +7,55 @@ public abstract class Player : MonoBehaviour
     // Start is called before the first frame update
 
     public int health;
-    
+    public int maxHealth;
+    public int maxHealthNow;
+    public float maxHealthPer = 1f;
+    [Space]
+
     public float attackspeed; // 1 / attackspeed;
     public float attackspeed_now;
     public float attackspeedPer = 1;
+    [Space]
 
     public int damage;
     public float damagePer = 1;
+    [Space]
 
     public int ammo;
     public int maxammo;
     public int maxammonow;
     public float maxammoPer = 1;
+    [Space]
 
     public float speed;
-    public float speed_now;
-    public float speedPer;
+    public float speedPer = 1f;
+    [Space]
 
     public float critPer = 0f;
+    [Space]
 
     public float reloadtime;
     public float reloadtimenow;
     protected bool reloading = false;
+    [Space]
 
     public float skillAcooltime;
     public float skillAcooltimenow;
     public float skillBcooltime;
     public float skillBcooltimenow;
+    [Space]
 
     public float GetAttckTime;
     public float GetAttackTimenow;
+    [Space]
 
     bool Death = false;
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
     Vector2 inputVec;
     Rigidbody2D rigid;
+    public AudioClip[] Effects;
+    public AudioSource Audio;
 
     public abstract void Attack();
     public abstract void Skill_A();
@@ -53,7 +66,8 @@ public abstract class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         maxammonow = maxammo;
         ammo = maxammonow;
-
+        maxHealthNow = maxHealth;
+        health = maxHealthNow;
     }
 
     // Update is called once per frame
@@ -122,7 +136,7 @@ public abstract class Player : MonoBehaviour
     }
     private void Move()
     {
-        Vector2 norVec = inputVec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 norVec = inputVec.normalized * (speed*speedPer) * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + norVec);
     }
     protected IEnumerator Reload()
@@ -137,16 +151,30 @@ public abstract class Player : MonoBehaviour
         {
             case 0:
                 damagePer += 0.05f;
-                break;
-            case 1:
                 attackspeedPer += 0.03f;
                 break;
+            case 1:
+                attackspeedPer += 0.1f;
+                damagePer -= 0.02f;
+                break;
             case 2:
-                maxammoPer+= 0.05f;
-                maxammonow = (int)(maxammo * maxammoPer);
+                maxAmmoGet(0.05f);
+                attackspeedPer += 0.02f;
+                speedPer -= 0.02f;
                 break;
             case 3:
-                critPer += 0.03f;
+                critPer += 0.05f;
+                damagePer += 0.03f;
+                break;
+            case 4:
+                maxHealthGet(0.3f);
+                speedPer -= 0.02f;
+                break;
+            case 5:
+                speedPer += 0.07f;
+                damagePer += 0.03f;
+                attackspeedPer += 0.03f;
+                maxHealthGet(-0.05f);
                 break;
             case 500:
                 GetUniqueItem(0);
@@ -157,6 +185,17 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    void maxAmmoGet(float Per)
+    {
+        maxammoPer += Per;
+        maxammonow = (int)(maxammo * maxammoPer);
+    }
+    void maxHealthGet(float Per)
+    {
+        maxHealthPer += Per;
+        maxHealthNow = (int)(maxHealth * maxHealthPer);
+        health = maxHealthNow;
+    }
     public void GetDamage(int damage)
     {
         if (GetAttackTimenow <= 0)
@@ -164,7 +203,7 @@ public abstract class Player : MonoBehaviour
             health -= damage;
             Debug.Log("Player Damaged : " + damage);
             GetAttackTimenow = GetAttckTime;
-            if(health < 0)
+            if(health <= 0)
             {
                 Dead();
             }
@@ -173,6 +212,7 @@ public abstract class Player : MonoBehaviour
     void Dead()
     {
         Death = true;
+        GameObject.FindWithTag("System").SetActive(false);
         GameObject.FindWithTag("Deathmanager").GetComponent<Deathmanager>().Death();
     }
     abstract public void GetUniqueItem(int idx);

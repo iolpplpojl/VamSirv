@@ -15,5 +15,10 @@ public class Coin : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void GoMoney()
+    {
+        GetComponentInParent<Moneymanager>().GetMoney((int)(value * valuePer));
+        Destroy(gameObject);
+    }
 
 }

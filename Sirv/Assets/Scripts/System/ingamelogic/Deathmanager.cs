@@ -22,7 +22,7 @@ public class Deathmanager : MonoBehaviour
     {
         while (true)
         {
-            img.color = img.color + new Color(0, 0, 0, 0.02f);
+            img.color = img.color + new Color(0, 0, 0, 0.0075f);
             if (img.color.a >= 1.0f)
             {
                 SceneManager.LoadScene("Mainmenu");

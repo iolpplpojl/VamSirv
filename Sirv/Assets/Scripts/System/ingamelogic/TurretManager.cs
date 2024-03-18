@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurretManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Player player;
     public List<Transform> TurretPos;
     public GameObject[] Turret;
     public int TurretMaxCount;
@@ -19,6 +20,11 @@ public class TurretManager : MonoBehaviour
         }
         TurretMaxCount = TurretPos.Count;
     }
+    public void GetPlayer(Player player)
+        {
+        this.player = player;
+
+    }
     private void Update()
     {
         if (on)
@@ -31,6 +37,7 @@ public class TurretManager : MonoBehaviour
     {
         if (TurretMaxCount != TurretCount){
             Turret Tur = Instantiate(Turret[idx]).GetComponent<Turret>();
+            Tur.GetPlayerComp(player);
             Tur.Player = TurretPos[TurretCount];
             TurretCount++;
         }

@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 public class Rewardsystem : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] buttons;
     public TMP_Text[] Texts;
+    public TMP_Text[] TextsDes;
+    public TMP_Text[] TextsTitle;
+    public Sprite[] Sprites;
+    public Image[] Images;
+
     List<Dictionary<string, object>> ItemData;
     Roundsystem roundsystem;
     TurretManager turret;
@@ -50,19 +56,21 @@ public class Rewardsystem : MonoBehaviour
     {
         for(int i =0; i<3; i++)
         {
-            idx[i] = Random.Range(0, 5);
+            idx[i] = Random.Range(0, 7);
             buttons[i].gameObject.SetActive(true);
         }
         for (int i =0; i<3; i++)
         {
-            buttons[i].GetComponentInChildren<TMP_Text>().text = ItemData[idx[i]]["ITEMDESC"].ToString();
+            TextsDes[i].text = ItemData[idx[i]]["ITEMDESC"].ToString();
             Texts[i].text = string.Format("{0}GOLD", (int)ItemData[idx[i]]["ITEMPRICE"]);
+            TextsTitle[i].text = ItemData[idx[i]]["ITEMNAME"].ToString();
+            Images[i].sprite = Sprites[idx[i]];
         }
     }
 
     public void SetReload()
     {
-        if(8 < moneymanager.money)
+        if(8 <= moneymanager.money)
         {
             moneymanager.money -= 8;
             Reload();
@@ -70,9 +78,9 @@ public class Rewardsystem : MonoBehaviour
     }
     public void Onclick(int n)
     {
-        if ((int)ItemData[idx[n]]["ITEMPRICE"] < moneymanager.money)
+        if ((int)ItemData[idx[n]]["ITEMPRICE"] <= moneymanager.money)
         {
-            if (idx[n] <= 3)
+            if (idx[n] <= 5)
             {
                 Debug.Log("Reward");
                 Getreward(idx[n]);
@@ -94,6 +102,8 @@ public class Rewardsystem : MonoBehaviour
         if(Selected == false)
         {
             Reload();
+            moneymanager.RoundOver();
+            player.health = player.maxHealthNow;
             Selected = true;
         }
         transform.GetChild(0).gameObject.SetActive(true);

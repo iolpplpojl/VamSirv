@@ -12,6 +12,7 @@ public class Turret_Knife : Turret
     BoxCollider2D col;
     private void Start()
     {
+        SetDamage();
         col = GetComponent<BoxCollider2D>();
     }
     private void Update()
@@ -33,9 +34,16 @@ public class Turret_Knife : Turret
         {
             Attackspeed_Now -= Time.fixedDeltaTime;
         }
+        if (UpgradeTool == true)
+        {
+            Upgrade();
+            UpgradeTool = false;
+        }
+        SetDamage();
+
     }
 
-    
+
     IEnumerator Attack(Vector3 Target)
     {
         while (true)
@@ -69,7 +77,7 @@ public class Turret_Knife : Turret
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        collision.GetComponent<Enemy>().GetDamage(Damage);
+        collision.GetComponent<Enemy>().GetDamage(Damage+(int)(Damage*KnifeDamagePer));
         
     }
 

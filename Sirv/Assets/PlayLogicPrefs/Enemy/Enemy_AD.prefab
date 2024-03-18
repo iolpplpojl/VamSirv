@@ -199,7 +199,7 @@ MonoBehaviour:
   targetrigid: {fileID: 0}
   Value: 3
   DropPer: 0.7
-  Damage: 50
+  Damage: 22
   Attackspeed: 2
   Attackspeed_now: 2
   Bullet: {fileID: 2749845425347848725, guid: f4bef7ec5792dde48a175aa1611fc0ec, type: 3}

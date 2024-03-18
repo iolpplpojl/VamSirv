@@ -21,6 +21,7 @@ public class TestPlayer : Player
         if (ammo > 0)
         {
             Debug.Log("TestAttack");
+            Audio.PlayOneShot(Effects[0]);
             GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
             BulletMove BulComp = Bul.GetComponent<BulletMove>();
             BulComp.damage = (int)((damage + SkillABuffnow) * damagePer) ;
@@ -60,11 +61,12 @@ public class TestPlayer : Player
     }
     public override void Skill_B()
     {
+        Audio.PlayOneShot(Effects[2]);
         Debug.Log("Skill_A");
         GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
         Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);
         Dynamite DynaComp = Dyna.GetComponent<Dynamite>();
-        DynaComp.damage = skillADamage;
+        DynaComp.damage = (int)(skillADamage*damagePer);
         DynaComp.explosionradius = skillAExplodeRadius;
         DynaComp.explosionTime = skillAExplodeTime;
 

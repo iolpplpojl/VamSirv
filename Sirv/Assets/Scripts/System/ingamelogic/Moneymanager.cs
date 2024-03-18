@@ -25,6 +25,14 @@ public class Moneymanager : MonoBehaviour
         }
 
     }
+    public void RoundOver()
+    {
+        for(int i = 1; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).GetComponent<Coin>().GoMoney();
+        }
+    }
+
     public void GetMoney(int value)
     {
         money += value;

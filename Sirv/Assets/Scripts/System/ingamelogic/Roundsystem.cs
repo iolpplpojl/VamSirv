@@ -12,10 +12,15 @@ public class Roundsystem : MonoBehaviour
     IEnumerator Timer(float Time)
     {
         Spawner.SetSpawning(true);
-        Playing = true;
         yield return new WaitForSeconds(Time);
         Playing = false;
         Spawner.RoundClear();
+    }
+    IEnumerator Threecount(float Time)
+    {
+        Playing = true;
+        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(Timer(Time));
     }
     public void GetTurret(TurretManager Tur)
     {
@@ -50,7 +55,7 @@ public class Roundsystem : MonoBehaviour
                 break;
         }
         Spawner.SetSpawnTime(m_SpawnTime);
-        StartCoroutine(Timer(m_Time));
+        StartCoroutine(Threecount(m_Time));
     }
     public void SetSpawner(EnemySpawner Spawnner)
     {
