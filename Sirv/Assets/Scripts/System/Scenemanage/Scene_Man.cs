@@ -17,6 +17,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject Rewardmanager;
     public GameObject HealthUI;
     public GameObject Systems;
+    public GameObject SFXmanager;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -53,6 +54,7 @@ public class Scene_Man : MonoBehaviour
                 m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>());
                 GameObject m_health = Instantiate(HealthUI, m_System.transform);
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
+                GameObject m_SFX = Instantiate(SFXmanager);
                 yield break;
             }
             yield return new WaitForFixedUpdate();

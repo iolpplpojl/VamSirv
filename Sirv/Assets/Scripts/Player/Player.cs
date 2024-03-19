@@ -55,7 +55,6 @@ public abstract class Player : MonoBehaviour
     Vector2 inputVec;
     Rigidbody2D rigid;
     public AudioClip[] Effects;
-    public AudioSource Audio;
 
     public abstract void Attack();
     public abstract void Skill_A();

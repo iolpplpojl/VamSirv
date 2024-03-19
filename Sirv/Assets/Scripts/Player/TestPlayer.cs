@@ -21,7 +21,7 @@ public class TestPlayer : Player
         if (ammo > 0)
         {
             Debug.Log("TestAttack");
-            Audio.PlayOneShot(Effects[0]);
+            SFXsystem.instance.PlaySoundFX(Effects[0], transform, 0.5f);
             GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
             BulletMove BulComp = Bul.GetComponent<BulletMove>();
             BulComp.damage = (int)((damage + SkillABuffnow) * damagePer) ;
@@ -61,7 +61,7 @@ public class TestPlayer : Player
     }
     public override void Skill_B()
     {
-        Audio.PlayOneShot(Effects[2]);
+        SFXsystem.instance.PlaySoundFX(Effects[2], transform, 1f);
         Debug.Log("Skill_A");
         GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
         Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);

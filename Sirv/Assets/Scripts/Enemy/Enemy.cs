@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour
     public float DropPer; // Drop µ· È®·ü
     protected Rigidbody2D rigid;
     Moneymanager moneymanager;
+
+    public AudioClip[] HitEffects;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,7 @@ public abstract class Enemy : MonoBehaviour
     {
         HP -= Damage;
         Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
-
+        SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
         if (HP <= 0)
         {
             Dead();
