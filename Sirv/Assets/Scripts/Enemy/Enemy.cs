@@ -12,7 +12,9 @@ public abstract class Enemy : MonoBehaviour
     public float DropPer; // Drop µ· È®·ü
     protected Rigidbody2D rigid;
     Moneymanager moneymanager;
+    DamagePopupSystem damagepopup;
 
+    public AudioClip[] CritEffects;
     public AudioClip[] HitEffects;
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,7 @@ public abstract class Enemy : MonoBehaviour
         HP -= Damage;
         Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
         SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
+        DamagePopupSystem.instance.Setup(transform, Damage);
         if (HP <= 0)
         {
             Dead();
@@ -41,7 +44,8 @@ public abstract class Enemy : MonoBehaviour
     {
         HP -= Damage*2;
         Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage*2 + "nowHP:" + HP);
-
+        SFXsystem.instance.PlaySoundFX(CritEffects, transform, 0.1f);
+        DamagePopupSystem.instance.Setup(transform, Damage*2,true);
         if (HP <= 0)
         {
             Dead();

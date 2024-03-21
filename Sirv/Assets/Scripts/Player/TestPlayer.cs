@@ -51,7 +51,7 @@ public class TestPlayer : Player
     IEnumerator Panning()
     {
         SkillABuffnow = SkillABuff;
-        for (int i = 0; i<=maxammo; i++)
+        for (int i = 0; i<=maxammonow; i++)
         {
             Attack();
             yield return new WaitForSeconds(0.1f);

@@ -26,13 +26,8 @@ public class Turret_Knife : Turret
         {
             attacking = true;
             col.enabled = true;
-            Attackspeed_Now = 1/Attackspped;
-            Debug.Log(Target);
+            Attackspeed_Now = 1/Attackspped+(Attackspped*(PlayerComp.attackspeedPer*0.1f));
             StartCoroutine(Attack(Target.transform.position));
-        }
-        if(Attackspeed_Now > 0 && attacking == false)
-        {
-            Attackspeed_Now -= Time.fixedDeltaTime;
         }
         if (UpgradeTool == true)
         {
@@ -43,6 +38,13 @@ public class Turret_Knife : Turret
 
     }
 
+    private void FixedUpdate()
+    {
+        if (Attackspeed_Now > 0 && attacking == false)
+        {
+            Attackspeed_Now -= Time.fixedDeltaTime;
+        }
+    }
 
     IEnumerator Attack(Vector3 Target)
     {

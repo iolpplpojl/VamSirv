@@ -44,9 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fb5d5f132166147a927bf29b78706e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   TurretPos: []
   Turret:
   - {fileID: 3982483331314742997, guid: 0a7e42a31306a8c4fa861e9a6c2a5391, type: 3}
+  - {fileID: 8984956371352389330, guid: 56a743ef88d2d9042a21fa0fcd89a0f0, type: 3}
   - {fileID: 3982483331314742997, guid: 0a7e42a31306a8c4fa861e9a6c2a5391, type: 3}
-  - {fileID: 3982483331314742997, guid: 0a7e42a31306a8c4fa861e9a6c2a5391, type: 3}
+  TurretMaxCount: 0
+  TurretCount: 0
   on: 0

@@ -19,6 +19,10 @@ public abstract class Turret : MonoBehaviour
     public bool UpgradeTool = false;
 
     // Update is called once per frame
+    private void Start()
+    {
+        SetDamage();
+    }
     void Update()
     {
         MoveMent();
@@ -95,7 +99,6 @@ public abstract class Turret : MonoBehaviour
 
         if (hit == null)
         {
-            transform.rotation = OriginalRotation;
             Find = false;
         }
 

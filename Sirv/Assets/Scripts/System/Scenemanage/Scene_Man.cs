@@ -18,6 +18,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject HealthUI;
     public GameObject Systems;
     public GameObject SFXmanager;
+    public GameObject DamagePopup;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -33,11 +34,12 @@ public class Scene_Man : MonoBehaviour
             if (SceneManager.GetSceneByName("Legitgame").isLoaded)
             {
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName("Legitgame"));
+
                 GameObject m_System = Instantiate(Systems);
                 GameObject m_Player = Instantiate(PlayerPrefs[PlayerType]);
                 GameObject m_cam = Instantiate(cam);
                 m_cam.GetComponentInChildren<Cam_MouseFollow>().FindPlayer();
-                Debug.Log("Cam");
+                GameObject m_Popup = Instantiate(DamagePopup);
                 GameObject m_spawn = Instantiate(Spawner, m_System.transform);
                 GameObject m_moneymanager = Instantiate(Moneymanager, m_System.transform);
                 m_spawn.GetComponent<EnemySpawner>().SetMoneyManager(m_moneymanager.GetComponent<Moneymanager>()) ;

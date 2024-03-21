@@ -56,7 +56,7 @@ public class Rewardsystem : MonoBehaviour
     {
         for(int i =0; i<3; i++)
         {
-            idx[i] = Random.Range(0, 7);
+            idx[i] = Random.Range(0, 8);
             buttons[i].gameObject.SetActive(true);
         }
         for (int i =0; i<3; i++)
@@ -80,7 +80,7 @@ public class Rewardsystem : MonoBehaviour
     {
         if ((int)ItemData[idx[n]]["ITEMPRICE"] <= moneymanager.money)
         {
-            if (idx[n] <= 5)
+            if (idx[n] < 6)
             {
                 Debug.Log("Reward");
                 Getreward(idx[n]);
@@ -90,7 +90,7 @@ public class Rewardsystem : MonoBehaviour
             else if (turret.TurretMaxCount != turret.TurretCount)
             {
                 Debug.Log("Turret");
-                GetTurret(0);
+                GetTurret(idx[n]-6);
                 moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
                 buttons[n].gameObject.SetActive(false);
             }

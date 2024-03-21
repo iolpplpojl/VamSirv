@@ -99,9 +99,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+  PlayerComp: {fileID: 0}
+  KnifeDamagePer: 0
+  Rarity: 0
   Radius: 1.8
-  Attackspped: 0.2
+  Attackspped: 0.8
   Attackspeed_Now: 0
+  UpgradeTool: 0
   attacking: 0
   Level: 0
   Damage: 30

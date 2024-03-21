@@ -17,7 +17,6 @@ public class SkillUI : MonoBehaviour
     {
         if (Player != null)
         {
-            Debug.Log(Player);
             if (Player.skillAcooltimenow > 0)
             {
                 AText.alpha = 1.0f;

@@ -190,6 +190,7 @@ MonoBehaviour:
   HealthUI: {fileID: 4021777946999827161, guid: c98227897bd8c814a900ace14cc134d9, type: 3}
   Systems: {fileID: 5158487905556014684, guid: 43dabdaa17640904a9c8c3c98ffaa30c, type: 3}
   SFXmanager: {fileID: 743933084638866366, guid: 301a8f6dc5a895746a3ac093bf8b02a6, type: 3}
+  DamagePopup: {fileID: 5782764689016655647, guid: 13a7887f8c9228d45ac9c50b48dfb118, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

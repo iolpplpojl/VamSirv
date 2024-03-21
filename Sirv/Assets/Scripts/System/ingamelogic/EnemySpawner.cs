@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] EnemyPrefs;
     public BoxCollider2D Box;
     public Moneymanager Moneymanager;
+    public DamagePopupSystem DamagePopup;
     public bool Spawning = false;
     public float SpawnTime = 200f;
     // Update is called once per frame
