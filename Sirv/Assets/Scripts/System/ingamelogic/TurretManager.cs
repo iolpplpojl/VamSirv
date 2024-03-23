@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class TurretManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -10,6 +10,7 @@ public class TurretManager : MonoBehaviour
     public GameObject[] Turret;
     public int TurretMaxCount;
     public int TurretCount = 0;
+    public List<Turret> Turrets;
     public bool on = false;
     void Start()
     {
@@ -29,17 +30,35 @@ public class TurretManager : MonoBehaviour
     {
         if (on)
         {
-            GetTurret(0);
+            GetTurret(0,0);
             on = false;
         }
     }
-    public void GetTurret(int idx)
+    public void GetTurret(int idx, int Rarity)
     {
         if (TurretMaxCount != TurretCount){
             Turret Tur = Instantiate(Turret[idx]).GetComponent<Turret>();
+            Turrets.Add(Tur);
             Tur.GetPlayerComp(player);
+            Tur.Rarity = Rarity;
             Tur.Player = TurretPos[TurretCount];
             TurretCount++;
+        }
+    }
+
+    public bool Upgrade(GameObject turret)
+    {
+        Turret m_turret = turret.GetComponent<Turret>();
+        List<Turret> Filtered = Turrets.Where(n => n.TurretNum == m_turret.TurretNum).ToList();
+        if(Filtered.Count != 0)
+        {
+            Filtered[0].GetComponent<Turret>().
+            Upgrade();
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

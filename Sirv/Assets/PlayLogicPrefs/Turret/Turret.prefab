@@ -102,6 +102,9 @@ MonoBehaviour:
   PlayerComp: {fileID: 0}
   KnifeDamagePer: 0
   Rarity: 0
+  TurretNum: 0
+  Require: 2
+  Nowamount: 0
   Radius: 1.8
   Attackspped: 0.8
   Attackspeed_Now: 0

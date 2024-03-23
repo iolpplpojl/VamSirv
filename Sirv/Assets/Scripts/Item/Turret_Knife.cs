@@ -13,6 +13,8 @@ public class Turret_Knife : Turret
     private void Start()
     {
         SetDamage();
+        SetUpgradeAmount();
+        Renderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }
     private void Update()
@@ -26,7 +28,7 @@ public class Turret_Knife : Turret
         {
             attacking = true;
             col.enabled = true;
-            Attackspeed_Now = 1/Attackspped+(Attackspped*(PlayerComp.attackspeedPer*0.1f));
+            Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer - 1f) * PlayerComp.SideArmAttackSpeddper)));
             StartCoroutine(Attack(Target.transform.position));
         }
         if (UpgradeTool == true)

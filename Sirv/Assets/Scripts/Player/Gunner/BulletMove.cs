@@ -24,28 +24,32 @@ public class BulletMove : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            bullethrough--;
-            if (bullethrough == 0)
+            Enemy m_enemy = collision.GetComponent<Enemy>();
+            if (m_enemy.Death == false)
             {
-                if (Crit == false)
+                bullethrough--;
+                if (bullethrough == 0)
                 {
-                    collision.GetComponent<Enemy>().GetDamage(damage);
+                    if (Crit == false)
+                    {
+                        m_enemy.GetDamage(damage);
+                    }
+                    else
+                    {
+                        m_enemy.GetCritDamage(damage);
+                    }
+                    Destroy(gameObject);
                 }
-                else
+                else if (bullethrough > 0)
                 {
-                    collision.GetComponent<Enemy>().GetCritDamage(damage);
-                }
-                Destroy(gameObject);
-            }
-            else if( bullethrough > 0)
-            {
-                if (Crit == false)
-                {
-                    collision.GetComponent<Enemy>().GetDamage(damage);
-                }
-                else
-                {
-                    collision.GetComponent<Enemy>().GetCritDamage(damage);
+                    if (Crit == false)
+                    {
+                        collision.GetComponent<Enemy>().GetDamage(damage);
+                    }
+                    else
+                    {
+                        collision.GetComponent<Enemy>().GetCritDamage(damage);
+                    }
                 }
             }
         }

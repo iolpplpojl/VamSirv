@@ -8,13 +8,13 @@ public class TestPlayer : Player
     [Space]
     public GameObject Bullet;
     public GameObject Dynamite;
-    public int skillADamage;
+    public float skillADamage;
     public int bullethrough;  // °üÅë¼ö
     public float skillAExplodeRadius;
     public float skillAExplodeTime;
 
-    public int SkillABuff;
-    int SkillABuffnow = 0;
+    public float SkillABuff;
+    float SkillABuffnow = 1;
 
     public override void Attack()
     {
@@ -24,7 +24,7 @@ public class TestPlayer : Player
             SFXsystem.instance.PlaySoundFX(Effects[0], transform, 0.5f);
             GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
             BulletMove BulComp = Bul.GetComponent<BulletMove>();
-            BulComp.damage = (int)((damage + SkillABuffnow) * damagePer) ;
+            BulComp.damage = (int)((damage * SkillABuffnow) * damagePer) ;
             BulComp.bullethrough = bullethrough;
             if((int)(critPer*100) > Random.Range(0, 100))
             {
@@ -56,7 +56,7 @@ public class TestPlayer : Player
             Attack();
             yield return new WaitForSeconds(0.1f);
         }
-        SkillABuffnow = 0;
+        SkillABuffnow = 1f;
         yield break;
     }
     public override void Skill_B()

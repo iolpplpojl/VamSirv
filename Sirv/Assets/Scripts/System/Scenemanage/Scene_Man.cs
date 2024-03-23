@@ -39,7 +39,7 @@ public class Scene_Man : MonoBehaviour
                 GameObject m_Player = Instantiate(PlayerPrefs[PlayerType]);
                 GameObject m_cam = Instantiate(cam);
                 m_cam.GetComponentInChildren<Cam_MouseFollow>().FindPlayer();
-                GameObject m_Popup = Instantiate(DamagePopup);
+                GameObject m_Popup = Instantiate(DamagePopup);  
                 GameObject m_spawn = Instantiate(Spawner, m_System.transform);
                 GameObject m_moneymanager = Instantiate(Moneymanager, m_System.transform);
                 m_spawn.GetComponent<EnemySpawner>().SetMoneyManager(m_moneymanager.GetComponent<Moneymanager>()) ;

@@ -26,10 +26,6 @@ public class Roundsystem : MonoBehaviour
     {
         Turret = Tur;
     }
-    public void TurretSelect()
-    {
-        Turret.GetTurret(0);
-    }
     public void StartRound()
     {
         Round++;

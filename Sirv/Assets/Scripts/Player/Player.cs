@@ -15,6 +15,7 @@ public abstract class Player : MonoBehaviour
     public float attackspeed; // 1 / attackspeed;
     public float attackspeed_now;
     public float attackspeedPer = 1;
+    public float SideArmAttackSpeddper;
     [Space]
 
     public int damage;

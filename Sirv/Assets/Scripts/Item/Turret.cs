@@ -6,15 +6,18 @@ public abstract class Turret : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform Player;
-    Quaternion OriginalRotation;
     public Player PlayerComp;
     public float KnifeDamagePer = 0f;
-    public int Rarity; 
+    public int Rarity;
+    public int TurretNum;
+    public int Require;
+    public int Nowamount = 0;
     public float Radius;
     public float Attackspped;
     public float Attackspeed_Now = 0;
     protected bool Find = false;
     protected GameObject Target;
+    protected SpriteRenderer Renderer;
 
     public bool UpgradeTool = false;
 
@@ -22,6 +25,13 @@ public abstract class Turret : MonoBehaviour
     private void Start()
     {
         SetDamage();
+        SetUpgradeAmount();
+        Renderer = GetComponent<SpriteRenderer>();
+        if(Renderer == null)
+        {
+            Renderer = GetComponentInChildren<SpriteRenderer>();
+
+        }
     }
     void Update()
     {
@@ -37,9 +47,53 @@ public abstract class Turret : MonoBehaviour
     {
         this.PlayerComp = player;
     }
-    protected void Upgrade()
+    public void Upgrade()
     {
-        Rarity++;
+        Nowamount++;
+        if (Rarity !=3 && Require == Nowamount)
+        {
+            Rarity++;
+            SetColor();
+            SetUpgradeAmount();
+            Nowamount = 0;
+        }
+
+    }
+    protected void SetUpgradeAmount()
+    {
+        switch (Rarity)
+        {
+            case 0:
+                Require = 2;
+                break;
+            case 1:
+                Require = 4;
+                break;
+            case 2:
+                Require = 8;
+                break;
+            case 3:
+                Require = 0;
+                break;
+        }
+    }
+    protected void SetColor()
+    {
+        switch (Rarity)
+        {
+            case 0:
+                Renderer.color = new Color(1f, 1f, 1f);
+                break;
+            case 1:
+                Renderer.color = new Color(0.8791348f, 1f, 0.6179246f);
+                break;
+            case 2:
+                Renderer.color = new Color(0.6196079f, 0.721262f, 1f);
+                break;
+            case 3:
+                Renderer.color = new Color(0.8791348f, 0, 0.6179246f);
+                break;
+        }
     }
     protected void SetDamage()
     {
@@ -51,10 +105,10 @@ public abstract class Turret : MonoBehaviour
             case 1:
                 KnifeDamagePer = PlayerComp.damagePer * 0.24f;
                 break;
-            case 3:
+            case 2:
                 KnifeDamagePer = PlayerComp.damagePer * 0.48f;
                 break;
-            case 4:
+            case 3:
                 KnifeDamagePer = PlayerComp.damagePer * 0.96f;
                 break;
         }

@@ -42,7 +42,6 @@ public class Turret_Gun : Turret
         {
             BulComp.Crit = true;
         }
-        Debug.Log(Attackspped * (1f + ((PlayerComp.attackspeedPer - 1f) * 0.33f)));
-        Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer-1f) * 0.33f)) + Random.Range(-0.05f, 0.05f));
+        Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer-1f) * PlayerComp.SideArmAttackSpeddper)) + Random.Range(-0.05f, 0.05f));
     }
 }
