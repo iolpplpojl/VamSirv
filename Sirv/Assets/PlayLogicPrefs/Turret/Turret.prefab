@@ -112,6 +112,7 @@ MonoBehaviour:
   attacking: 0
   Level: 0
   Damage: 30
+  BonusdamageSheet: 1e000000240000002a00000030000000
 --- !u!61 &3898902863644927350
 BoxCollider2D:
   m_ObjectHideFlags: 0

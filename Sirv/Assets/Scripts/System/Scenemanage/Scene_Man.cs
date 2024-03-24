@@ -57,6 +57,7 @@ public class Scene_Man : MonoBehaviour
                 GameObject m_health = Instantiate(HealthUI, m_System.transform);
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 GameObject m_SFX = Instantiate(SFXmanager);
+                m_Player.GetComponent<Player>().GetRewardsystem(m_Reward.GetComponent<Rewardsystem>());
                 yield break;
             }
             yield return new WaitForFixedUpdate();

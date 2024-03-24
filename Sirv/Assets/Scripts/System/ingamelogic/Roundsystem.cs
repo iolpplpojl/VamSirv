@@ -13,8 +13,13 @@ public class Roundsystem : MonoBehaviour
     {
         Spawner.SetSpawning(true);
         yield return new WaitForSeconds(Time);
-        Playing = false;
         Spawner.RoundClear();
+        StartCoroutine(EndThreeCount());
+    }
+    IEnumerator EndThreeCount()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Playing = false;
     }
     IEnumerator Threecount(float Time)
     {

@@ -56,6 +56,8 @@ public abstract class Player : MonoBehaviour
     Vector2 inputVec;
     Rigidbody2D rigid;
     public AudioClip[] Effects;
+    Rewardsystem rewardsystem;
+
 
     public abstract void Attack();
     public abstract void Skill_A();
@@ -69,6 +71,11 @@ public abstract class Player : MonoBehaviour
         maxHealthNow = maxHealth;
         health = maxHealthNow;
     }
+    
+    public void GetRewardsystem(Rewardsystem rewardsystem)
+    {
+        this.rewardsystem = rewardsystem;
+    }
 
     // Update is called once per frame
     void Update()
@@ -78,17 +85,20 @@ public abstract class Player : MonoBehaviour
             inputVec.x = Input.GetAxisRaw("Horizontal");
             inputVec.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetMouseButton(0) && attackspeed_now <= 0)
+            if (rewardsystem.Selected != true)
             {
-                Attack();
-            }
-            if (Input.GetMouseButtonDown(1) && skillAcooltimenow <= 0)
-            {
-                Skill_A();
-            }
-            if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
-            {
-                Skill_B();
+                if (Input.GetMouseButton(0) && attackspeed_now <= 0)
+                {
+                    Attack();
+                }
+                if (Input.GetMouseButtonDown(1) && skillAcooltimenow <= 0)
+                {
+                    Skill_A();
+                }
+                if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
+                {
+                    Skill_B();
+                }
             }
 
             if (shotpoint.rotation.eulerAngles.z < 180)

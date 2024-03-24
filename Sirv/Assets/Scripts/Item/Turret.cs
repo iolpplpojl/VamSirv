@@ -112,8 +112,11 @@ public abstract class Turret : MonoBehaviour
                 KnifeDamagePer = PlayerComp.damagePer * 0.96f;
                 break;
         }
+        BonusDamage();
 
     }
+    abstract protected void BonusDamage();
+
     protected void MoveMent()
     {
         transform.position = Player.position;

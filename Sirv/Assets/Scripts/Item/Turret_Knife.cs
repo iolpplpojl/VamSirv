@@ -9,6 +9,8 @@ public class Turret_Knife : Turret
     public bool attacking = false;
     public int Level = 0;
     public int Damage;
+
+    public int[] BonusdamageSheet;
     BoxCollider2D col;
     private void Start()
     {
@@ -45,6 +47,25 @@ public class Turret_Knife : Turret
         if (Attackspeed_Now > 0 && attacking == false)
         {
             Attackspeed_Now -= Time.fixedDeltaTime;
+        }
+    }
+
+    override protected void BonusDamage()
+    {
+        switch (Rarity)
+        {
+            case 0:
+                Damage = BonusdamageSheet[0];
+                break;
+            case 1:
+                Damage = BonusdamageSheet[1];
+                break;
+            case 2:
+                Damage = BonusdamageSheet[2];
+                break;
+            case 3:
+                Damage = BonusdamageSheet[3];
+                break;
         }
     }
 

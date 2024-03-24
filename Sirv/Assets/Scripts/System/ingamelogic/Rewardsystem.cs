@@ -14,13 +14,16 @@ public class Rewardsystem : MonoBehaviour
     public Sprite[] Sprites;
     public Image[] Images;
 
+    public GameObject 스크롤뷰;
+    public GameObject 아이템프리팹;
+
     List<Dictionary<string, object>> ItemData;
     Roundsystem roundsystem;
     TurretManager turret;
     Moneymanager moneymanager;
     Player player;
     public int[] idx = {999,999,999};
-    bool Selected = false;
+    public bool Selected = false;
 
     public GameObject 보조무기프리팹;
     public TMP_Text 보조무기Txt;
@@ -136,7 +139,14 @@ public class Rewardsystem : MonoBehaviour
     public void Getreward(int idx)
     {
         player.GetItem(idx);
+        SetItemList(idx);
         SetStatText();
+    }
+
+    void SetItemList(int idx)
+    {
+        GameObject m_Obj = Instantiate(아이템프리팹, 스크롤뷰.transform);
+        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = Sprites[idx];
     }
     public bool GetTurret(int idx)
     {

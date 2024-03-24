@@ -144,3 +144,4 @@ MonoBehaviour:
   Damage: 12
   bullethrough: 1
   critPer: 0.4
+  BonusdamageSheet: 0c000000100000001400000018000000

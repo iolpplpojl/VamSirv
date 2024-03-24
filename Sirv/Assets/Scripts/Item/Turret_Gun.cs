@@ -9,6 +9,7 @@ public class Turret_Gun : Turret
     public int Damage;
     public int bullethrough;
     public float critPer;
+    public int[] BonusdamageSheet;
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +30,24 @@ public class Turret_Gun : Turret
         if (Attackspeed_Now > 0)
         {
             Attackspeed_Now -= Time.fixedDeltaTime;
+        }
+    }
+    override protected void BonusDamage()
+    {
+        switch (Rarity)
+        {
+            case 0:
+                Damage = BonusdamageSheet[0];
+                break;
+            case 1:
+                Damage = BonusdamageSheet[1];
+                break;
+            case 2:
+                Damage = BonusdamageSheet[2];
+                break;
+            case 3:
+                Damage = BonusdamageSheet[3];
+                break;
         }
     }
     void shot()
