@@ -1810,6 +1810,13 @@ MonoBehaviour:
   - {fileID: 6118014904770986696}
   - {fileID: 4003900760172488936}
   - {fileID: 622801044581760102}
+  Itemcount: 7
+  Turretcount: 3
+  UniqueCount: 0
+  UniqueData: {fileID: 0}
+  Datas:
+  - {fileID: 5189383824081256341, guid: c61a7343ac19c4e4aa3822c28b353317, type: 3}
+  - {fileID: 4602865853374236983, guid: 9c3848bc1b6fa3e4894076df04bbe94c, type: 3}
   "\uC2A4\uD06C\uB864\uBDF0": {fileID: 6747745842093609299}
   "\uC544\uC774\uD15C\uD504\uB9AC\uD339": {fileID: 2022931453132503146, guid: 0472ae56cb014994bbd9f209cec8b8be, type: 3}
   idx: e7030000e7030000e7030000

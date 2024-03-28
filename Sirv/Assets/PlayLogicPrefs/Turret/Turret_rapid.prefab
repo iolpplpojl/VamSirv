@@ -141,7 +141,7 @@ MonoBehaviour:
   Attackspeed_Now: 0
   UpgradeTool: 0
   Bullet: {fileID: 6787473082500420283, guid: e4c5295400b7d9740aec7ae361bfa557, type: 3}
-  Damage: 7
+  Damage: 9
   bullethrough: 1
   critPer: 0.55
-  BonusdamageSheet: 07000000080000000a0000000c000000
+  BonusdamageSheet: 090000000a0000000b0000000d000000

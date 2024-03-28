@@ -5,11 +5,17 @@ using UnityEngine;
 public class Player_Engi : Player
 {
     // Start is called before the first frame update
-
+    Rewardsystem rewardsystem;
 
     public void GetDefaultWeapon(Rewardsystem rewardsystem)
     {
+        this.rewardsystem = rewardsystem;
+        GetUniqueWeapon();
+    }
+    void GetUniqueWeapon()
+    {
         rewardsystem.DoTurret(3);
+        rewardsystem.UpdateSideArmUI();
     }
     public override void Attack()
     {
@@ -26,6 +32,13 @@ public class Player_Engi : Player
 
     public override void GetUniqueItem(int idx)
     {
+        switch (idx)
+        {
+            case 0:
+                GetUniqueWeapon();
+                break;
+        }
+
         return;
     }
 }

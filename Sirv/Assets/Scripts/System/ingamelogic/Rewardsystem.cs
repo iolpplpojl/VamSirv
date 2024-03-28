@@ -14,6 +14,12 @@ public class Rewardsystem : MonoBehaviour
     public Sprite[] Sprites;
     public Image[] Images;
 
+    public int Itemcount;
+    public int Turretcount;
+    public int UniqueCount;
+    public UniqueItemData UniqueData;
+    public GameObject[] Datas;
+
     public GameObject 스크롤뷰;
     public GameObject 아이템프리팹;
 
@@ -43,12 +49,15 @@ public class Rewardsystem : MonoBehaviour
         Reload();
     }
 
-    public void GetSystem(Player player,Roundsystem roundsystem,TurretManager Turret, Moneymanager Money)
+    public void GetSystem(Player player,Roundsystem roundsystem,TurretManager Turret, Moneymanager Money,int PlayerType)
     {
         this.player = player;
+
         this.roundsystem = roundsystem;
         this.turret = Turret;
         this.moneymanager = Money;
+        UniqueData = Instantiate(Datas[PlayerType], this.transform).GetComponent<UniqueItemData>();
+        UniqueCount = UniqueData.ItemData.Count;
         UpdateSideArmUI();
 
     }
@@ -68,15 +77,27 @@ public class Rewardsystem : MonoBehaviour
     {
         for(int i =0; i<3; i++)
         {
-            idx[i] = Random.Range(0, 11); //itemnomax - 1
+            idx[i] = Random.Range(0, Itemcount+Turretcount+UniqueCount); //itemnomax - 1
             buttons[i].gameObject.SetActive(true);
         }
         for (int i =0; i<3; i++)
         {
-            TextsDes[i].text = ItemData[idx[i]]["ITEMDESC"].ToString();
-            Texts[i].text = string.Format("{0}GOLD", (int)ItemData[idx[i]]["ITEMPRICE"]);
-            TextsTitle[i].text = ItemData[idx[i]]["ITEMNAME"].ToString();
-            Images[i].sprite = Sprites[idx[i]];
+            if (idx[i] < Itemcount + Turretcount)
+            {
+                TextsDes[i].text = ItemData[idx[i]]["ITEMDESC"].ToString();
+                Texts[i].text = string.Format("{0}GOLD", (int)ItemData[idx[i]]["ITEMPRICE"]);
+                TextsTitle[i].text = ItemData[idx[i]]["ITEMNAME"].ToString();
+                Images[i].sprite = Sprites[idx[i]];
+            }
+            else
+            {
+
+                Debug.Log(idx[i] - Turretcount - Itemcount);
+                TextsDes[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMDESC"].ToString();
+                Texts[i].text = string.Format("{0}GOLD", (int)UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMPRICE"]);
+                TextsTitle[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMNAME"].ToString();
+                Images[i].sprite = UniqueData.Sprites[idx[i] - Itemcount - Turretcount];
+            }
         }
         SetStatText();
     }
@@ -91,21 +112,37 @@ public class Rewardsystem : MonoBehaviour
     }
     public void Onclick(int n)
     {
-        if ((int)ItemData[idx[n]]["ITEMPRICE"] <= moneymanager.money)
+        if (idx[n] < Itemcount + Turretcount)
         {
-            if (idx[n] < 7)
+            if ((int)ItemData[idx[n]]["ITEMPRICE"] <= moneymanager.money)
             {
-                Debug.Log("Reward");
-                Getreward(idx[n]);
-                moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
-                buttons[n].gameObject.SetActive(false);
+                if (idx[n] < Itemcount)
+                {
+                    Debug.Log("Reward");
+                    Getreward(idx[n]);
+                    moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
+                    buttons[n].gameObject.SetActive(false);
+                }
+                else if (DoTurret(idx[n] - Itemcount) == true)
+                {
+                    Debug.Log("Turret");
+                    moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
+                    buttons[n].gameObject.SetActive(false);
+                    UpdateSideArmUI();
+                }
             }
-            else if (DoTurret(idx[n]-7) == true)
+        }
+        else
+        {
+            if ((int) UniqueData.ItemData[idx[n]-Itemcount-Turretcount]["ITEMPRICE"] <= moneymanager.money)
             {
-                Debug.Log("Turret");
-                moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
-                buttons[n].gameObject.SetActive(false);
-                UpdateSideArmUI();
+                if (idx[n] - Itemcount - Turretcount < UniqueCount)
+                {
+                    Debug.Log("Reward");
+                    GetUniquereward(idx[n] - Itemcount - Turretcount + 500);
+                    moneymanager.money -= (int)ItemData[idx[n] - Itemcount - Turretcount]["ITEMPRICE"];
+                    buttons[n].gameObject.SetActive(false);
+                }
             }
         }
 
@@ -144,11 +181,27 @@ public class Rewardsystem : MonoBehaviour
         SetItemList(idx);
         SetStatText();
     }
-
+    public void GetUniquereward(int idx)
+    {
+        player.GetItem(idx);
+        if ((int)UniqueData.ItemData[idx - 500]["ISTURRET"] == 1)
+        {
+        }
+        else
+        {
+            SetUniqueItemList(idx - 500);
+        }
+        SetStatText();
+    }
     void SetItemList(int idx)
     {
         GameObject m_Obj = Instantiate(아이템프리팹, 스크롤뷰.transform);
         m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = Sprites[idx];
+    }
+    void SetUniqueItemList(int idx)
+    {
+        GameObject m_Obj = Instantiate(아이템프리팹, 스크롤뷰.transform);
+        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = UniqueData.Sprites[idx];
     }
     public bool GetTurret(int idx)
     {
@@ -263,7 +316,7 @@ public class Rewardsystem : MonoBehaviour
         보조무기Txt.text = string.Format("보조 무기 ({0}/{1})", turret.TurretCount, turret.TurretMaxCount);
         for (int i = 0; i < turret.TurretCount; i++)
         {
-            보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().sprite = Sprites[turret.Turrets[i].TurretNum+7];
+            보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().sprite = Sprites[turret.Turrets[i].TurretNum+Itemcount];
             보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().color = ColorChange(turret.Turrets[i].Rarity);
             보조무기UI리스트[i].transform.GetChild(2).GetComponent<TMP_Text>().text = string.Format("{0}/{1}", turret.Turrets[i].Nowamount, turret.Turrets[i].Require);
         }

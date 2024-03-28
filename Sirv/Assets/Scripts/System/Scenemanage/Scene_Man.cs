@@ -53,7 +53,7 @@ public class Scene_Man : MonoBehaviour
                 m_Round.GetComponent<Roundsystem>().SetSpawner(m_spawn.GetComponent<EnemySpawner>());
                 m_Round.GetComponent<Roundsystem>().GetTurret(m_turret.GetComponent<TurretManager>());
                 GameObject m_Reward = Instantiate(Rewardmanager, m_System.transform);
-                m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>());
+                m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>(), PlayerType);
                 GameObject m_health = Instantiate(HealthUI, m_System.transform);
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 GameObject m_SFX = Instantiate(SFXmanager);
