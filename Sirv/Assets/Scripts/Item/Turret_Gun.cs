@@ -54,13 +54,13 @@ public class Turret_Gun : Turret
     {
         GameObject Bul = Instantiate(Bullet, transform.position, Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position));
         BulletMove BulComp = Bul.GetComponent<BulletMove>();
-        BulComp.damage = Damage+(int)(Damage*KnifeDamagePer);
+        BulComp.damage = (int)(Damage * KnifeDamagePer * PlayerComp.SideArmDamagePer);
         BulComp.bullethrough = bullethrough;
         BulComp.speed = Random.Range(18, 22);
         if ((int)(critPer * 100) > Random.Range(0, 100))
         {
             BulComp.Crit = true;
         }
-        Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer-1f) * PlayerComp.SideArmAttackSpeddper)) + Random.Range(-0.05f, 0.05f));
+        Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer - 1f))) * PlayerComp.SideArmAttackSpeedper) + Random.Range(-0.05f, 0.05f);
     }
 }

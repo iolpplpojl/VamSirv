@@ -58,6 +58,12 @@ public class Scene_Man : MonoBehaviour
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 GameObject m_SFX = Instantiate(SFXmanager);
                 m_Player.GetComponent<Player>().GetRewardsystem(m_Reward.GetComponent<Rewardsystem>());
+                if(PlayerType == 1)
+                {
+                    Debug.Log("Eh");
+                    m_Player.GetComponent<Player_Engi>().GetDefaultWeapon(m_Reward.GetComponent<Rewardsystem>());
+                    m_Reward.GetComponent<Rewardsystem>().UpdateSideArmUI();
+                }
                 yield break;
             }
             yield return new WaitForFixedUpdate();

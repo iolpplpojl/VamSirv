@@ -12,7 +12,7 @@ public class TurretManager : MonoBehaviour
     public int TurretCount = 0;
     public List<Turret> Turrets;
     public bool on = false;
-    void Start()
+    void Awake()
     {
         GameObject[] temp = GameObject.FindGameObjectsWithTag("Turretpos");
         for (int i = 0; i < temp.Length; i++)
@@ -22,7 +22,7 @@ public class TurretManager : MonoBehaviour
         TurretMaxCount = TurretPos.Count;
     }
     public void GetPlayer(Player player)
-        {
+    {
         this.player = player;
 
     }

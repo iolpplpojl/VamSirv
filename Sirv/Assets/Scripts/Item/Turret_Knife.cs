@@ -30,7 +30,7 @@ public class Turret_Knife : Turret
         {
             attacking = true;
             col.enabled = true;
-            Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer - 1f) * PlayerComp.SideArmAttackSpeddper)));
+            Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer - 1f)))) * PlayerComp.SideArmAttackSpeedper;
             StartCoroutine(Attack(Target.transform.position));
         }
         if (UpgradeTool == true)
@@ -102,7 +102,7 @@ public class Turret_Knife : Turret
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        collision.GetComponent<Enemy>().GetDamage(Damage+(int)(Damage*KnifeDamagePer));
+        collision.GetComponent<Enemy>().GetDamage((int)(Damage*KnifeDamagePer*PlayerComp.SideArmDamagePer));
         
     }
 

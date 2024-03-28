@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 107483255101183804}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009, y: -0.168, z: 0}
+  m_LocalPosition: {x: 0, y: -0.125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 357526310128028089}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1297, y: 0.091, z: 0}
+  m_LocalPosition: {x: -0.13, y: 0.0642, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 3583216683364553875}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.009, y: 0.125, z: 0}
+  m_LocalPosition: {x: 0, y: 0.125, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,11 +104,11 @@ GameObject:
   - component: {fileID: 2813548221563147408}
   - component: {fileID: 3755581855077015936}
   - component: {fileID: 2712231595709545726}
-  - component: {fileID: 3009745699167099863}
-  - component: {fileID: 2812729777942381197}
   - component: {fileID: 7483745961489662098}
+  - component: {fileID: 6920498391903051004}
+  - component: {fileID: 1136717602863387516}
   m_Layer: 6
-  m_Name: Player(gunman) 1
+  m_Name: Player(engineer)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,7 +177,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 03c2db0ee58965a4db53c4c4563001d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 074f0c54bc53d21499a51ae24cd1d5b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -215,76 +215,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3009745699167099863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4140445118860482306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92f95cc767505874992f811cc1be4e18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 100
-  maxHealthNow: 0
-  maxHealthPer: 1
-  attackspeed: 1.5
-  attackspeed_now: 0
-  attackspeedPer: 1
-  SideArmAttackSpeddper: 0.33
-  damage: 45
-  damagePer: 1
-  ammo: 0
-  maxammo: 6
-  maxammonow: 0
-  maxammoPer: 1
-  speed: 3
-  speedPer: 1
-  critPer: 0
-  reloadtime: 1
-  reloadtimenow: 0
-  skillAcooltime: 6
-  skillAcooltimenow: 0
-  skillBcooltime: 7
-  skillBcooltimenow: 0
-  GetAttckTime: 0.5
-  GetAttackTimenow: 0
-  shotpoint: {fileID: 801464279253253962}
-  Effects:
-  - {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
-  - {fileID: 0}
-  - {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
-  Bullet: {fileID: 6516944877753444422, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
-  Dynamite: {fileID: 1608535200985290773, guid: ed8b0a1cb3b1ce542b6e5696e7b65058, type: 3}
-  skillADamage: 120
-  bullethrough: 1
-  skillAExplodeRadius: 1.5
-  skillAExplodeTime: 1
-  SkillABuff: 1.4
---- !u!95 &2812729777942381197
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4140445118860482306}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d7baa8841c26e4845a18ff2c08fcbadf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &7483745961489662098
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -330,6 +260,67 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.28}
   m_EdgeRadius: 0
+--- !u!114 &6920498391903051004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140445118860482306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a0768b68536b3408edb4ddd5e88202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 60
+  maxHealthNow: 0
+  maxHealthPer: 1
+  attackspeed: 100000000
+  attackspeed_now: 0
+  attackspeedPer: 1
+  SideArmAttackSpeedper: 1.5
+  damage: 0
+  damagePer: 1
+  SideArmDamagePer: 1.3
+  ammo: 0
+  maxammo: 0
+  maxammonow: 0
+  maxammoPer: 1
+  speed: 3
+  speedPer: 1
+  critPer: 0
+  reloadtime: 0
+  reloadtimenow: 0
+  skillAcooltime: 0
+  skillAcooltimenow: 0
+  skillBcooltime: 0
+  skillBcooltimenow: 0
+  GetAttckTime: 0.5
+  GetAttackTimenow: 0
+  shotpoint: {fileID: 801464279253253962}
+  Effects: []
+--- !u!95 &1136717602863387516
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140445118860482306}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f32a6d8413f4e074fb64dbab32bfc937, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4409321354031137102
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 4409321354031137102}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.141, y: 0.094, z: 0}
+  m_LocalPosition: {x: 0.13, y: 0.064, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -483,7 +474,7 @@ Transform:
   m_GameObject: {fileID: 8796350899768012077}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1297, y: -0.0462, z: 0}
+  m_LocalPosition: {x: -0.13, y: -0.073, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -514,7 +505,7 @@ Transform:
   m_GameObject: {fileID: 9123011536521783577}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.141, y: -0.0462, z: 0}
+  m_LocalPosition: {x: 0.13, y: -0.0732, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

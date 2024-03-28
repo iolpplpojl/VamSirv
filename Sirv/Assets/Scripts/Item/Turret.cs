@@ -100,16 +100,16 @@ public abstract class Turret : MonoBehaviour
         switch (Rarity)
         {
             case 0:
-                KnifeDamagePer = PlayerComp.damagePer * 0.12f;
+                KnifeDamagePer = PlayerComp.damagePer * 1.12f;
                 break;
             case 1:
-                KnifeDamagePer = PlayerComp.damagePer * 0.24f;
+                KnifeDamagePer = PlayerComp.damagePer * 1.24f;
                 break;
             case 2:
-                KnifeDamagePer = PlayerComp.damagePer * 0.48f;
+                KnifeDamagePer = PlayerComp.damagePer * 1.48f;
                 break;
             case 3:
-                KnifeDamagePer = PlayerComp.damagePer * 0.96f;
+                KnifeDamagePer = PlayerComp.damagePer * 1.96f;
                 break;
         }
         BonusDamage();

@@ -16,7 +16,7 @@ public class Roundsystem : MonoBehaviour
     {
         counter = (int)Time;
         Rounder.text = string.Format("ROUND {0}",Round.ToString());
-        Spawner.SetSpawning(true);
+        Spawner.SetSpawning(Round);
         for (int i = 0; i <= Time; i++) {
             SetText();
             yield return new WaitForSeconds(1.0f);
@@ -63,24 +63,68 @@ public class Roundsystem : MonoBehaviour
     {
         Round++;
         float m_Time;
-        float m_SpawnTime;
+        float[] m_SpawnTime = new float[3];
         switch(Round)
         {
             case 1:
                 m_Time = 15;
-                m_SpawnTime = 1.0f;
+                m_SpawnTime[0] = 0.5f;
+                m_SpawnTime[1] = 2.0f;
+                m_SpawnTime[2] = 4.0f;
                 break;
             case 2:
                 m_Time = 20;
-                m_SpawnTime = 0.7f;
+                m_SpawnTime[0] = 0.45f;
+                m_SpawnTime[1] = 1.85f;
+                m_SpawnTime[2] = 3.85f;
                 break;
             case 3:
                 m_Time = 25;
-                m_SpawnTime = 0.5f;
+                m_SpawnTime[0] = 0.4f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
+                break;
+            case 4:
+                m_Time = 25;
+                m_SpawnTime[0] = 0.4f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
+                break;
+            case 5:
+                m_Time = 25;
+                m_SpawnTime[0] = 0.4f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
+                break;
+            case 6:
+                m_Time = 25;
+                m_SpawnTime[0] = 0.4f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
+                break;
+            case 7:
+                m_Time = 25;
+                m_SpawnTime[0] = 0.4f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
+                break;
+            case 8:
+                m_Time = 25;
+                m_SpawnTime[0] = 0.33f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
+                break;
+            case 9:
+                m_Time = 25;
+                m_SpawnTime[0] = 0.28f;
+                m_SpawnTime[1] = 1.70f;
+                m_SpawnTime[2] = 3.6f;
                 break;
             default:
-                m_Time = 20;
-                m_SpawnTime = 0.3f;
+                m_Time = 35;
+                m_SpawnTime[0] = 0.22f;
+                m_SpawnTime[1] = 1.7f;
+                m_SpawnTime[2] = 3.6f;
                 break;
         }
         Spawner.SetSpawnTime(m_SpawnTime);

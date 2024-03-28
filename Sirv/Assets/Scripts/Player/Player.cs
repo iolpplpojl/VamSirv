@@ -15,11 +15,13 @@ public abstract class Player : MonoBehaviour
     public float attackspeed; // 1 / attackspeed;
     public float attackspeed_now;
     public float attackspeedPer = 1;
-    public float SideArmAttackSpeddper;
+    public float SideArmAttackSpeedper;
     [Space]
 
     public int damage;
     public float damagePer = 1;
+    public float SideArmDamagePer;
+
     [Space]
 
     public int ammo;
@@ -49,13 +51,13 @@ public abstract class Player : MonoBehaviour
     public float GetAttckTime;
     public float GetAttackTimenow;
     [Space]
-
     bool Death = false;
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
     Vector2 inputVec;
     Rigidbody2D rigid;
     public AudioClip[] Effects;
+    [Header("Default")]
     Rewardsystem rewardsystem;
 
 
@@ -162,9 +164,10 @@ public abstract class Player : MonoBehaviour
             case 0:
                 damagePer += 0.05f;
                 attackspeedPer += 0.03f;
+                maxHealthGet(-0.03f);
                 break;
             case 1:
-                attackspeedPer += 0.1f;
+                attackspeedPer += 0.06f;
                 damagePer -= 0.02f;
                 break;
             case 2:
@@ -175,16 +178,21 @@ public abstract class Player : MonoBehaviour
             case 3:
                 critPer += 0.05f;
                 damagePer += 0.03f;
+                attackspeedPer -= 0.03f;
                 break;
             case 4:
-                maxHealthGet(0.3f);
+                maxHealthGet(0.1f);
                 speedPer -= 0.02f;
                 break;
             case 5:
-                speedPer += 0.07f;
+                speedPer += 0.04f;
                 damagePer += 0.03f;
                 attackspeedPer += 0.03f;
                 maxHealthGet(-0.05f);
+                break;
+            case 6:
+                attackspeedPer -= 0.01f;
+                damagePer += 0.04f;
                 break;
             case 500:
                 GetUniqueItem(0);

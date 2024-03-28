@@ -297,9 +297,10 @@ MonoBehaviour:
   attackspeed: 1.5
   attackspeed_now: 0
   attackspeedPer: 1
-  SideArmAttackSpeddper: 0.33
+  SideArmAttackSpeedper: 1
   damage: 45
   damagePer: 1
+  SideArmDamagePer: 1
   ammo: 0
   maxammo: 6
   maxammonow: 0

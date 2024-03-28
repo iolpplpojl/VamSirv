@@ -41,14 +41,16 @@ public class Rewardsystem : MonoBehaviour
             "speed " + (int)ItemData[i]["ITEMPRICE"] + " ");
         }
         Reload();
-
     }
+
     public void GetSystem(Player player,Roundsystem roundsystem,TurretManager Turret, Moneymanager Money)
     {
         this.player = player;
         this.roundsystem = roundsystem;
         this.turret = Turret;
         this.moneymanager = Money;
+        UpdateSideArmUI();
+
     }
 
     private void Update()
@@ -66,7 +68,7 @@ public class Rewardsystem : MonoBehaviour
     {
         for(int i =0; i<3; i++)
         {
-            idx[i] = Random.Range(0, 9);
+            idx[i] = Random.Range(0, 11); //itemnomax - 1
             buttons[i].gameObject.SetActive(true);
         }
         for (int i =0; i<3; i++)
@@ -91,19 +93,18 @@ public class Rewardsystem : MonoBehaviour
     {
         if ((int)ItemData[idx[n]]["ITEMPRICE"] <= moneymanager.money)
         {
-            if (idx[n] < 6)
+            if (idx[n] < 7)
             {
                 Debug.Log("Reward");
                 Getreward(idx[n]);
                 moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
                 buttons[n].gameObject.SetActive(false);
             }
-            else if (DoTurret(idx[n]-6) == true)
+            else if (DoTurret(idx[n]-7) == true)
             {
                 Debug.Log("Turret");
                 moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
                 buttons[n].gameObject.SetActive(false);
-                보조무기Txt.text = string.Format("보조 무기 ({0}/{1})", turret.TurretCount, turret.TurretMaxCount);
                 UpdateSideArmUI();
             }
         }
@@ -121,6 +122,7 @@ public class Rewardsystem : MonoBehaviour
         }
         else
         {
+            Debug.Log("DoTurret3");
             return false;
         }
     }
@@ -150,6 +152,7 @@ public class Rewardsystem : MonoBehaviour
     }
     public bool GetTurret(int idx)
     {
+        Debug.Log(turret.TurretMaxCount + "   " + turret.TurretCount);
         if (turret.TurretMaxCount != turret.TurretCount)
         {
             turret.GetTurret(idx, 0);
@@ -255,11 +258,12 @@ public class Rewardsystem : MonoBehaviour
         스탯.text += ((int)(player.maxammoPer * 100)).ToString();
         스탯.text += "</color><br>";
     }
-    void UpdateSideArmUI()
+    public void UpdateSideArmUI()
     {
-        for(int i = 0; i < turret.TurretCount; i++)
+        보조무기Txt.text = string.Format("보조 무기 ({0}/{1})", turret.TurretCount, turret.TurretMaxCount);
+        for (int i = 0; i < turret.TurretCount; i++)
         {
-            보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().sprite = Sprites[turret.Turrets[i].TurretNum+6];
+            보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().sprite = Sprites[turret.Turrets[i].TurretNum+7];
             보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().color = ColorChange(turret.Turrets[i].Rarity);
             보조무기UI리스트[i].transform.GetChild(2).GetComponent<TMP_Text>().text = string.Format("{0}/{1}", turret.Turrets[i].Nowamount, turret.Turrets[i].Require);
         }
