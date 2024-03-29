@@ -129,6 +129,8 @@ MonoBehaviour:
   damage: 0
   explosionradius: 0
   explosionTime: 0
+  Firebomb: 0
+  Firebombprefs: {fileID: 1794842091689274341, guid: 65c79c130ba1ed243bf4c8aa9155651f, type: 3}
 --- !u!61 &7899628448296789657
 BoxCollider2D:
   m_ObjectHideFlags: 0

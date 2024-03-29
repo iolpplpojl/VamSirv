@@ -8,6 +8,8 @@ public class Dynamite : MonoBehaviour
     public int damage;
     public float explosionradius;
     public float explosionTime;
+    public bool Firebomb = false;
+    public GameObject Firebombprefs;
     Rigidbody2D rigid;
     // Update is called once per frame
 
@@ -40,6 +42,13 @@ public class Dynamite : MonoBehaviour
 
         }
 
+        if(Firebomb == true)
+        {
+            GameObject Fire = Instantiate(Firebombprefs, transform.position, Quaternion.identity);
+            Firegrid m_Fire = Fire.GetComponent<Firegrid>();
+            m_Fire.radius = explosionradius;
+
+        }
         Destroy(gameObject);
  
     }

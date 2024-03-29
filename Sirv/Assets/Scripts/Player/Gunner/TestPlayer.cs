@@ -12,7 +12,7 @@ public class TestPlayer : Player
     public int bullethrough;  // °üÅë¼ö
     public float skillAExplodeRadius;
     public float skillAExplodeTime;
-
+    public bool Firebomb = false;
     public float SkillABuff;
     float SkillABuffnow = 1;
 
@@ -70,6 +70,10 @@ public class TestPlayer : Player
         DynaComp.explosionradius = skillAExplodeRadius;
         DynaComp.explosionTime = skillAExplodeTime;
 
+        if(Firebomb == true)
+        {
+            DynaComp.Firebomb = true;
+        }
         skillBcooltimenow = skillBcooltime;
     }
 
