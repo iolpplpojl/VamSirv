@@ -91,15 +91,44 @@ public class Rewardsystem : MonoBehaviour
             }
             else
             {
+                CheckUnique(i);
 
-                Debug.Log(idx[i] - Turretcount - Itemcount);
-                TextsDes[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMDESC"].ToString();
-                Texts[i].text = string.Format("{0}GOLD", (int)UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMPRICE"]);
-                TextsTitle[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMNAME"].ToString();
-                Images[i].sprite = UniqueData.Sprites[idx[i] - Itemcount - Turretcount];
             }
         }
         SetStatText();
+    }
+
+    void CheckUnique(int i)
+    {
+        if (UniqueData.GotUnique.Contains(idx[i] - Itemcount - Turretcount) == false)
+        {
+            TextsDes[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMDESC"].ToString();
+            Texts[i].text = string.Format("{0}GOLD", (int)UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMPRICE"]);
+            TextsTitle[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMNAME"].ToString();
+            Images[i].sprite = UniqueData.Sprites[idx[i] - Itemcount - Turretcount];
+        }
+        else
+        {
+            Reloadoneslot(i);
+            //itemnomax - 1
+        }
+    }
+    void Reloadoneslot(int i)
+    {
+        Debug.Log("Oneslotloaded! : " + i);
+            idx[i] = Random.Range(0, Itemcount + Turretcount + UniqueCount); //itemnomax - 1
+            buttons[i].gameObject.SetActive(true);
+            if (idx[i] < Itemcount + Turretcount)
+            {
+                TextsDes[i].text = ItemData[idx[i]]["ITEMDESC"].ToString();
+                Texts[i].text = string.Format("{0}GOLD", (int)ItemData[idx[i]]["ITEMPRICE"]);
+                TextsTitle[i].text = ItemData[idx[i]]["ITEMNAME"].ToString();
+                Images[i].sprite = Sprites[idx[i]];
+            }
+            else
+            {
+                CheckUnique(i);
+            }
     }
 
     public void SetReload()
@@ -138,10 +167,17 @@ public class Rewardsystem : MonoBehaviour
             {
                 if (idx[n] - Itemcount - Turretcount < UniqueCount)
                 {
-                    Debug.Log("Reward");
-                    GetUniquereward(idx[n] - Itemcount - Turretcount + 500);
-                    moneymanager.money -= (int)ItemData[idx[n] - Itemcount - Turretcount]["ITEMPRICE"];
-                    buttons[n].gameObject.SetActive(false);
+                    if (UniqueData.GotUnique.Contains(idx[n] - Itemcount - Turretcount) == false)
+                    {
+                        Debug.Log("Reward");
+                        GetUniquereward(idx[n] - Itemcount - Turretcount + 500);
+                        moneymanager.money -= (int)UniqueData.ItemData[idx[n] - Itemcount - Turretcount]["ITEMPRICE"];
+                        buttons[n].gameObject.SetActive(false);
+                        if ((int)UniqueData.ItemData[idx[n] - Itemcount - Turretcount]["ISUNIQUE"] == 1)
+                        {
+                            UniqueData.GotUnique.Add(idx[n] - Itemcount - Turretcount);
+                        }
+                    }
                 }
             }
         }

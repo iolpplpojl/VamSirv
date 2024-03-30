@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2942119183384606073}
   - component: {fileID: 8092570238473669102}
   - component: {fileID: 8955729860564462998}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Firegrid
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,10 +46,10 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 375
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -59,10 +59,10 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -84,6 +84,7 @@ MonoBehaviour:
   Fire: {fileID: 934378512556490092, guid: 706126c2f09e7b54f9546030a645caee, type: 3}
   radius: 2
   Damage: 0
+  Sprite: {fileID: 6316802755393616321}
 --- !u!1 &6316802755393616321
 GameObject:
   m_ObjectHideFlags: 0

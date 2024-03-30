@@ -22,6 +22,9 @@ public abstract class Enemy : MonoBehaviour
     float flashtime = 0f;
     SpriteRenderer Sprite;
     // Start is called before the first frame update
+
+    public Coroutine Firegrid;
+    
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -45,30 +48,36 @@ public abstract class Enemy : MonoBehaviour
 
     public void GetDamage(int Damage)
     {
-        SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
-        DamagePopupSystem.instance.Setup(transform, Damage);
-        Sprite.material.SetFloat("_FlashAmount", 1f);
-        Sprite.material.SetColor("_Flashcolor", Color.white);
-        flashtime = 1f;
-        HP -= Damage;
-        Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
-        if (HP <= 0)
+        if (Death == false)
         {
-            Dead();
+            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
+            DamagePopupSystem.instance.Setup(transform, Damage);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", Color.white);
+            flashtime = 1f;
+            HP -= Damage;
+            Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
+            if (HP <= 0)
+            {
+                Dead();
+            }
         }
     }
     public void GetCritDamage(int Damage)
     {
-        SFXsystem.instance.PlaySoundFX(CritEffects, transform, 0.1f);
-        DamagePopupSystem.instance.Setup(transform, Damage * 2, true);
-        Sprite.material.SetFloat("_FlashAmount", 1f);
-        Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
-        flashtime = 1f;
-        HP -= Damage*2;
-        Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage*2 + "nowHP:" + HP);
-        if (HP <= 0)
+        if (Death == false)
         {
-            Dead();
+            SFXsystem.instance.PlaySoundFX(CritEffects, transform, 0.1f);
+            DamagePopupSystem.instance.Setup(transform, Damage * 2, true);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
+            flashtime = 1f;
+            HP -= Damage * 2;
+            Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage * 2 + "nowHP:" + HP);
+            if (HP <= 0)
+            {
+                Dead();
+            }
         }
     }
     public void SetMoneymanager(Moneymanager man)
@@ -77,10 +86,13 @@ public abstract class Enemy : MonoBehaviour
     }
     public void Dead()
     {
-        Death = true;
-        Debug.Log("Dead");
-        Destroy(gameObject);
-        moneymanager.DropMoney(transform.position, Value,DropPer);
-        return;
+        if (Death == false)
+        {
+            Death = true;
+            Debug.Log("Dead");
+            Destroy(gameObject);
+            moneymanager.DropMoney(transform.position, Value, DropPer);
+            return;
+        }
     }
 }

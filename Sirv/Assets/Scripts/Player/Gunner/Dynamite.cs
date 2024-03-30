@@ -21,6 +21,7 @@ public class Dynamite : MonoBehaviour
     private void Update()
     {
         transform.Rotate(0, 0, 1 * (rigid.velocity.x+rigid.velocity.x));
+
     }
 
 
@@ -32,6 +33,13 @@ public class Dynamite : MonoBehaviour
     void Explode()
     {
         var hit = Physics2D.OverlapCircleAll(transform.position, explosionradius);
+        if (Firebomb == true)
+        {
+            GameObject Fire = Instantiate(Firebombprefs, transform.position, Quaternion.identity);
+            Firegrid m_Fire = Fire.GetComponent<Firegrid>();
+            m_Fire.radius = explosionradius;
+            m_Fire.Damage = damage*5;
+        }
         foreach (var HitCol in hit)
         {
             if (HitCol.CompareTag("Enemy") && HitCol.isTrigger)
@@ -42,13 +50,7 @@ public class Dynamite : MonoBehaviour
 
         }
 
-        if(Firebomb == true)
-        {
-            GameObject Fire = Instantiate(Firebombprefs, transform.position, Quaternion.identity);
-            Firegrid m_Fire = Fire.GetComponent<Firegrid>();
-            m_Fire.radius = explosionradius;
 
-        }
         Destroy(gameObject);
  
     }

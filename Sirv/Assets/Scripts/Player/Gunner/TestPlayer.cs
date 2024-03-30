@@ -79,6 +79,13 @@ public class TestPlayer : Player
 
     public override void GetUniqueItem(int idx)
     {
-        throw new System.NotImplementedException();
+        switch (idx)
+        {
+            case 0:
+                skillADamage = skillADamage / 5;
+                Firebomb = true;
+                break;
+        }
+
     }
 }

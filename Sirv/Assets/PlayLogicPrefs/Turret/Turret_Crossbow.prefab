@@ -137,7 +137,7 @@ MonoBehaviour:
   Require: 2
   Nowamount: 0
   Radius: 5
-  Attackspped: 0.5
+  Attackspped: 0.3
   Attackspeed_Now: 0
   UpgradeTool: 0
   Bullet: {fileID: 5913752780164852440, guid: ba8acb752d1613649bcdc60e9ff52670, type: 3}

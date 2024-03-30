@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
 
-            GameObject enemy = Instantiate(EnemyPrefs[1], new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2)), Quaternion.identity, transform);
+            GameObject enemy = Instantiate(EnemyPrefs[1], new Vector2(Random.Range(-(Box.size.x / 2.2f), Box.size.x / 2.2f), Random.Range(-(Box.size.y / 2.2f), Box.size.y / 2.2f)), Quaternion.identity, transform);
             enemy.GetComponent<Enemy>().SetMoneymanager(Moneymanager);
             
             yield return new WaitForSeconds(SpawnTime_Middle);

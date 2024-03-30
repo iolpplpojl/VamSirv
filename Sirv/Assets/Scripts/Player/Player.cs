@@ -176,12 +176,12 @@ public abstract class Player : MonoBehaviour
                 speedPer -= 0.02f;
                 break;
             case 3:
-                critPer += 0.05f;
+                critPer += 0.03f;
                 damagePer += 0.03f;
                 attackspeedPer -= 0.03f;
                 break;
             case 4:
-                maxHealthGet(0.1f);
+                maxHealthGet(0.06f);
                 speedPer -= 0.02f;
                 break;
             case 5:

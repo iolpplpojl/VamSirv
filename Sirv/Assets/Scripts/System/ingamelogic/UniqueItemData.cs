@@ -8,8 +8,10 @@ public class UniqueItemData : MonoBehaviour
     public List<Dictionary<string, object>> ItemData;
     public int PlayerNum;
     public Sprite[] Sprites;
+    public List<int> GotUnique;
     void Awake()
     {
+        GotUnique = new List<int>();
         switch (PlayerNum)
         {
             case 0:
