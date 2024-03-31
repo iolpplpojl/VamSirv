@@ -157,48 +157,134 @@ public abstract class Player : MonoBehaviour
         ammo = maxammonow;
         reloading = false;
     }
-    public void GetItem(int idx)
+    public void GetItem(int idx, int rare)
     {
-        switch (idx)
-        {
+        switch (rare) {
             case 0:
-                damagePer += 0.05f;
-                attackspeedPer += 0.03f;
-                maxHealthGet(-0.03f);
-                break;
+                    switch (idx)
+                    {
+                        case 0:
+                            damagePer += 0.05f;
+                            attackspeedPer += 0.03f;
+                            maxHealthGet(-0.03f);
+                            break;
+                        case 1:
+                            attackspeedPer += 0.06f;
+                            damagePer -= 0.02f;
+                            break;
+                        case 2:
+                            maxAmmoGet(0.05f);
+                            attackspeedPer += 0.02f;
+                            speedPer -= 0.02f;
+                            break;
+                        case 3:
+                            critPer += 0.03f;
+                            damagePer += 0.03f;
+                            attackspeedPer -= 0.03f;
+                            break;
+                        case 4:
+                            maxHealthGet(0.06f);
+                            speedPer -= 0.02f;
+                            break;
+                        case 5:
+                            speedPer += 0.04f;
+                            damagePer += 0.03f;
+                            attackspeedPer += 0.03f;
+                            maxHealthGet(-0.05f);
+                            break;
+                        case 6:
+                            attackspeedPer -= 0.01f;
+                            damagePer += 0.04f;
+                            break;
+                    }
+            break;
             case 1:
-                attackspeedPer += 0.06f;
-                damagePer -= 0.02f;
+                switch (idx)
+                {
+                    case 0:
+                        damagePer += 0.9f;
+                        attackspeedPer += 0.03f;
+                        maxHealthGet(-0.03f);
+                        break;
+                    case 1:
+                        attackspeedPer += 0.06f;
+                        damagePer -= 0.02f;
+                        break;
+                    case 2:
+                        maxAmmoGet(9f);
+                        attackspeedPer += 0.02f;
+                        speedPer -= 0.02f;
+                        break;
+                    case 3:
+                        critPer += 9f;
+                        damagePer += 0.03f;
+                        attackspeedPer -= 0.03f;
+                        break;
+                    case 4:
+                        maxHealthGet(0.06f);
+                        speedPer -= 0.02f;
+                        break;
+                    case 5:
+                        speedPer += 0.04f;
+                        damagePer += 0.03f;
+                        attackspeedPer += 0.03f;
+                        maxHealthGet(-0.05f);
+                        break;
+                    case 6:
+                        attackspeedPer -= 0.01f;
+                        damagePer += 0.04f;
+                        break;
+                    case 500:
+                        GetUniqueItem(0);
+                        break;
+                    case 501:
+                        GetUniqueItem(1);
+                        break;
+                }
                 break;
             case 2:
-                maxAmmoGet(0.05f);
-                attackspeedPer += 0.02f;
-                speedPer -= 0.02f;
-                break;
-            case 3:
-                critPer += 0.03f;
-                damagePer += 0.03f;
-                attackspeedPer -= 0.03f;
-                break;
-            case 4:
-                maxHealthGet(0.06f);
-                speedPer -= 0.02f;
-                break;
-            case 5:
-                speedPer += 0.04f;
-                damagePer += 0.03f;
-                attackspeedPer += 0.03f;
-                maxHealthGet(-0.05f);
-                break;
-            case 6:
-                attackspeedPer -= 0.01f;
-                damagePer += 0.04f;
-                break;
-            case 500:
-                GetUniqueItem(0);
-                break;
-            case 501:
-                GetUniqueItem(1);
+                switch (idx)
+                {
+                    case 0:
+                        damagePer += 0.9f;
+                        attackspeedPer += 0.03f;
+                        maxHealthGet(-0.03f);
+                        break;
+                    case 1:
+                        attackspeedPer += 0.06f;
+                        damagePer -= 0.02f;
+                        break;
+                    case 2:
+                        maxAmmoGet(9f);
+                        attackspeedPer += 0.02f;
+                        speedPer -= 0.02f;
+                        break;
+                    case 3:
+                        critPer += 9f;
+                        damagePer += 0.03f;
+                        attackspeedPer -= 0.03f;
+                        break;
+                    case 4:
+                        maxHealthGet(0.06f);
+                        speedPer -= 0.02f;
+                        break;
+                    case 5:
+                        speedPer += 0.04f;
+                        damagePer += 0.03f;
+                        attackspeedPer += 0.03f;
+                        maxHealthGet(-0.05f);
+                        break;
+                    case 6:
+                        attackspeedPer -= 0.01f;
+                        damagePer += 0.04f;
+                        break;
+                    case 500:
+                        GetUniqueItem(0);
+                        break;
+                    case 501:
+                        GetUniqueItem(1);
+                        break;
+                }
                 break;
         }
     }

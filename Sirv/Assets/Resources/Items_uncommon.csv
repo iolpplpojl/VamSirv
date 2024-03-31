@@ -7,7 +7,6 @@ ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE,RAIRTY
 5,채찍,이동속도 + <color=#00ff00ff>7%</color><br>공격력 + <color=#00ff00ff>3%</color><br>공격속도 + <color=#00ff00ff>3%</color><br>체력 - <color=#B90E0A>5%</color>,30,0
 6,계약서,대미지 + <color=#00ff00ff>4%</color><br>공격속도 + <color=#B90E0A>1%</color>,20,0
 7,빨간 열매,일반 스킬 쿨타임 - <color=#00ff00ff>5% </color><br>치명타 - <color=#B90E0A>1%</color>,24,0
-8,신비한 열매,특별 스킬 쿨타임 - <color=#00ff00ff>5% </color><br>치명타 - <color=#B90E0A>1%</color>,24,0
-9,과도,대미지 : 30 <br>공격속도 : 0.8/초 <br>근거리,28,0
-10,단궁,대미지 : 12 <br>공격속도 : 1/초 <br>원거리 <br>치명타 확률 : 40%,35,0
-11,투척용 도끼,대미지 : 8 <br>공격속도 : 0.3/초 <br>원거리 <br>산탄(x8) <br>치명타 확률 : 20%,40,0
+8,과도,대미지 : 30 <br>공격속도 : 0.8/초 <br>근거리,28,0
+9,단궁,대미지 : 12 <br>공격속도 : 1/초 <br>원거리 <br>치명타 확률 : 40%,35,0
+10,투척용 도끼,대미지 : 8 <br>공격속도 : 0.3/초 <br>원거리 <br>산탄(x8) <br>치명타 확률 : 20%,40,0

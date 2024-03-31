@@ -108,6 +108,7 @@ MonoBehaviour:
   Radius: 1.8
   Attackspped: 0.8
   Attackspeed_Now: 0
+  "\uBCF4\uC870\uBB34\uAE30UI\uC2A4\uD504\uB77C\uC774\uD2B8": {fileID: 21300000, guid: fdac903a7cee1454db4458abeb569533, type: 3}
   UpgradeTool: 0
   attacking: 0
   Level: 0

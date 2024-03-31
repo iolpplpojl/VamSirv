@@ -18,6 +18,7 @@ public abstract class Turret : MonoBehaviour
     protected bool Find = false;
     protected GameObject Target;
     protected SpriteRenderer Renderer;
+    public Sprite 보조무기UI스프라이트;
 
     public bool UpgradeTool = false;
 

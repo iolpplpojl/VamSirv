@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
+[System.Serializable]
+public class sprites
+{
+    public Sprite[] sprite;
+}
 public class Rewardsystem : MonoBehaviour
 {
     // Start is called before the first frame update
+
     public GameObject 부모;
     public GameObject[] buttons;
     public TMP_Text[] Texts;
     public TMP_Text[] TextsDes;
     public TMP_Text[] TextsTitle;
-    public Sprite[] Sprites;
+    public List<sprites> Sprites;
     public Image[] Images;
 
-    public int Itemcount;
-    public int Turretcount;
-    public int UniqueCount;
+    public int[] Itemcount;
+    public int[] Turretcount;
+    public int[] UniqueCount;
     public UniqueItemData UniqueData;
-    public GameObject[] Datas;
+    public GameObject[] Datas;  
 
     public GameObject 스크롤뷰;
     public GameObject 아이템프리팹;
 
-    List<Dictionary<string, object>> ItemData;
+    List<List<Dictionary<string, object>>> ItemData;
     Roundsystem roundsystem;
     TurretManager turret;
     Moneymanager moneymanager;
     Player player;
-    public int[] idx = {999,999,999};
+    public int[] idx = {999,999,999 };
+    public int[] rairty = { 999, 999, 999 };
     public bool Selected = false;
 
     public GameObject 보조무기프리팹;
@@ -38,13 +46,26 @@ public class Rewardsystem : MonoBehaviour
 
     private void Start()
     {
-        ItemData = CSVReader.Read("Items");
-        for (var i = 0; i < ItemData.Count; i++)
+        ItemData = new List<List<Dictionary<string, object>>>();
+        ItemData.Add(CSVReader.Read("Items"));
+        ItemData.Add(CSVReader.Read("Items_uncommon"));
+        ItemData.Add(CSVReader.Read("Items_rare"));
+        ItemData.Add(CSVReader.Read("Items_epic"));
+        ItemData.Add(CSVReader.Read("Items_legend"));
+        for (int l = 0; l < ItemData.Count; l++)
         {
-            Debug.Log("name " + ItemData[i]["ITEMNO"] + " " +
-                   "age " + ItemData[i]["ITEMNAME"] + " " +
-                   "speed " + ItemData[i]["ITEMDESC"] + " " +
-            "speed " + (int)ItemData[i]["ITEMPRICE"] + " ");
+            Debug.Log(ItemData[l].Count);
+            for (int i = 0; i < ItemData[l].Count; i++)
+            {
+                Debug.Log("name " + ItemData[l][i]["ITEMNO"] + " " +
+                       "age " + ItemData[l][i]["ITEMNAME"] + " " +
+                       "speed " + ItemData[l][i]["ITEMDESC"] + " " +
+                "speed " + (int)ItemData[l][i]["ITEMPRICE"] + " ");
+            }
+        }
+        for(int i = 0; i<Sprites.Count; i++)
+        {
+            Debug.Log(Sprites[i].sprite.Length);
         }
         Reload();
     }
@@ -57,7 +78,7 @@ public class Rewardsystem : MonoBehaviour
         this.turret = Turret;
         this.moneymanager = Money;
         UniqueData = Instantiate(Datas[PlayerType], this.transform).GetComponent<UniqueItemData>();
-        UniqueCount = UniqueData.ItemData.Count;
+        //UniqueCount;
         UpdateSideArmUI();
 
     }
@@ -77,58 +98,94 @@ public class Rewardsystem : MonoBehaviour
     {
         for(int i =0; i<3; i++)
         {
-            idx[i] = Random.Range(0, Itemcount+Turretcount+UniqueCount); //itemnomax - 1
-            buttons[i].gameObject.SetActive(true);
+            // 칸마다 희귀도 체크
+            // 기본 확률 = 고    급 : 20% + 0.5+라운드, 희귀 : 10% + 0.3*라운드, 영웅 : 3% + 0.1*라운드 전설 : 1% + 0.05%*라운드, else: 일반
+            // 0, 1, 2, 3, 4
+            // 전설부터 체크 후 체크되는 순간 선택 시작
+            // 만약 전설이라 치면 전설count
+            //idx[i] 말고 rairty[i] 추가로 필요
+            //고유 = 희귀,영웅   
+
+            Randomizer(i);
         }
         for (int i =0; i<3; i++)
         {
-            if (idx[i] < Itemcount + Turretcount)
-            {
-                TextsDes[i].text = ItemData[idx[i]]["ITEMDESC"].ToString();
-                Texts[i].text = string.Format("{0}GOLD", (int)ItemData[idx[i]]["ITEMPRICE"]);
-                TextsTitle[i].text = ItemData[idx[i]]["ITEMNAME"].ToString();
-                Images[i].sprite = Sprites[idx[i]];
-            }
-            else
-            {
-                CheckUnique(i);
-
-            }
+            Reloadoneslot(i);
         }
         SetStatText();
     }
 
+    void Randomizer(int i)
+    {
+        float m_random = Random.Range(0f, 1f);
+        if (m_random <= 0.01f + 0.0005f * roundsystem.Round)
+        {
+            rairty[i] = 4;
+        }
+        else if (m_random <= 0.03f + 0.001f * roundsystem.Round)
+        {
+            rairty[i] = 3;
+        }
+        else if (m_random <= 0.1f + 0.003f * roundsystem.Round)
+        {
+            rairty[i] = 2;
+        }
+        else if (m_random <= 0.2f + 0.005f * roundsystem.Round)
+        {
+            rairty[i] = 1;
+        }
+        else
+        {
+            rairty[i] = 0;
+        }
+    }
+
     void CheckUnique(int i)
     {
-        if (UniqueData.GotUnique.Contains(idx[i] - Itemcount - Turretcount) == false)
+        Debug.Log("CheckUnique");
+        TextsDes[i].text = UniqueData.ItemData[rairty[i]] [idx[i] - Itemcount[rairty[i]] - Turretcount[rairty[i]]] ["ITEMDESC"].ToString();
+        Texts[i].text = string.Format("{0}GOLD", (int)UniqueData.ItemData[rairty[i]][idx[i] - Itemcount[rairty[i]] - Turretcount[rairty[i]]] ["ITEMPRICE"]);
+        TextsTitle[i].text = UniqueData.ItemData[rairty[i]][idx[i] - Itemcount[rairty[i]] - Turretcount[rairty[i]]] ["ITEMNAME"].ToString();
+        Images[i].sprite = UniqueData.Sprites[rairty[i]].sprite [idx[i] - Itemcount[rairty[i]] - Turretcount[rairty[i]]];
+        /*if (UniqueData.GotUnique.Contains(idx[i] - Itemcount[rairty[i]] - Turretcount[rairty[i]]) == false)
         {
-            TextsDes[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMDESC"].ToString();
-            Texts[i].text = string.Format("{0}GOLD", (int)UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMPRICE"]);
-            TextsTitle[i].text = UniqueData.ItemData[idx[i] - Itemcount - Turretcount]["ITEMNAME"].ToString();
-            Images[i].sprite = UniqueData.Sprites[idx[i] - Itemcount - Turretcount];
+
         }
         else
         {
             Reloadoneslot(i);
             //itemnomax - 1
         }
+        */
     }
     void Reloadoneslot(int i)
     {
-        Debug.Log("Oneslotloaded! : " + i);
-            idx[i] = Random.Range(0, Itemcount + Turretcount + UniqueCount); //itemnomax - 1
+        if (rairty[i] == 2 || rairty[i] == 3)
+        {
+            idx[i] = Random.Range(0, Itemcount[rairty[i]] + Turretcount[rairty[i]] + UniqueCount[rairty[i]]); //itemnomax - 1
             buttons[i].gameObject.SetActive(true);
-            if (idx[i] < Itemcount + Turretcount)
+            if (idx[i] < Itemcount[rairty[i]] + Turretcount[rairty[i]])
             {
-                TextsDes[i].text = ItemData[idx[i]]["ITEMDESC"].ToString();
-                Texts[i].text = string.Format("{0}GOLD", (int)ItemData[idx[i]]["ITEMPRICE"]);
-                TextsTitle[i].text = ItemData[idx[i]]["ITEMNAME"].ToString();
-                Images[i].sprite = Sprites[idx[i]];
+                TextsDes[i].text = ItemData[rairty[i]][idx[i]]["ITEMDESC"].ToString();
+                Texts[i].text = string.Format("{0}GOLD", (int)ItemData[rairty[i]][idx[i]]["ITEMPRICE"]);
+                TextsTitle[i].text = ItemData[rairty[i]][idx[i]]["ITEMNAME"].ToString();
+                Images[i].sprite = Sprites[rairty[i]].sprite[idx[i]];
             }
             else
             {
                 CheckUnique(i);
             }
+        }
+        else
+        {
+            idx[i] = Random.Range(0, Itemcount[rairty[i]] + Turretcount[rairty[i]]); //itemnomax - 1
+            buttons[i].gameObject.SetActive(true);
+            TextsDes[i].text = ItemData[rairty[i]][idx[i]]["ITEMDESC"].ToString();
+            Texts[i].text = string.Format("{0}GOLD", (int)ItemData[rairty[i]][idx[i]]["ITEMPRICE"]);
+            TextsTitle[i].text = ItemData[rairty[i]][idx[i]]["ITEMNAME"].ToString();
+            Images[i].sprite = Sprites[rairty[i]].sprite[idx[i]];
+
+        }
     }
 
     public void SetReload()
@@ -141,21 +198,21 @@ public class Rewardsystem : MonoBehaviour
     }
     public void Onclick(int n)
     {
-        if (idx[n] < Itemcount + Turretcount)
+        if (idx[n] < Itemcount[rairty[n]] + Turretcount[rairty[n]])
         {
-            if ((int)ItemData[idx[n]]["ITEMPRICE"] <= moneymanager.money)
+            if ((int)ItemData[rairty[n]][idx[n]]["ITEMPRICE"] <= moneymanager.money)
             {
-                if (idx[n] < Itemcount)
+                if (idx[n] < Itemcount[rairty[n]])
                 {
                     Debug.Log("Reward");
-                    Getreward(idx[n]);
-                    moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
+                    Getreward(idx[n], rairty[n]);
+                    moneymanager.money -= (int)ItemData[rairty[n]][idx[n]]["ITEMPRICE"];
                     buttons[n].gameObject.SetActive(false);
                 }
-                else if (DoTurret(idx[n] - Itemcount) == true)
+                else if (DoTurret(idx[n] - Itemcount[rairty[n]]) == true)
                 {
                     Debug.Log("Turret");
-                    moneymanager.money -= (int)ItemData[idx[n]]["ITEMPRICE"];
+                    moneymanager.money -= (int)ItemData[rairty[n]][idx[n]]["ITEMPRICE"];
                     buttons[n].gameObject.SetActive(false);
                     UpdateSideArmUI();
                 }
@@ -163,20 +220,23 @@ public class Rewardsystem : MonoBehaviour
         }
         else
         {
-            if ((int) UniqueData.ItemData[idx[n]-Itemcount-Turretcount]["ITEMPRICE"] <= moneymanager.money)
+            Debug.Log("uniqueReward2");
+            Debug.Log((int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ITEMPRICE"] <= moneymanager.money);
+            if ((int)UniqueData.ItemData[rairty[n]] [idx[n] - Itemcount[rairty[n]] -Turretcount[rairty[n]]] ["ITEMPRICE"] <= moneymanager.money)
             {
-                if (idx[n] - Itemcount - Turretcount < UniqueCount)
+                if (idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]] < UniqueCount[rairty[n]])
                 {
-                    if (UniqueData.GotUnique.Contains(idx[n] - Itemcount - Turretcount) == false)
+                    Debug.Log("uniqueReward");
+                    GetUniquereward(idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]] + 500, rairty[n]);
+                    moneymanager.money -= (int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ITEMPRICE"];
+                    buttons[n].gameObject.SetActive(false);
+                    if ((int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ISUNIQUE"] == 1)
                     {
-                        Debug.Log("Reward");
-                        GetUniquereward(idx[n] - Itemcount - Turretcount + 500);
-                        moneymanager.money -= (int)UniqueData.ItemData[idx[n] - Itemcount - Turretcount]["ITEMPRICE"];
-                        buttons[n].gameObject.SetActive(false);
-                        if ((int)UniqueData.ItemData[idx[n] - Itemcount - Turretcount]["ISUNIQUE"] == 1)
-                        {
-                            UniqueData.GotUnique.Add(idx[n] - Itemcount - Turretcount);
-                        }
+                        UniqueData.GotUnique.Add(idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]);
+                    }
+                    if (UniqueData.GotUnique.Contains(idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]) == false)
+                    {
+
                     }
                 }
             }
@@ -211,33 +271,39 @@ public class Rewardsystem : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
     }
 
-    public void Getreward(int idx)
+    public void Getreward(int idx, int rare)
     {
-        player.GetItem(idx);
-        SetItemList(idx);
+        player.GetItem(idx,rare);
+        SetItemList(idx,rare);
         SetStatText();
     }
-    public void GetUniquereward(int idx)
+    public void GetUniquereward(int idx,int rare)
     {
-        player.GetItem(idx);
-        if ((int)UniqueData.ItemData[idx - 500]["ISTURRET"] == 1)
+        Debug.Log(idx);
+        player.GetItem(idx,rare);
+        Debug.Log(UniqueData.ItemData[rare][idx - 500]);
+        if ((int)UniqueData.ItemData[rare][idx - 500]["ISTURRET"] == 1)
         {
         }
         else
         {
-            SetUniqueItemList(idx - 500);
+            SetUniqueItemList(idx - 500,rare);
         }
         SetStatText();
     }
-    void SetItemList(int idx)
+    void SetItemList(int idx, int rare)
     {
         GameObject m_Obj = Instantiate(아이템프리팹, 스크롤뷰.transform);
-        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = Sprites[idx];
+        Debug.Log(m_Obj.transform.GetChild(1).GetComponent<Image>());
+        Debug.Log(idx + "" + rare);
+        Debug.Log(Sprites[rare].sprite[idx]);
+        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = Sprites[rare].sprite[idx];   
+
     }
-    void SetUniqueItemList(int idx)
+    void SetUniqueItemList(int idx, int rare)
     {
         GameObject m_Obj = Instantiate(아이템프리팹, 스크롤뷰.transform);
-        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = UniqueData.Sprites[idx];
+        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = UniqueData.Sprites[rare].sprite[idx];
     }
     public bool GetTurret(int idx)
     {
@@ -352,7 +418,7 @@ public class Rewardsystem : MonoBehaviour
         보조무기Txt.text = string.Format("보조 무기 ({0}/{1})", turret.TurretCount, turret.TurretMaxCount);
         for (int i = 0; i < turret.TurretCount; i++)
         {
-            보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().sprite = Sprites[turret.Turrets[i].TurretNum+Itemcount];
+            보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().sprite = turret.Turrets[i].보조무기UI스프라이트;
             보조무기UI리스트[i].transform.GetChild(1).GetComponent<Image>().color = ColorChange(turret.Turrets[i].Rarity);
             보조무기UI리스트[i].transform.GetChild(2).GetComponent<TMP_Text>().text = string.Format("{0}/{1}", turret.Turrets[i].Nowamount, turret.Turrets[i].Require);
         }
