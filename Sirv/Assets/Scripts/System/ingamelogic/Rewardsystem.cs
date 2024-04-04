@@ -89,7 +89,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Close();
         }
-        else
+        else if(ExpSystem.instance.selecting == false)
         {
             Open();
         }

@@ -28,6 +28,7 @@ public class Roundsystem : MonoBehaviour
     IEnumerator EndThreeCount()
     {
         yield return new WaitForSeconds(1.0f);
+        ExpSystem.instance.Open();
         Playing = false;
     }
     IEnumerator Threecount(float Time)

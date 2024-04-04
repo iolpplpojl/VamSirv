@@ -6,12 +6,14 @@ public class Coin : MonoBehaviour
 {
     // Start is called before the first frame update
     int value = 2;
+    public int exp;
     public float valuePer = 1f;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             GetComponentInParent<Moneymanager>().GetMoney((int)(value*valuePer));
+            ExpSystem.instance.GetExp(exp);
             Destroy(gameObject);
         }
     }

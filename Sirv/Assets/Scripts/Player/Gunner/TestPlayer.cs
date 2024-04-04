@@ -88,4 +88,8 @@ public class TestPlayer : Player
         }
 
     }
+    public override void UniqueLevelUP(int idx)
+    {
+        
+    }
 }

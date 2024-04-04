@@ -12,16 +12,19 @@ public class Moneymanager : MonoBehaviour
 
     public GameObject coin;
     public int money;
+    public int exp;
     public TMP_Text Text;
     private void Update()
     {
         Text.text = string.Format("Gold : {0}", money);
     }
-    public void DropMoney(Vector3 pos, float ValuePer, float DropPer)
+    public void DropMoney(Vector3 pos, float ValuePer, float DropPer, int exp)
     {
         if (Random.Range(0f, 1f) < DropPer)
         {
-            Instantiate(coin,pos,Quaternion.identity,transform).GetComponent<Coin>().valuePer*=ValuePer;
+            Coin m_Coin = Instantiate(coin, pos, Quaternion.identity, transform).GetComponent<Coin>();
+            m_Coin.valuePer*=ValuePer;
+            m_Coin.exp = exp;
         }
 
     }

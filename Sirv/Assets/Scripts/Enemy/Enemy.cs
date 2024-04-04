@@ -10,6 +10,7 @@ public abstract class Enemy : MonoBehaviour
     public Rigidbody2D targetrigid;
     public float Value; //Drop µ· °¡Ä¡
     public float DropPer; // Drop µ· È®·ü
+    public int exp;
     public bool Death = false;
     protected Rigidbody2D rigid;
     Moneymanager moneymanager;
@@ -91,7 +92,7 @@ public abstract class Enemy : MonoBehaviour
             Death = true;
             Debug.Log("Dead");
             Destroy(gameObject);
-            moneymanager.DropMoney(transform.position, Value, DropPer);
+            moneymanager.DropMoney(transform.position, Value, DropPer,exp);
             return;
         }
     }
