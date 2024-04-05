@@ -264,7 +264,6 @@ public class Rewardsystem : MonoBehaviour
         if(Selected == false)
         {
             Reload();
-            moneymanager.RoundOver();
             player.health = player.maxHealthNow;
             Selected = true;
         }

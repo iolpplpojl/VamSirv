@@ -24,7 +24,7 @@ public class ExpSystem : MonoBehaviour
     public Sprite[] Sprites;
 
     public GameObject UN_Canvas;
-
+    public TMP_Text Text;
 
     public int[] idx = { 999, 999, 999 };
     public int[] rairty = { 999, 999, 999 };
@@ -35,18 +35,26 @@ public class ExpSystem : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-        }    
+        }
+        Text.text = string.Format("EXP : {0}/{1}", ExpNow, ExpRemain[EXPLevel]);
     }
 
+    public void GetSystem(Player player)
+    {
+        this.player = player;
+    }
     // Update is called once per frame
   
     public void Open()
     {
+        Debug.Log(UpgradeRemain);
         if(UpgradeRemain > 0)
         {
+            Debug.Log(upgradeLevel+ "asldkn");
             selecting = true;
             if(upgradeLevel == 5)
             {
+                Debug.Log("Unique");    
                 //Æ¯¼öÃ¢
             }
             else
@@ -65,31 +73,33 @@ public class ExpSystem : MonoBehaviour
         NM_Canvas.SetActive(true);
         for (int i = 0; i < 3; i++)
         {
-            idx[i] = Random.Range(0, 5);
+            idx[i] = Random.Range(0, 2);
+            rairty[i] = Random.Range(0, 4);
         }
         for (int i = 0; i < 3; i++)
         {
-            TextsDes[i].text = Updatas[idx[i]]["UPGDESC"].ToString();
-            TextsTitle[i].text = Updatas[idx[i]]["UPGNAME"].ToString();
+            TextsDes[i].text = string.Format(Updatas[idx[i]]["UPGDESC"].ToString(), 1 * rairty[i]+1);
+            TextsTitle[i].text =Updatas[idx[i]]["UPGNAME"].ToString();
             Images[i].sprite = Sprites[idx[i]];
         }
     }
 
     public void NormalUP(int idx)
     {
-        player.LevelUP(this.idx[idx]);
+        player.LevelUP(this.idx[idx], rairty[idx]+1);
         UpgradeRemain--;
         upgradeLevel++;
         Open();
     }
     public void GetExp(int exp)
     {
-        ExpNow += (uint)exp;
+        ExpNow +=  (uint)exp;
         if (ExpNow >= ExpRemain[EXPLevel])
         {
             ExpNow -= ExpRemain[EXPLevel];
             EXPLevel++;
             UpgradeRemain++;
         }
+        Text.text = string.Format("EXP : {0}/{1}", ExpNow, ExpRemain[EXPLevel]);
     }
 }

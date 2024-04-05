@@ -199,6 +199,7 @@ MonoBehaviour:
   targetrigid: {fileID: 0}
   Value: 3
   DropPer: 0.7
+  exp: 9
   Death: 0
   CritEffects:
   - {fileID: 8300000, guid: c47f17948f55d41c5876af88204e7f46, type: 3}

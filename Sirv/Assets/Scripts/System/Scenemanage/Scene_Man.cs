@@ -19,6 +19,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject Systems;
     public GameObject SFXmanager;
     public GameObject DamagePopup;
+    public GameObject EXPManager;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -52,13 +53,16 @@ public class Scene_Man : MonoBehaviour
                 GameObject m_Round = Instantiate(Roundmanager, m_System.transform);
                 m_Round.GetComponent<Roundsystem>().SetSpawner(m_spawn.GetComponent<EnemySpawner>());
                 m_Round.GetComponent<Roundsystem>().GetTurret(m_turret.GetComponent<TurretManager>());
+                m_Round.GetComponent<Roundsystem>().SetMoneymanager(m_moneymanager.GetComponent<Moneymanager>());
                 GameObject m_Reward = Instantiate(Rewardmanager, m_System.transform);
                 m_Reward.GetComponent<Rewardsystem>().GetSystem(m_Player.GetComponent<Player>(), m_Round.GetComponent<Roundsystem>(), m_turret.GetComponent<TurretManager>(),m_moneymanager.GetComponent<Moneymanager>(), PlayerType);
                 GameObject m_health = Instantiate(HealthUI, m_System.transform);
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 GameObject m_SFX = Instantiate(SFXmanager);
                 m_Player.GetComponent<Player>().GetRewardsystem(m_Reward.GetComponent<Rewardsystem>());
-                if(PlayerType == 1)
+                Instantiate(EXPManager);
+                ExpSystem.instance.GetSystem(m_Player.GetComponent<Player>());
+                if (PlayerType == 1)
                 {
                     Debug.Log("Eh");
                     m_Player.GetComponent<Player_Engi>().GetDefaultWeapon(m_Reward.GetComponent<Rewardsystem>());

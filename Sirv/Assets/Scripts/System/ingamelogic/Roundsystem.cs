@@ -9,6 +9,7 @@ public class Roundsystem : MonoBehaviour
     public bool Playing = false;
     EnemySpawner Spawner;
     TurretManager Turret;
+    Moneymanager moneymanager;
     public TMP_Text Counter;
     public TMP_Text Rounder;
     int counter = 0;
@@ -23,6 +24,7 @@ public class Roundsystem : MonoBehaviour
             counter--;
         }
         Spawner.RoundClear();
+        moneymanager.RoundOver();
         StartCoroutine(EndThreeCount());
     }
     IEnumerator EndThreeCount()
@@ -136,6 +138,10 @@ public class Roundsystem : MonoBehaviour
         Spawner = Spawnner;
     }
 
+    public void SetMoneymanager(Moneymanager m)
+    {
+        this.moneymanager = m;
+    }
     void Update()
     {
         

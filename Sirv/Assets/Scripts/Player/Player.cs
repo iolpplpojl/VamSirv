@@ -87,7 +87,7 @@ public abstract class Player : MonoBehaviour
             inputVec.x = Input.GetAxisRaw("Horizontal");
             inputVec.y = Input.GetAxisRaw("Vertical");
 
-            if (rewardsystem.Selected != true)
+            if (rewardsystem.Selected != true || ExpSystem.instance.selecting != true)
             {
                 if (Input.GetMouseButton(0) && attackspeed_now <= 0)
                 {
@@ -377,9 +377,17 @@ public abstract class Player : MonoBehaviour
         }
     }
 
-    public void LevelUP(int idx)
+    public void LevelUP(int idx, int rairty)
     {
-
+        switch (idx)
+        {
+            case 0:
+                damagePer += 0.01f * rairty;
+                break;
+            case 1:
+                speedPer += 0.01f * rairty;
+                break;
+        }
     }
     public abstract void UniqueLevelUP(int idx);
 

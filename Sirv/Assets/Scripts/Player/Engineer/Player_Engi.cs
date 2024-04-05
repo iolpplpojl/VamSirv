@@ -41,4 +41,8 @@ public class Player_Engi : Player
 
         return;
     }
+    public override void UniqueLevelUP(int idx)
+    {
+
+    }
 }
