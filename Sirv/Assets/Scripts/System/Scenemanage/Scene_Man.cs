@@ -62,6 +62,7 @@ public class Scene_Man : MonoBehaviour
                 m_Player.GetComponent<Player>().GetRewardsystem(m_Reward.GetComponent<Rewardsystem>());
                 Instantiate(EXPManager);
                 ExpSystem.instance.GetSystem(m_Player.GetComponent<Player>());
+                ExpSystem.instance.GetPlayerNum(PlayerType);
                 if (PlayerType == 1)
                 {
                     Debug.Log("Eh");

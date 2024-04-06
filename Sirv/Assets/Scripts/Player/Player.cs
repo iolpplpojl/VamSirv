@@ -87,7 +87,7 @@ public abstract class Player : MonoBehaviour
             inputVec.x = Input.GetAxisRaw("Horizontal");
             inputVec.y = Input.GetAxisRaw("Vertical");
 
-            if (rewardsystem.Selected != true || ExpSystem.instance.selecting != true)
+            if (rewardsystem.Selected != true && ExpSystem.instance.selecting != true)
             {
                 if (Input.GetMouseButton(0) && attackspeed_now <= 0)
                 {

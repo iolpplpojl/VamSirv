@@ -24,6 +24,13 @@ public class ExpSystem : MonoBehaviour
     public Sprite[] Sprites;
 
     public GameObject UN_Canvas;
+    public List<Dictionary<string, object>> U_Updatas;
+    public TMP_Text[] U_TextsDes;
+    public TMP_Text[] U_TextsTitle;
+    public Image[] U_Images;
+    public Sprite[] U_Sprites;
+    int playertype;
+
     public TMP_Text Text;
 
     public int[] idx = { 999, 999, 999 };
@@ -32,11 +39,28 @@ public class ExpSystem : MonoBehaviour
     void Awake()
     {
         Updatas = CSVReader.Read("upgrade");
-        if(instance == null)
+
+
+        if (instance == null)
         {
             instance = this;
         }
         Text.text = string.Format("EXP : {0}/{1}", ExpNow, ExpRemain[EXPLevel]);
+    }
+
+    public void GetPlayerNum(int n)
+    {
+        this.playertype = n;
+        switch (playertype) {
+            case 0:
+                U_Updatas = CSVReader.Read("upgrade_gun");
+                Debug.Log("unique");
+                for (int i = 0; i < U_Updatas.Count; i++)
+                {
+                    Debug.Log(i);
+                }
+                break;
+        }
     }
 
     public void GetSystem(Player player)
@@ -45,6 +69,14 @@ public class ExpSystem : MonoBehaviour
     }
     // Update is called once per frame
   
+    public void UniqueUp(int idx)
+    {
+        player.UniqueLevelUP((int)upgradeLevel/5 + (idx+1));
+        UN_Canvas.SetActive(false);
+        UpgradeRemain--;
+        upgradeLevel++;
+        Open();
+    }
     public void Open()
     {
         Debug.Log(UpgradeRemain);
@@ -52,9 +84,10 @@ public class ExpSystem : MonoBehaviour
         {
             Debug.Log(upgradeLevel+ "asldkn");
             selecting = true;
-            if(upgradeLevel == 5)
+            if(upgradeLevel != 0 && upgradeLevel%5 == 0)
             {
-                Debug.Log("Unique");    
+                Debug.Log("Unique");
+                UniqueOpen();
                 //Æ¯¼öÃ¢
             }
             else
@@ -66,6 +99,16 @@ public class ExpSystem : MonoBehaviour
         {
             selecting = false;
             NM_Canvas.SetActive(false);
+        }
+    }
+    public void UniqueOpen()
+    {
+        UN_Canvas.SetActive(true);
+        for (int i = 0; i < 2; i++)
+        {
+            U_TextsDes[i].text = U_Updatas[i+(int)upgradeLevel/5-1]["UPGDESC"].ToString();
+            U_TextsTitle[i].text = U_Updatas[i+(int)upgradeLevel/5-1]["UPGNAME"].ToString();
+            U_Images[i].sprite = U_Sprites[i+(int)upgradeLevel/5-1];
         }
     }
     public void ReloadNormal()
@@ -89,12 +132,13 @@ public class ExpSystem : MonoBehaviour
         player.LevelUP(this.idx[idx], rairty[idx]+1);
         UpgradeRemain--;
         upgradeLevel++;
+        NM_Canvas.SetActive(false);
         Open();
     }
     public void GetExp(int exp)
     {
         ExpNow +=  (uint)exp;
-        if (ExpNow >= ExpRemain[EXPLevel])
+        while (ExpNow >= ExpRemain[EXPLevel])
         {
             ExpNow -= ExpRemain[EXPLevel];
             EXPLevel++;

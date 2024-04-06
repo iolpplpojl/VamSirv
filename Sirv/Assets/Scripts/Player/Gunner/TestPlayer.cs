@@ -63,18 +63,21 @@ public class TestPlayer : Player
     {
         SFXsystem.instance.PlaySoundFX(Effects[2], transform, 1f);
         Debug.Log("Skill_A");
+
         GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
         Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);
         Dynamite DynaComp = Dyna.GetComponent<Dynamite>();
-        DynaComp.damage = (int)(skillADamage*damagePer);
+        DynaComp.damage = (int)(skillADamage * damagePer);
         DynaComp.explosionradius = skillAExplodeRadius;
         DynaComp.explosionTime = skillAExplodeTime;
 
-        if(Firebomb == true)
+        if (Firebomb == true)
         {
             DynaComp.Firebomb = true;
         }
+
         skillBcooltimenow = skillBcooltime;
+            
     }
 
     public override void GetUniqueItem(int idx)
@@ -82,14 +85,23 @@ public class TestPlayer : Player
         switch (idx)
         {
             case 0:
-                skillADamage = skillADamage / 5;
-                Firebomb = true;
+                skillAExplodeRadius += 0.02f;
                 break;
         }
 
     }
     public override void UniqueLevelUP(int idx)
     {
-        
+        switch (idx)
+        {
+            case 1:
+                skillADamage = skillADamage / 5;
+                Firebomb = true;
+                break;
+            case 2:
+                skillADamage = skillADamage / 5;
+                Firebomb = true;
+                break;
+        }
     }
 }
