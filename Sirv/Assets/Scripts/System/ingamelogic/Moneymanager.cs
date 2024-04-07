@@ -36,6 +36,7 @@ public class Moneymanager : MonoBehaviour
         }
     }
 
+
     public void GetMoney(int value)
     {
         money += value;

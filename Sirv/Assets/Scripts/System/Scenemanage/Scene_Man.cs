@@ -20,6 +20,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject SFXmanager;
     public GameObject DamagePopup;
     public GameObject EXPManager;
+    public GameObject Uniquedamage;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -60,9 +61,12 @@ public class Scene_Man : MonoBehaviour
                 m_health.GetComponent<Health>().GetPlayer(m_Player.GetComponent<Player>());
                 GameObject m_SFX = Instantiate(SFXmanager);
                 m_Player.GetComponent<Player>().GetRewardsystem(m_Reward.GetComponent<Rewardsystem>());
-                Instantiate(EXPManager);
+                Instantiate(EXPManager,m_System.transform);
                 ExpSystem.instance.GetSystem(m_Player.GetComponent<Player>());
                 ExpSystem.instance.GetPlayerNum(PlayerType);
+                Instantiate(Uniquedamage, m_System.transform);
+                Uniquedamagesystem.instance.player = m_Player.GetComponent<Player>();
+
                 if (PlayerType == 1)
                 {
                     Debug.Log("Eh");

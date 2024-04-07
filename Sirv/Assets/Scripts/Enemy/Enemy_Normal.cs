@@ -7,7 +7,6 @@ public class Enemy_Normal : Enemy
     // Start is called before the first frame update
 
     // Update is called once per frame
-    public int Damage;
 
     private void FixedUpdate()
     {

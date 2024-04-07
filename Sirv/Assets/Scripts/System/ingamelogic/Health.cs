@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(player + "asdkln" + Text + "asdkln");
         Text.text = string.Format("HP : {0}", player.health);
     }
 }

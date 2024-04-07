@@ -18,14 +18,14 @@ public class EnemySpawner : MonoBehaviour
 
     public void SetSpawning(int a)
     {
-        StartCoroutine(Spawn());
+        StartCoroutine(Spawn(a));
         if (a >= 3)
         {
-            StartCoroutine(Spawn2());
+            StartCoroutine(Spawn2(a));
         }
         if (a >= 5)
         {
-            StartCoroutine(Spawn3());
+            StartCoroutine(Spawn3(a));
         }
     }
     public void SetMoneyManager(Moneymanager Manager)
@@ -47,38 +47,44 @@ public class EnemySpawner : MonoBehaviour
         }
         StopAllCoroutines();
     }
-    IEnumerator Spawn()
+    IEnumerator Spawn(int round)
     {
         while (true)
         {
 
            GameObject enemy = Instantiate(EnemyPrefs[0], new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2)), Quaternion.identity,transform);
-           enemy.GetComponent<Enemy>().SetMoneymanager(Moneymanager);
-
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 1 * round;
+            m_enemy.Damage += (int)(0.6 * round);
             yield return new WaitForSeconds(SpawnTime_Mini);
 
         }
     }
-    IEnumerator Spawn2()
+    IEnumerator Spawn2(int round)
     {
         while (true)
         {
 
             GameObject enemy = Instantiate(EnemyPrefs[1], new Vector2(Random.Range(-(Box.size.x / 2.2f), Box.size.x / 2.2f), Random.Range(-(Box.size.y / 2.2f), Box.size.y / 2.2f)), Quaternion.identity, transform);
-            enemy.GetComponent<Enemy>().SetMoneymanager(Moneymanager);
-            
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 10 * round;
+            m_enemy.Damage += (int)(1 * round);
             yield return new WaitForSeconds(SpawnTime_Middle);
 
         }
     }
-    IEnumerator Spawn3()
+    IEnumerator Spawn3(int round)
     {
         while (true)
         {
 
             GameObject enemy = Instantiate(EnemyPrefs[2], new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2)), Quaternion.identity, transform);
-            enemy.GetComponent<Enemy>().SetMoneymanager(Moneymanager);
-
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 30 * round;
+            m_enemy.Damage += (int)(1.3 * round);
             yield return new WaitForSeconds(SpawnTime_Large);
 
         }

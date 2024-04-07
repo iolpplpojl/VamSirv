@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemy_Golem : Enemy
 {
     // Start is called before the first frame update
-    public int Damage;
     public float Attackspeed;
     public float Attackspeed_now;
     public GameObject Bullet;

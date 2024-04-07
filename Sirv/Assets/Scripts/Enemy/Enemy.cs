@@ -23,9 +23,9 @@ public abstract class Enemy : MonoBehaviour
     float flashtime = 0f;
     SpriteRenderer Sprite;
     // Start is called before the first frame update
+    public int Damage;
 
-    public Coroutine Firegrid;
-    
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -57,6 +57,7 @@ public abstract class Enemy : MonoBehaviour
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
             HP -= Damage;
+            Uniquedamagesystem.instance.BloodSuck(Damage);
             Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
             if (HP <= 0)
             {
@@ -74,6 +75,7 @@ public abstract class Enemy : MonoBehaviour
             Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
             flashtime = 1f;
             HP -= Damage * 2;
+            Uniquedamagesystem.instance.BloodSuck(Damage*2);
             Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage * 2 + "nowHP:" + HP);
             if (HP <= 0)
             {

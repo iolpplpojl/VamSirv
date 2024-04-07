@@ -51,6 +51,9 @@ public abstract class Player : MonoBehaviour
     public float GetAttckTime;
     public float GetAttackTimenow;
     [Space]
+
+    public float BloodSuck;
+
     bool Death = false;
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
@@ -73,7 +76,7 @@ public abstract class Player : MonoBehaviour
         maxHealthNow = maxHealth;
         health = maxHealthNow;
     }
-    
+
     public void GetRewardsystem(Rewardsystem rewardsystem)
     {
         this.rewardsystem = rewardsystem;
@@ -202,7 +205,7 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.9f;
+                        damagePer += 0.05f;
                         attackspeedPer += 0.03f;
                         maxHealthGet(-0.03f);
                         break;
@@ -211,12 +214,12 @@ public abstract class Player : MonoBehaviour
                         damagePer -= 0.02f;
                         break;
                     case 2:
-                        maxAmmoGet(0.09f);
+                        maxAmmoGet(0.05f);
                         attackspeedPer += 0.02f;
                         speedPer -= 0.02f;
                         break;
                     case 3:
-                        critPer += 0.09f;
+                        critPer += 0.03f;
                         damagePer += 0.03f;
                         attackspeedPer -= 0.03f;
                         break;
@@ -246,7 +249,7 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.9f;
+                        damagePer += 0.05f;
                         attackspeedPer += 0.03f;
                         maxHealthGet(-0.03f);
                         break;
@@ -255,12 +258,12 @@ public abstract class Player : MonoBehaviour
                         damagePer -= 0.02f;
                         break;
                     case 2:
-                        maxAmmoGet(0.09f);
+                        maxAmmoGet(0.05f);
                         attackspeedPer += 0.02f;
                         speedPer -= 0.02f;
                         break;
                     case 3:
-                        critPer += 0.09f;
+                        critPer += 0.03f;
                         damagePer += 0.03f;
                         attackspeedPer -= 0.03f;
                         break;
@@ -290,7 +293,7 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.9f;
+                        damagePer += 0.05f;
                         attackspeedPer += 0.03f;
                         maxHealthGet(-0.03f);
                         break;
@@ -299,12 +302,12 @@ public abstract class Player : MonoBehaviour
                         damagePer -= 0.02f;
                         break;
                     case 2:
-                        maxAmmoGet(0.09f);
+                        maxAmmoGet(0.05f);
                         attackspeedPer += 0.02f;
                         speedPer -= 0.02f;
                         break;
                     case 3:
-                        critPer += 9f;
+                        critPer += 0.03f;
                         damagePer += 0.03f;
                         attackspeedPer -= 0.03f;
                         break;
@@ -334,7 +337,7 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.9f;
+                        damagePer += 0.05f;
                         attackspeedPer += 0.03f;
                         maxHealthGet(-0.03f);
                         break;
@@ -343,12 +346,12 @@ public abstract class Player : MonoBehaviour
                         damagePer -= 0.02f;
                         break;
                     case 2:
-                        maxAmmoGet(0.09f);
+                        maxAmmoGet(0.05f);
                         attackspeedPer += 0.02f;
                         speedPer -= 0.02f;
                         break;
                     case 3:
-                        critPer += 0.09f;
+                        critPer += 0.03f;
                         damagePer += 0.03f;
                         attackspeedPer -= 0.03f;
                         break;
@@ -386,6 +389,15 @@ public abstract class Player : MonoBehaviour
                 break;
             case 1:
                 speedPer += 0.01f * rairty;
+                break;
+            case 2:
+                maxHealthGet(0.01f * rairty);
+                break;
+            case 3:
+                attackspeedPer += 0.01f * rairty;
+                break;
+            case 4:
+                BloodSuck += 0.01f * rairty;
                 break;
         }
     }

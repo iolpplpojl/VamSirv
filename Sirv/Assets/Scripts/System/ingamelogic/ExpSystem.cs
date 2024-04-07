@@ -10,7 +10,7 @@ public class ExpSystem : MonoBehaviour
     public static ExpSystem instance;
     public bool selecting;
     uint ExpNow;
-    uint[] ExpRemain = {70,100,140,170,200,240,280,320,350,380,400};
+    uint[] ExpRemain = {24,30,38,46,50,58,64,72,80,90,100,110,120,130,140,150,160,170,180,190,200};
     uint UpgradeRemain = 0;
     uint EXPLevel = 0;
     uint upgradeLevel = 0;
@@ -116,7 +116,7 @@ public class ExpSystem : MonoBehaviour
         NM_Canvas.SetActive(true);
         for (int i = 0; i < 3; i++)
         {
-            idx[i] = Random.Range(0, 2);
+            idx[i] = Random.Range(0,Updatas.Count);
             rairty[i] = Random.Range(0, 4);
         }
         for (int i = 0; i < 3; i++)
