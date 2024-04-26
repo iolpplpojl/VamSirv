@@ -47,7 +47,7 @@ public abstract class Enemy : MonoBehaviour
     abstract public void Move(); 
     abstract public void Attack();
 
-    public void GetDamage(int Damage)
+    public void GetDamage(int Damage, bool BloodSuck)
     {
         if (Death == false)
         {
@@ -57,7 +57,10 @@ public abstract class Enemy : MonoBehaviour
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
             HP -= Damage;
-            Uniquedamagesystem.instance.BloodSuck(Damage);
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck(Damage * 2);
+            }
             Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
             if (HP <= 0)
             {
@@ -65,7 +68,7 @@ public abstract class Enemy : MonoBehaviour
             }
         }
     }
-    public void GetCritDamage(int Damage)
+    public void GetCritDamage(int Damage, bool BloodSuck)
     {
         if (Death == false)
         {
@@ -75,7 +78,10 @@ public abstract class Enemy : MonoBehaviour
             Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
             flashtime = 1f;
             HP -= Damage * 2;
-            Uniquedamagesystem.instance.BloodSuck(Damage*2);
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck(Damage * 2);
+            }
             Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage * 2 + "nowHP:" + HP);
             if (HP <= 0)
             {
@@ -95,6 +101,7 @@ public abstract class Enemy : MonoBehaviour
             Debug.Log("Dead");
             Destroy(gameObject);
             moneymanager.DropMoney(transform.position, Value, DropPer,exp);
+            Uniquedamagesystem.instance.Kill();
             return;
         }
     }

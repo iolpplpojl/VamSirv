@@ -32,11 +32,11 @@ public class BulletMove : MonoBehaviour
                 {
                     if (Crit == false)
                     {
-                        m_enemy.GetDamage(damage);
+                        m_enemy.GetDamage(damage,true);
                     }
                     else
                     {
-                        m_enemy.GetCritDamage(damage);
+                        m_enemy.GetCritDamage(damage,true);
                     }
                     Destroy(gameObject);
                 }
@@ -44,11 +44,11 @@ public class BulletMove : MonoBehaviour
                 {
                     if (Crit == false)
                     {
-                        collision.GetComponent<Enemy>().GetDamage(damage);
+                        collision.GetComponent<Enemy>().GetDamage(damage,true);
                     }
                     else
                     {
-                        collision.GetComponent<Enemy>().GetCritDamage(damage);
+                        collision.GetComponent<Enemy>().GetCritDamage(damage,true);
                     }
                 }
             }

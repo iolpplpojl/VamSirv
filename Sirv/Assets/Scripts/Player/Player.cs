@@ -54,6 +54,9 @@ public abstract class Player : MonoBehaviour
 
     public float BloodSuck;
 
+    int windwalk = 0;
+    public float windwalk_now = 0;
+
     bool Death = false;
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
@@ -137,6 +140,10 @@ public abstract class Player : MonoBehaviour
             {
                 GetAttackTimenow -= Time.fixedDeltaTime;
             }
+            if(windwalk_now > 0)
+            {
+                windwalk_now -= (Time.fixedDeltaTime*0.2f*windwalk);
+            }
 
             if (reloading == true)
             {
@@ -151,7 +158,7 @@ public abstract class Player : MonoBehaviour
     }
     private void Move()
     {
-        Vector2 norVec = inputVec.normalized * (speed*speedPer) * Time.fixedDeltaTime;
+        Vector2 norVec = inputVec.normalized * (speed*(speedPer+windwalk_now)) * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + norVec);
     }
     protected IEnumerator Reload()
@@ -249,9 +256,7 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.05f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.03f);
+                        windwalk++;
                         break;
                     case 1:
                         attackspeedPer += 0.06f;
@@ -432,6 +437,14 @@ public abstract class Player : MonoBehaviour
         Death = true;
         GameObject.FindWithTag("System").SetActive(false);
         GameObject.FindWithTag("Deathmanager").GetComponent<Deathmanager>().Death();
+    }
+
+    public void EnemyKill()
+    {
+        if(windwalk >= 1)
+        {
+            windwalk_now = 0.1f * windwalk;
+        }
     }
     abstract public void GetUniqueItem(int idx);
 }

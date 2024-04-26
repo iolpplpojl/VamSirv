@@ -139,6 +139,7 @@ MonoBehaviour:
   Radius: 5
   Attackspped: 0.3
   Attackspeed_Now: 0
+  price: 40
   "\uBCF4\uC870\uBB34\uAE30UI\uC2A4\uD504\uB77C\uC774\uD2B8": {fileID: 21300000, guid: a149ec623c5f575459f7686143cd60ed, type: 3}
   UpgradeTool: 0
   Bullet: {fileID: 5913752780164852440, guid: ba8acb752d1613649bcdc60e9ff52670, type: 3}

@@ -45,7 +45,7 @@ public class Dynamite : MonoBehaviour
             if (HitCol.CompareTag("Enemy") && HitCol.isTrigger)
             {
                 var enemy = HitCol.GetComponent<Enemy>();
-                enemy.GetDamage(damage);
+                enemy.GetDamage(damage,true);
             }
 
         }

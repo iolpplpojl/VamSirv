@@ -102,7 +102,7 @@ public class Turret_Knife : Turret
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        collision.GetComponent<Enemy>().GetDamage((int)(Damage*KnifeDamagePer*PlayerComp.SideArmDamagePer));
+        collision.GetComponent<Enemy>().GetDamage((int)(Damage*KnifeDamagePer*PlayerComp.SideArmDamagePer),true);
         
     }
 

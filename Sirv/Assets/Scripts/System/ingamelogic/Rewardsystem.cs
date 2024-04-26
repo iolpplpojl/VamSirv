@@ -44,6 +44,8 @@ public class Rewardsystem : MonoBehaviour
     public List<GameObject> 보조무기UI리스트;
     public TMP_Text 스탯;
 
+    public GameObject 보조무기부모;
+    public GameObject 판매메뉴;
     private void Start()
     {
         ItemData = new List<List<Dictionary<string, object>>>();
@@ -96,7 +98,7 @@ public class Rewardsystem : MonoBehaviour
     }
     public void Reload()
     {
-        for(int i =0; i<3; i++)
+        for(int i =0; i<4; i++)
         {
             // 칸마다 희귀도 체크
             // 기본 확률 = 고    급 : 20% + 0.5+라운드, 희귀 : 10% + 0.3*라운드, 영웅 : 3% + 0.1*라운드 전설 : 1% + 0.05%*라운드, else: 일반
@@ -108,7 +110,7 @@ public class Rewardsystem : MonoBehaviour
 
             Randomizer(i);
         }
-        for (int i =0; i<3; i++)
+        for (int i =0; i<4; i++)
         {
             Reloadoneslot(i);
         }
@@ -438,18 +440,33 @@ public class Rewardsystem : MonoBehaviour
         }
         return Color.white;
     }
+
+    public void SellSideArm(int idx)
+    {
+        Destroy(보조무기UI리스트[turret.TurretCount - 1]);
+        보조무기UI리스트.RemoveAt(turret.TurretCount-1);
+        moneymanager.money += turret.Remove(idx);
+        UpdateSideArmUI();
+    }
     void SetSideArmUI()
     {
         if (turret.TurretCount <= 3)
         {
-            GameObject m_OBJ = Instantiate(보조무기프리팹, 부모.transform);
+            GameObject m_OBJ = Instantiate(보조무기프리팹, 보조무기부모.transform);
             보조무기UI리스트.Add(m_OBJ);
+            SidearmUI temp = m_OBJ.GetComponent<SidearmUI>();
+            temp.idx = turret.TurretCount-1;
+            temp.son = 판매메뉴;
             m_OBJ.GetComponent<RectTransform>().anchoredPosition = new Vector2(236+(130*(turret.TurretCount-1)), -340);
         }
         else
         {
-            GameObject m_OBJ = Instantiate(보조무기프리팹, 부모.transform);
+            GameObject m_OBJ = Instantiate(보조무기프리팹, 보조무기부모.transform);
             보조무기UI리스트.Add(m_OBJ);
+
+            SidearmUI temp = m_OBJ.GetComponent<SidearmUI>();
+            temp.idx = turret.TurretCount - 1;
+            temp.son = 판매메뉴;
             m_OBJ.GetComponent<RectTransform>().anchoredPosition = new Vector2(236, -340 - ( 130-(turret.TurretCount-1)));
         }
     }

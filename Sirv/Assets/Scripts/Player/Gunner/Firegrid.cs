@@ -49,7 +49,7 @@ public class Firegrid : MonoBehaviour
         {
                 for (int q = list.Count -1; q >= 0; q--)
                 {
-                    list[q].GetDamage((int)(Damage / 8));
+                    list[q].GetDamage((int)(Damage / 8),true);
                 }
                 yield return new WaitForSeconds(0.3f);
         }

@@ -17,14 +17,20 @@ public class Uniquedamagesystem : MonoBehaviour
 
     public void BloodSuck(int damage)
     {
-        int m_health = (int)(damage * player.BloodSuck);
-        if (player.health+m_health >= player.maxHealthNow)
+        if (Random.Range(0f, 1f) <= player.BloodSuck)
         {
-            player.health = player.maxHealthNow;
+            if (player.health + 3 >= player.maxHealthNow)
+            {
+                player.health = player.maxHealthNow;
+            }
+            else
+            {
+                player.health += 3;
+            }
         }
-        else
-        {
-            player.health += m_health;
-        }
+    }
+    public void Kill()
+    {
+        player.EnemyKill();
     }
 }

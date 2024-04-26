@@ -10,6 +10,7 @@ public class TurretManager : MonoBehaviour
     public GameObject[] Turret;
     public int TurretMaxCount;
     public int TurretCount = 0;
+    public List<GameObject> Turrets_OBJ;
     public List<Turret> Turrets;
     public bool on = false;
     void Awake()
@@ -37,7 +38,9 @@ public class TurretManager : MonoBehaviour
     public void GetTurret(int idx, int Rarity)
     {
         if (TurretMaxCount != TurretCount){
-            Turret Tur = Instantiate(Turret[idx]).GetComponent<Turret>();
+            GameObject OBJ = Instantiate(Turret[idx]);
+            Turret Tur = OBJ.GetComponent<Turret>();
+            Turrets_OBJ.Add(OBJ);
             Turrets.Add(Tur);
             Tur.GetPlayerComp(player);
             Tur.Rarity = Rarity;
@@ -45,7 +48,39 @@ public class TurretManager : MonoBehaviour
             TurretCount++;
         }
     }
-
+    public void ResetPos()
+    {
+        for(int i = 0; i < TurretCount; i++)
+        {
+            Turrets[i].Player = TurretPos[i];
+        }
+    }
+    public int Remove(int idx)
+    {
+        int m_money = Turrets[idx].price;
+        int m_Rairty = Turrets[idx].Rarity;
+        switch (m_Rairty)
+        {
+            case 0:
+                m_Rairty = 1;
+                break;
+            case 1:
+                m_Rairty = 3;
+                break;
+            case 2:
+                m_Rairty = 7;
+                break;
+            case 3:
+                m_Rairty = 15;
+                break;
+        }
+        Destroy(Turrets_OBJ[idx]);
+        Turrets.RemoveAt(idx);
+        TurretCount--;
+        ResetPos();
+        Debug.Log((int)((m_money * m_Rairty) * 0.66));
+        return (int)((m_money * m_Rairty) * 0.66);
+    }
     public bool Upgrade(GameObject turret)
     {
         Turret m_turret = turret.GetComponent<Turret>();

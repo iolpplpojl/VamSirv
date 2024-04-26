@@ -15,6 +15,7 @@ public abstract class Turret : MonoBehaviour
     public float Radius;
     public float Attackspped;
     public float Attackspeed_Now = 0;
+    public int price;
     protected bool Find = false;
     protected GameObject Target;
     protected SpriteRenderer Renderer;
