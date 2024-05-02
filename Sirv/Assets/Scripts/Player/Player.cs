@@ -408,12 +408,12 @@ public abstract class Player : MonoBehaviour
     }
     public abstract void UniqueLevelUP(int idx);
 
-    void maxAmmoGet(float Per)
+    protected void maxAmmoGet(float Per)
     {
         maxammoPer += Per;
         maxammonow = (int)(maxammo * maxammoPer);
     }
-    void maxHealthGet(float Per)
+    protected void maxHealthGet(float Per)
     {
         maxHealthPer += Per;
         maxHealthNow = (int)(maxHealth * maxHealthPer);

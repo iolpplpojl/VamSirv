@@ -89,7 +89,7 @@ public class TestPlayer : Player
         switch (idx)
         {
             case 0:
-                skillAExplodeRadius += 0.02f;
+                skillAExplodeRadius += 0.03f;
                 break;
         }
 
@@ -104,6 +104,27 @@ public class TestPlayer : Player
                 break;
             case 2:
                 SkillABulletThrough++;
+                break;
+            case 3:
+                damage += 10;
+                break;
+            case 4:
+                maxAmmoGet(0.1f);
+                maxHealthGet(0.2f);
+                break;
+            case 5:
+                damage += 10;
+                break;
+            case 6:
+                maxAmmoGet(0.1f);
+                maxHealthGet(0.2f);
+                break;
+            case 7:
+                damage += 10;
+                break;
+            case 8:
+                maxAmmoGet(0.1f);
+                maxHealthGet(0.2f);
                 break;
         }
     }

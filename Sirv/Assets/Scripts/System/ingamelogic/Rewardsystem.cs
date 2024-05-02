@@ -25,7 +25,10 @@ public class Rewardsystem : MonoBehaviour
     public int[] Turretcount;
     public int[] UniqueCount;
     public UniqueItemData UniqueData;
-    public GameObject[] Datas;  
+    public GameObject[] Datas;
+
+    bool[] Lock = {false,false,false,false};
+    public Image[] Locks;
 
     public GameObject 스크롤뷰;
     public GameObject 아이템프리팹;
@@ -70,6 +73,7 @@ public class Rewardsystem : MonoBehaviour
             Debug.Log(Sprites[i].sprite.Length);
         }
         Reload();
+        setLockColor();
     }
 
     public void GetSystem(Player player,Roundsystem roundsystem,TurretManager Turret, Moneymanager Money,int PlayerType)
@@ -107,17 +111,22 @@ public class Rewardsystem : MonoBehaviour
             // 만약 전설이라 치면 전설count
             //idx[i] 말고 rairty[i] 추가로 필요
             //고유 = 희귀,영웅   
-
-            Randomizer(i);
+            if (Lock[i] == false)
+            {
+                Randomizer(i);
+            }
         }
         for (int i =0; i<4; i++)
         {
-            Reloadoneslot(i);
+            if (Lock[i] == false)
+            {
+                Reloadoneslot(i);
+            }
         }
         SetStatText();
     }
 
-    void Randomizer(int i)
+    void Randomizer(int i) // 칸 별로 희귀도를 지정하는 함수
     {
         float m_random = Random.Range(0f, 1f);
         if (m_random <= 0.01f + 0.0005f * roundsystem.Round)
@@ -160,7 +169,7 @@ public class Rewardsystem : MonoBehaviour
         }
         */
     }
-    void Reloadoneslot(int i)
+    void Reloadoneslot(int i) //지정한 한 슬롯을 돌리는 함수 ( 리로딩 시 4번 실행됨 )
     {
         if (rairty[i] == 2 || rairty[i] == 3)
         {
@@ -198,9 +207,9 @@ public class Rewardsystem : MonoBehaviour
             Reload();
         }
     }
-    public void Onclick(int n)
+    public void Onclick(int n) // 구매
     {
-        if (idx[n] < Itemcount[rairty[n]] + Turretcount[rairty[n]])
+        if (idx[n] < Itemcount[rairty[n]] + Turretcount[rairty[n]]) // idx[n]이 일반 아이템과 일반 터렛 수 보다 적을경우 ( 일반 아이템을 뽑았을 경우)
         {
             if ((int)ItemData[rairty[n]][idx[n]]["ITEMPRICE"] <= moneymanager.money)
             {
@@ -218,21 +227,21 @@ public class Rewardsystem : MonoBehaviour
                     buttons[n].gameObject.SetActive(false);
                     UpdateSideArmUI();
                 }
+                Unlock(n);
             }
         }
-        else
+        else  // 직업 고유 아이템을 뽑은 경우
         {
             Debug.Log("uniqueReward2");
-            Debug.Log((int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ITEMPRICE"] <= moneymanager.money);
             if ((int)UniqueData.ItemData[rairty[n]] [idx[n] - Itemcount[rairty[n]] -Turretcount[rairty[n]]] ["ITEMPRICE"] <= moneymanager.money)
             {
                 if (idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]] < UniqueCount[rairty[n]])
                 {
                     Debug.Log("uniqueReward");
                     GetUniquereward(idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]] + 500, rairty[n]);
-                    moneymanager.money -= (int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ITEMPRICE"];
+                    moneymanager.money -= (int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ITEMPRICE"]; 
                     buttons[n].gameObject.SetActive(false);
-                    if ((int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ISUNIQUE"] == 1)
+                    if ((int)UniqueData.ItemData[rairty[n]][idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]]["ISUNIQUE"] == 1) //isunique는 더이상 사용하지 않음.
                     {
                         UniqueData.GotUnique.Add(idx[n] - Itemcount[rairty[n]] - Turretcount[rairty[n]]);
                     }
@@ -241,6 +250,8 @@ public class Rewardsystem : MonoBehaviour
 
                     }
                 }
+                Unlock(n);
+
             }
         }
 
@@ -479,4 +490,30 @@ public class Rewardsystem : MonoBehaviour
     {
         transform.GetChild(0).gameObject.SetActive(false);
     }
+
+    public void Locking(int idx)
+    {
+        Lock[idx] = !Lock[idx];
+        setLockColor(); 
+    }
+    public void Unlock(int idx)
+    {
+        Lock[idx] = false;
+        setLockColor();
+    }
+
+    void setLockColor()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (Lock[i] == false)
+            {
+                Locks[i].color = new Color(0.4858491f, 0.654202f, 1, 1);
+            }
+            else
+            {
+                Locks[i].color = new Color(0.6702939f, 0.654202f, 1, 1);
+            }
+        }
+    } 
 }
