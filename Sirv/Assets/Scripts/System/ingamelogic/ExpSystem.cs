@@ -71,7 +71,8 @@ public class ExpSystem : MonoBehaviour
   
     public void UniqueUp(int idx)
     {
-        player.UniqueLevelUP((int)upgradeLevel/5 + (idx+1));
+        Debug.Log((int)upgradeLevel / 5 + (idx) +" ad");
+        player.UniqueLevelUP((int)upgradeLevel/5 + (idx));
         UN_Canvas.SetActive(false);
         UpgradeRemain--;
         upgradeLevel++;
@@ -84,7 +85,7 @@ public class ExpSystem : MonoBehaviour
         {
             Debug.Log(upgradeLevel+ "asldkn");
             selecting = true;
-            if(upgradeLevel != 0 && upgradeLevel%5 == 0)
+            if(upgradeLevel != 0 && upgradeLevel%5 == 0 && upgradeLevel < 20)
             {
                 Debug.Log("Unique");
                 UniqueOpen();
@@ -144,6 +145,6 @@ public class ExpSystem : MonoBehaviour
             EXPLevel++;
             UpgradeRemain++;
         }
-        Text.text = string.Format("EXP : {0}/{1}", ExpNow, ExpRemain[EXPLevel]);
+        Text.text = string.Format("EXP : {0}/{1} LVL ; {2}", ExpNow, ExpRemain[EXPLevel],EXPLevel);
     }
 }

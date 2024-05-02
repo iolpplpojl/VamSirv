@@ -15,6 +15,7 @@ public class TestPlayer : Player
     public bool Firebomb = false;
     public float SkillABuff;
     float SkillABuffnow = 1;
+    public int SkillABulletThrough = 0;
 
     public override void Attack()
     {
@@ -51,12 +52,15 @@ public class TestPlayer : Player
     IEnumerator Panning()
     {
         SkillABuffnow = SkillABuff;
+        bullethrough += SkillABulletThrough;
         for (int i = 0; i<=maxammonow; i++)
         {
             Attack();
             yield return new WaitForSeconds(0.1f);
         }
         SkillABuffnow = 1f;
+        bullethrough -= SkillABulletThrough;
+
         yield break;
     }
     public override void Skill_B()
@@ -99,8 +103,7 @@ public class TestPlayer : Player
                 Firebomb = true;
                 break;
             case 2:
-                skillADamage = skillADamage / 5;
-                Firebomb = true;
+                SkillABulletThrough++;
                 break;
         }
     }
