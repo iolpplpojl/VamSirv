@@ -51,8 +51,9 @@ public abstract class Player : MonoBehaviour
     public float GetAttckTime;
     public float GetAttackTimenow;
     [Space]
-
     public float BloodSuck;
+    public float fire;
+
 
     int windwalk = 0;
     public float windwalk_now = 0;
@@ -66,6 +67,7 @@ public abstract class Player : MonoBehaviour
     [Header("Default")]
     Rewardsystem rewardsystem;
 
+  
 
     public abstract void Attack();
     public abstract void Skill_A();

@@ -13,7 +13,8 @@ public class ExpSystem : MonoBehaviour
     uint[] ExpRemain = {24,30,38,46,50,58,64,72,80,90,100,110,120,130,140,150,160,170,180,190,200};
     uint UpgradeRemain = 0;
     uint EXPLevel = 0;
-    uint upgradeLevel = 0;
+    uint upgradeLevel = 1;
+    uint UniqueUps = 0;
 
     Player player;
     public List<Dictionary<string,object>> Updatas;
@@ -71,11 +72,12 @@ public class ExpSystem : MonoBehaviour
   
     public void UniqueUp(int idx)
     {
-        Debug.Log((int)upgradeLevel / 5 + (idx) +" ad");
-        player.UniqueLevelUP((int)upgradeLevel/5 + (idx));
+        Debug.Log((int)upgradeLevel / 5 + (int)UniqueUps+(idx) +" ad");
+        player.UniqueLevelUP((int)upgradeLevel/5 + (idx) + (int)UniqueUps);
         UN_Canvas.SetActive(false);
         UpgradeRemain--;
         upgradeLevel++;
+        UniqueUps++;
         Open();
     }
     public void Open()
@@ -85,7 +87,7 @@ public class ExpSystem : MonoBehaviour
         {
             Debug.Log(upgradeLevel+ "asldkn");
             selecting = true;
-            if(upgradeLevel != 0 && upgradeLevel%5 == 0 && upgradeLevel < 20)
+            if(upgradeLevel != 0 && upgradeLevel%5 == 0 && upgradeLevel <= 20)
             {
                 Debug.Log("Unique");
                 UniqueOpen();
@@ -107,9 +109,9 @@ public class ExpSystem : MonoBehaviour
         UN_Canvas.SetActive(true);
         for (int i = 0; i < 2; i++)
         {
-            U_TextsDes[i].text = U_Updatas[i+(int)upgradeLevel/5-1]["UPGDESC"].ToString();
-            U_TextsTitle[i].text = U_Updatas[i+(int)upgradeLevel/5-1]["UPGNAME"].ToString();
-            U_Images[i].sprite = U_Sprites[i+(int)upgradeLevel/5-1];
+            U_TextsDes[i].text = U_Updatas[i+(int)upgradeLevel/5-1+ (int)UniqueUps]["UPGDESC"].ToString();
+            U_TextsTitle[i].text = U_Updatas[i+(int)upgradeLevel/5-1+ (int)UniqueUps]["UPGNAME"].ToString();
+            U_Images[i].sprite = U_Sprites[i+(int)upgradeLevel/5];
         }
     }
     public void ReloadNormal()

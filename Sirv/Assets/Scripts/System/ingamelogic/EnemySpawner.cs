@@ -19,6 +19,8 @@ public class EnemySpawner : MonoBehaviour
     public void SetSpawning(int a)
     {
         StartCoroutine(Spawn(a));
+        StartCoroutine(Spawn4(a));
+
         if (a >= 3)
         {
             StartCoroutine(Spawn2(a));
@@ -85,6 +87,20 @@ public class EnemySpawner : MonoBehaviour
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 30 * round;
             m_enemy.Damage += (int)(1.3 * round);
+            yield return new WaitForSeconds(SpawnTime_Large);
+
+        }
+    }
+    IEnumerator Spawn4(int round)
+    {
+        while (true)
+        {
+
+            GameObject enemy = Instantiate(EnemyPrefs[3], new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2)), Quaternion.identity, transform);
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 2 * round;
+            m_enemy.Damage += (int)(0.5 * round);
             yield return new WaitForSeconds(SpawnTime_Large);
 
         }

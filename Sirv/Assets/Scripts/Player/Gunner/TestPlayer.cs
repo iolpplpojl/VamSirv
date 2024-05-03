@@ -89,7 +89,7 @@ public class TestPlayer : Player
         switch (idx)
         {
             case 0:
-                skillAExplodeRadius += 0.03f;
+                skillAExplodeRadius += 0.05f;
                 break;
         }
 

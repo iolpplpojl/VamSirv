@@ -15,7 +15,7 @@ public class Uniquedamagesystem : MonoBehaviour
         }
     }   
 
-    public void BloodSuck(int damage)
+    public void BloodSuck()
     {
         if (Random.Range(0f, 1f) <= player.BloodSuck)
         {
@@ -27,6 +27,14 @@ public class Uniquedamagesystem : MonoBehaviour
             {
                 player.health += 3;
             }
+        }
+    }
+
+    public void Fire(Enemy enemy)
+    {
+        if (Random.Range(0f, 1f) <= player.fire)
+        {
+            enemy.StartCoroutine(enemy.Fire((int)(12*player.damagePer)));
         }
     }
     public void Kill()

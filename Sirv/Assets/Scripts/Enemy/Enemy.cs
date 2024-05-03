@@ -59,13 +59,14 @@ public abstract class Enemy : MonoBehaviour
             HP -= Damage;
             if (BloodSuck == true)
             {
-                Uniquedamagesystem.instance.BloodSuck(Damage * 2);
+                Uniquedamagesystem.instance.BloodSuck();
             }
             Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
             if (HP <= 0)
             {
                 Dead();
             }
+            Uniquedamagesystem.instance.Fire(this);
         }
     }
     public void GetCritDamage(int Damage, bool BloodSuck)
@@ -80,13 +81,38 @@ public abstract class Enemy : MonoBehaviour
             HP -= Damage * 2;
             if (BloodSuck == true)
             {
-                Uniquedamagesystem.instance.BloodSuck(Damage * 2);
+                Uniquedamagesystem.instance.BloodSuck();
             }
             Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage * 2 + "nowHP:" + HP);
             if (HP <= 0)
             {
                 Dead();
             }
+            Uniquedamagesystem.instance.Fire(this);
+
+        }
+    }
+    public void GetRawDamage(int Damage, bool BloodSuck) // 출혈, 화상 등 도트대미지 용
+    {
+        if (Death == false)
+        {
+            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
+            DamagePopupSystem.instance.Setup(transform, Damage);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", Color.white);
+            flashtime = 1f;
+            HP -= Damage;
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck();
+            }
+            Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
+            if (HP <= 0)
+            {
+                Dead();
+            }
+            Uniquedamagesystem.instance.Fire(this);
+
         }
     }
     public void SetMoneymanager(Moneymanager man)
@@ -104,5 +130,15 @@ public abstract class Enemy : MonoBehaviour
             Uniquedamagesystem.instance.Kill();
             return;
         }
+    }
+
+    public IEnumerator Fire(int damage)
+    {
+        for(int i = 0; i <6; i++)
+        {
+            GetRawDamage(damage/6,false);
+            yield return new WaitForSeconds(0.5f);
+        }
+        yield break;
     }
 }
