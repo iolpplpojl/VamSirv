@@ -193,6 +193,7 @@ MonoBehaviour:
   DamagePopup: {fileID: 5782764689016655647, guid: 13a7887f8c9228d45ac9c50b48dfb118, type: 3}
   EXPManager: {fileID: 776077263259013810, guid: b7060650e6bfb6f41a2b617e7983a2e3, type: 3}
   Uniquedamage: {fileID: 7801125032261468433, guid: 85535b93bdb1e714989fcc85976fefc6, type: 3}
+  towersystem: {fileID: 2534498734396111108, guid: aed485f94790491499219278e7b17a87, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -25,6 +25,7 @@ public class Roundsystem : MonoBehaviour
         }
         Spawner.RoundClear();
         moneymanager.RoundOver();
+        Towersystem.instance.RoundDone();
         StartCoroutine(EndThreeCount());
     }
     IEnumerator EndThreeCount()
@@ -131,6 +132,7 @@ public class Roundsystem : MonoBehaviour
                 break;
         }
         Spawner.SetSpawnTime(m_SpawnTime);
+        Towersystem.instance.RoundStart();
         StartCoroutine(Threecount(m_Time));
     }
     public void SetSpawner(EnemySpawner Spawnner)

@@ -53,7 +53,7 @@ public abstract class Player : MonoBehaviour
     [Space]
     public float BloodSuck;
     public float fire;
-
+    public int fireCount;
 
     int windwalk = 0;
     public float windwalk_now = 0;
@@ -243,8 +243,7 @@ public abstract class Player : MonoBehaviour
                         maxHealthGet(-0.05f);
                         break;
                     case 6:
-                        attackspeedPer -= 0.01f;
-                        damagePer += 0.04f;
+                        Towersystem.instance.GetTower(0);
                         break;
                     case 500:
                         GetUniqueItem(0);
@@ -259,10 +258,10 @@ public abstract class Player : MonoBehaviour
                 {
                     case 0:
                         windwalk++;
+                        maxHealthGet(-0.03f);
                         break;
                     case 1:
-                        attackspeedPer += 0.06f;
-                        damagePer -= 0.02f;
+                        fireCount++;
                         break;
                     case 2:
                         maxAmmoGet(0.05f);

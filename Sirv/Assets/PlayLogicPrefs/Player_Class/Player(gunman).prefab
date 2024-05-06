@@ -317,6 +317,10 @@ MonoBehaviour:
   skillBcooltimenow: 0
   GetAttckTime: 1
   GetAttackTimenow: 0
+  BloodSuck: 0
+  fire: 0.1
+  fireCount: 0
+  windwalk_now: 0
   shotpoint: {fileID: 8174159504366851679}
   Effects:
   - {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
@@ -330,6 +334,7 @@ MonoBehaviour:
   skillAExplodeTime: 1
   Firebomb: 0
   SkillABuff: 1.4
+  SkillABulletThrough: 0
 --- !u!95 &6730629171284667288
 Animator:
   serializedVersion: 5

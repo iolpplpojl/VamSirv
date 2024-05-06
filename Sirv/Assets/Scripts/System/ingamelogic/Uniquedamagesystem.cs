@@ -30,11 +30,18 @@ public class Uniquedamagesystem : MonoBehaviour
         }
     }
 
-    public void Fire(Enemy enemy)
+    public IEnumerator Fire(Enemy enemy)
     {
-        if (Random.Range(0f, 1f) <= player.fire)
-        {
-            enemy.StartCoroutine(enemy.Fire((int)(12*player.damagePer)));
+        for (int i = 0; i < player.fireCount; i++) {
+            if(enemy == null)
+            {
+                yield break;
+            }
+            if (Random.Range(0f, 1f) <= player.fire)
+            {
+                enemy.StartCoroutine(enemy.Fire((int)(12 * player.damagePer)));
+                yield return new WaitForSeconds(0.02f);
+            }
         }
     }
     public void Kill()

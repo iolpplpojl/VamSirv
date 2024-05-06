@@ -40,6 +40,5 @@ public class Moneymanager : MonoBehaviour
     public void GetMoney(int value)
     {
         money += value;
-        Debug.Log("Money Earned! Money : " + money);
     }
 }

@@ -13,7 +13,6 @@ public class DamagePopup : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("animdone");
         Destroy(animator.transform.gameObject);
     }
 

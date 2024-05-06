@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 200
-  speed: 0.4
+  speed: 0.6
   target: {fileID: 0}
   targetrigid: {fileID: 0}
   Value: 2.5

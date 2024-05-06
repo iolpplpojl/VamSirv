@@ -299,6 +299,10 @@ MonoBehaviour:
   skillBcooltimenow: 0
   GetAttckTime: 1
   GetAttackTimenow: 0
+  BloodSuck: 0
+  fire: 0.1
+  fireCount: 0
+  windwalk_now: 0
   shotpoint: {fileID: 801464279253253962}
   Effects: []
 --- !u!95 &1136717602863387516

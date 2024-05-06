@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 10
-  speed: 3
+  speed: 2.5
   target: {fileID: 0}
   targetrigid: {fileID: 0}
   Value: 1

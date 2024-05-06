@@ -61,12 +61,11 @@ public abstract class Enemy : MonoBehaviour
             {
                 Uniquedamagesystem.instance.BloodSuck();
             }
-            Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
             if (HP <= 0)
             {
                 Dead();
             }
-            Uniquedamagesystem.instance.Fire(this);
+            Uniquedamagesystem.instance.StartCoroutine(Uniquedamagesystem.instance.Fire(this));
         }
     }
     public void GetCritDamage(int Damage, bool BloodSuck)
@@ -83,7 +82,6 @@ public abstract class Enemy : MonoBehaviour
             {
                 Uniquedamagesystem.instance.BloodSuck();
             }
-            Debug.Log("Crit!!!" + gameObject + "Damage:" + Damage * 2 + "nowHP:" + HP);
             if (HP <= 0)
             {
                 Dead();
@@ -92,12 +90,12 @@ public abstract class Enemy : MonoBehaviour
 
         }
     }
-    public void GetRawDamage(int Damage, bool BloodSuck) // 출혈, 화상 등 도트대미지 용
+    public void GetRawDamage(int Damage, bool BloodSuck,string Type) // 출혈, 화상 등 도트대미지 용
     {
         if (Death == false)
         {
-            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
-            DamagePopupSystem.instance.Setup(transform, Damage);
+            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
+            DamagePopupSystem.instance.Setup(transform, Damage,21,Type);
             Sprite.material.SetFloat("_FlashAmount", 1f);
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
@@ -106,12 +104,10 @@ public abstract class Enemy : MonoBehaviour
             {
                 Uniquedamagesystem.instance.BloodSuck();
             }
-            Debug.Log(gameObject + "Damage:" + Damage + "nowHP:" + HP);
             if (HP <= 0)
             {
                 Dead();
             }
-            Uniquedamagesystem.instance.Fire(this);
 
         }
     }
@@ -124,7 +120,6 @@ public abstract class Enemy : MonoBehaviour
         if (Death == false)
         {
             Death = true;
-            Debug.Log("Dead");
             Destroy(gameObject);
             moneymanager.DropMoney(transform.position, Value, DropPer,exp);
             Uniquedamagesystem.instance.Kill();
@@ -136,7 +131,7 @@ public abstract class Enemy : MonoBehaviour
     {
         for(int i = 0; i <6; i++)
         {
-            GetRawDamage(damage/6,false);
+            GetRawDamage(damage/6,false,"Fire");
             yield return new WaitForSeconds(0.5f);
         }
         yield break;

@@ -210,4 +210,5 @@ MonoBehaviour:
   Damage: 15
   Attackspeed: 2
   Attackspeed_now: 2
+  Bulletspeed: 2
   Bullet: {fileID: 2749845425347848725, guid: f4bef7ec5792dde48a175aa1611fc0ec, type: 3}
