@@ -47,11 +47,12 @@ MonoBehaviour:
   player: {fileID: 0}
   TurretPos: []
   Turret:
-  - {fileID: 3982483331314742997, guid: 0a7e42a31306a8c4fa861e9a6c2a5391, type: 3}
+  - {fileID: 3982483331314742997, guid: ffe3b2cffb4c85f46bd7d356482108c6, type: 3}
   - {fileID: 8984956371352389330, guid: 56a743ef88d2d9042a21fa0fcd89a0f0, type: 3}
   - {fileID: 9117484842096930427, guid: 2383f330e66e93042a73685fb6e75116, type: 3}
   - {fileID: 8984956371352389330, guid: 5cd8899537280154c8b27824fd99e667, type: 3}
   TurretMaxCount: 0
   TurretCount: 0
+  Turrets_OBJ: []
   Turrets: []
   on: 0

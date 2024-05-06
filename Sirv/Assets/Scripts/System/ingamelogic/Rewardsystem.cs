@@ -133,15 +133,15 @@ public class Rewardsystem : MonoBehaviour
         {
             rairty[i] = 4;
         }
-        else if (m_random <= 0.03f + 0.001f * roundsystem.Round)
+        else if (m_random <= 0.03f + 0.003f * roundsystem.Round)
         {
             rairty[i] = 3;
         }
-        else if (m_random <= 0.1f + 0.003f * roundsystem.Round)
+        else if (m_random <= 0.1f + 0.005f * roundsystem.Round)
         {
             rairty[i] = 2;
         }
-        else if (m_random <= 0.2f + 0.005f * roundsystem.Round)
+        else if (m_random <= 0.2f + 0.01f * roundsystem.Round)
         {
             rairty[i] = 1;
         }

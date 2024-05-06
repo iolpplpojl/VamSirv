@@ -45,10 +45,18 @@ public class TestPlayer : Player
         ammo = maxammonow;
         reloading = false;
         reloadtimenow = reloadtime;
-        skillAcooltimenow = skillAcooltime;
         StartCoroutine(Panning());
-    }
-    IEnumerator Panning()
+        if (skillAcooltime * skillAcoolPer <= maxammonow * 0.1f)
+        {
+            skillAcooltimenow = maxammonow * 0.105f + 0.1f;
+        }
+        else
+        {
+            skillAcooltimenow = skillAcooltime * skillAcoolPer;
+        }
+
+        }
+        IEnumerator Panning()
     {
         SkillABuffnow = SkillABuff;
         bullethrough += SkillABulletThrough;
@@ -76,9 +84,8 @@ public class TestPlayer : Player
         {
             DynaComp.Firebomb = true;
         }
+        skillBcooltimenow = skillBcooltime * skillBcoolPer;
 
-        skillBcooltimenow = skillBcooltime;
-            
     }
 
     public override void GetUniqueItem(int idx)

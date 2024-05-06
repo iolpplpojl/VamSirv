@@ -11,7 +11,7 @@ public class Turret_Knife : Turret
     public int Damage;
 
     public int[] BonusdamageSheet;
-    BoxCollider2D col;
+    protected BoxCollider2D col;
     private void Start()
     {
         SetDamage();
@@ -39,7 +39,6 @@ public class Turret_Knife : Turret
             UpgradeTool = false;
         }
         SetDamage();
-
     }
 
     private void FixedUpdate()
@@ -69,7 +68,7 @@ public class Turret_Knife : Turret
         }
     }
 
-    IEnumerator Attack(Vector3 Target)
+    protected IEnumerator Attack(Vector3 Target)
     {
         while (true)
         {

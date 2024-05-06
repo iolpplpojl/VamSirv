@@ -44,8 +44,11 @@ public abstract class Player : MonoBehaviour
 
     public float skillAcooltime;
     public float skillAcooltimenow;
+    public float skillAcoolPer = 1f;
+
     public float skillBcooltime;
     public float skillBcooltimenow;
+    public float skillBcoolPer = 1f;
     [Space]
 
     public float GetAttckTime;
@@ -108,6 +111,7 @@ public abstract class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
                 {
                     Skill_B();
+
                 }
             }
 
@@ -208,8 +212,16 @@ public abstract class Player : MonoBehaviour
                             attackspeedPer -= 0.01f;
                             damagePer += 0.04f;
                             break;
+                        case 7:
+                            skillAcoolPer -= 0.01f;
+                            critPer -= 0.01f;
+                            break;
+                        case 8:
+                            skillBcoolPer -= 0.01f;
+                            critPer -= 0.01f;
+                            break;
                     }
-            break;
+                    break;
             case 1:
                 switch (idx)
                 {
