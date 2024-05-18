@@ -14,6 +14,8 @@ public class Coin : MonoBehaviour
         {
             GetComponentInParent<Moneymanager>().GetMoney((int)(value*valuePer));
             ExpSystem.instance.GetExp(exp);
+            Resultsystem.instance.expUp(exp);
+            Resultsystem.instance.goldUp((int)(value * valuePer));
             Destroy(gameObject);
         }
     }

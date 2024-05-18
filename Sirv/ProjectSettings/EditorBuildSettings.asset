@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Legitgame.unity
     guid: 29dfcde22f26f2640946f9af3c50023b
+  - enabled: 1
+    path: Assets/Scenes/ResultScene.unity
+    guid: dc1394f5defd02e46b5437c74505cbae
   m_configObjects: {}

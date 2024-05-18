@@ -17,6 +17,7 @@ TagManager:
   - Deathmanager
   - System
   - goldradius
+  - ResultSystem
   layers:
   - Default
   - TransparentFX

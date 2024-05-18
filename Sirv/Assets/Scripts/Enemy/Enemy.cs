@@ -123,6 +123,7 @@ public abstract class Enemy : MonoBehaviour
             Destroy(gameObject);
             moneymanager.DropMoney(transform.position, Value, DropPer,exp);
             Uniquedamagesystem.instance.Kill();
+            Resultsystem.instance.killUp();
             return;
         }
     }
