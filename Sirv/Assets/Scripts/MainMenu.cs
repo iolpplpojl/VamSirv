@@ -5,19 +5,37 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject canvas;
+    public GameObject StartMenu;
+    public GameObject GameStart;
+    public GameObject Achievements;
+    
+
     public void OnclickNewGame()
     {
-        canvas.SetActive(true);
+        GameStart.SetActive(true);
+        StartMenu.SetActive(false);        
     }
 
     public void OnClickAchievements()
     {
-
+         Achievements.SetActive(true);
+         StartMenu.SetActive(false);
     }
 
     public void OnClickExit()
     {
         Application.Quit();
+    }
+
+    public void OnClickChoiceMenuTurn()
+    {
+        GameStart.SetActive(false);
+        StartMenu.SetActive(true);
+    }
+
+    public void OnClickAchievementsMenuTurn()
+    {
+        Achievements.SetActive(false);
+        StartMenu.SetActive(true);
     }
 }
