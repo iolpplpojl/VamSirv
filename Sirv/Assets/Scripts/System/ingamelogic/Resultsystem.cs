@@ -8,6 +8,7 @@ public class Resultsystem : MonoBehaviour
     int gold;
     int exp;
     int damage;
+    public int playernum;
 
     public static Resultsystem instance;
     // Start is called before the first frame update
@@ -48,8 +49,10 @@ public class Resultsystem : MonoBehaviour
         {
             if (SceneManager.GetSceneByName("ResultScene").isLoaded)
             {
-                Resultscene.instance.setText(kill, gold, exp);
+                Resultscene.instance.setText(kill, gold, exp, playernum);
                 SceneManager.UnloadSceneAsync("Legitgame");
+                SceneManager.UnloadSceneAsync("Scenemanager");
+
                 yield break;
             }
             yield return new WaitForFixedUpdate();

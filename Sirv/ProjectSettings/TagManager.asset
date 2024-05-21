@@ -18,6 +18,7 @@ TagManager:
   - System
   - goldradius
   - ResultSystem
+  - Whole
   layers:
   - Default
   - TransparentFX

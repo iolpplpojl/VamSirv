@@ -22,6 +22,7 @@ public class Scene_Man : MonoBehaviour
     public GameObject EXPManager;
     public GameObject Uniquedamage;
     public GameObject towersystem;
+    public GameObject pausesystem;
     public void GetData(int PlayerType)
     {
         this.PlayerType = PlayerType;
@@ -69,6 +70,8 @@ public class Scene_Man : MonoBehaviour
                 Uniquedamagesystem.instance.player = m_Player.GetComponent<Player>();
                 Instantiate(towersystem, m_System.transform);
                 Towersystem.instance.player = m_Player.GetComponent<Player>();
+                Resultsystem.instance.playernum = PlayerType;
+                Instantiate(pausesystem,m_System.transform);
                 if (PlayerType == 1)
                 {
                     Debug.Log("Eh");

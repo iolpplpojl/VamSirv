@@ -10,33 +10,57 @@ public class Resultscene : MonoBehaviour
     public TMP_Text kill;
     public TMP_Text gold;
     public TMP_Text exp;
-
-
+    public int Player;
+    bool clicked = false;
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+
         }
     }
-    void Start()
-    {
-        
-    }
 
-    public void setText(int kill, int gold, int exp)
+
+    public void setText(int kill, int gold, int exp,int player)
     {
         this.kill.text = kill.ToString();
         this.gold.text = gold.ToString();
         this.exp.text = exp.ToString();
+        this.Player = player;
        
     }
     // Update is called once per frame
-    void Update()
+
+    public void onclick(bool replay)
     {
-        if (Input.GetMouseButtonDown(0))
+        if (replay == true)
+        {
+            if (!clicked)
+            {
+                SceneManager.LoadScene("Scenemanager", LoadSceneMode.Additive);
+                StartCoroutine(CheckLoad());
+                clicked = true;
+            }
+        }
+        else
         {
             SceneManager.LoadScene("mainmenu");
+        }
+    }
+
+    IEnumerator CheckLoad()
+    {
+        while (true)
+        {
+            if (SceneManager.GetSceneByName("Scenemanager").isLoaded)
+            {
+                SceneManager.SetActiveScene(SceneManager.GetSceneByName("Scenemanager"));
+                GameObject.FindWithTag("Scene_Man").GetComponent<Scene_Man>().GetData(Player);
+                SceneManager.UnloadSceneAsync("ResultScene");
+                yield break;
+            }
+            yield return new WaitForFixedUpdate();
         }
     }
 }
