@@ -18,6 +18,8 @@ public class Roundsystem : MonoBehaviour
         counter = (int)Time;
         Rounder.text = string.Format("ROUND {0}",Round.ToString());
         Spawner.SetSpawning(Round);
+        Resultsystem.instance.setRound(Round);
+
         for (int i = 0; i <= Time; i++) {
             SetText();
             yield return new WaitForSeconds(1.0f);

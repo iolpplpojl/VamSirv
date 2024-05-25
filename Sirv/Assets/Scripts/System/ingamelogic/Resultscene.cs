@@ -10,6 +10,7 @@ public class Resultscene : MonoBehaviour
     public TMP_Text kill;
     public TMP_Text gold;
     public TMP_Text exp;
+    public TMP_Text round;
     public int Player;
     bool clicked = false;
     private void Awake()
@@ -22,12 +23,14 @@ public class Resultscene : MonoBehaviour
     }
 
 
-    public void setText(int kill, int gold, int exp,int player)
+    public void setText(int kill, int gold, int exp,int player,int round)
     {
         this.kill.text = kill.ToString();
         this.gold.text = gold.ToString();
         this.exp.text = exp.ToString();
+        this.round.text = round.ToString();
         this.Player = player;
+        SaveSystem.instance.addVal(kill, gold, round);
        
     }
     // Update is called once per frame

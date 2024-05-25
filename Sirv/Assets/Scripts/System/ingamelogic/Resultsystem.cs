@@ -8,6 +8,7 @@ public class Resultsystem : MonoBehaviour
     int gold;
     int exp;
     int damage;
+    int round;
     public int playernum;
 
     public static Resultsystem instance;
@@ -38,6 +39,10 @@ public class Resultsystem : MonoBehaviour
         damage += x;
     }
 
+    public void setRound(int x)
+    {
+        round = x;
+    }
     public void StartLoad()
     {
         SceneManager.LoadScene("ResultScene", LoadSceneMode.Additive);
@@ -49,7 +54,7 @@ public class Resultsystem : MonoBehaviour
         {
             if (SceneManager.GetSceneByName("ResultScene").isLoaded)
             {
-                Resultscene.instance.setText(kill, gold, exp, playernum);
+                Resultscene.instance.setText(kill, gold, exp, playernum,round);
                 SceneManager.UnloadSceneAsync("Legitgame");
                 SceneManager.UnloadSceneAsync("Scenemanager");
 
