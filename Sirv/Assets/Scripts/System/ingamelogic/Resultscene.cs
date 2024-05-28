@@ -31,7 +31,6 @@ public class Resultscene : MonoBehaviour
         this.round.text = round.ToString();
         this.Player = player;
         SaveSystem.instance.addVal(kill, gold, round);
-       
     }
     // Update is called once per frame
 

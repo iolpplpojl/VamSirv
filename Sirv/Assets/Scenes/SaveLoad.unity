@@ -989,6 +989,8 @@ MonoBehaviour:
     kill: 77
     gold: 2442
     maxround: 24
+    achievement: 0f27000010270000
+    death: 0
 --- !u!1 &1251099568
 GameObject:
   m_ObjectHideFlags: 0

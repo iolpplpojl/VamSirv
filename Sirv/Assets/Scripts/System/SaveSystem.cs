@@ -70,6 +70,7 @@ public class SaveSystem : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath + "/save", string.Format("Data{0}",idx));
         string JsonData = File.ReadAllText(path);
         data = JsonUtility.FromJson<SaveData>(JsonData);
+
         SceneManager.LoadScene("Mainmenu");
     }
 
@@ -81,6 +82,8 @@ public class SaveSystem : MonoBehaviour
         {
             data.maxround = maxround;
         }
+        data.death++;
+        AchievementSystem.instance.DoAchievement();
         Save();
     }
     public void Save()
@@ -98,4 +101,7 @@ public class SaveData
     public int kill;
     public int gold;
     public int maxround;
+    public List<int> achievement;
+    public int death;
+
 }
