@@ -17,6 +17,12 @@ public class SaveSystem : MonoBehaviour
             instance = this;
         }        
         DontDestroyOnLoad(gameObject);
+        string path = Application.persistentDataPath + "/save";
+        DirectoryInfo d1 = new DirectoryInfo(path);
+        if (!d1.Exists)
+        {
+            d1.Create();
+        }
     }
     void Start()
     {
@@ -44,8 +50,10 @@ public class SaveSystem : MonoBehaviour
         {
             JsonData = File.ReadAllText(path);
         }
+        /**
         catch (DirectoryNotFoundException e)
         {
+       
             string temp1 = Path.Combine(Application.persistentDataPath, "/save");
             DirectoryInfo d1 = new DirectoryInfo(temp1);
             d1.Create();
@@ -54,7 +62,8 @@ public class SaveSystem : MonoBehaviour
             string temp = JsonUtility.ToJson(temp2, true);
             File.WriteAllText(path, temp);
             JsonData = File.ReadAllText(path);
-        }
+            
+        }**/
         catch (FileNotFoundException e)
         {
                  SaveData temp2 = new SaveData();

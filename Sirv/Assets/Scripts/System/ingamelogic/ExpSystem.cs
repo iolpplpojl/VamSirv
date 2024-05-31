@@ -37,6 +37,7 @@ public class ExpSystem : MonoBehaviour
     public int[] idx = { 999, 999, 999 };
     public int[] rairty = { 999, 999, 999 };
 
+    public Scrollbar scb;
     void Awake()
     {
         Updatas = CSVReader.Read("upgrade");
@@ -46,7 +47,6 @@ public class ExpSystem : MonoBehaviour
         {
             instance = this;
         }
-        Text.text = string.Format("EXP : {0}/{1}", ExpNow, ExpRemain[EXPLevel]);
     }
 
     public void GetPlayerNum(int n)
@@ -147,6 +147,7 @@ public class ExpSystem : MonoBehaviour
             EXPLevel++;
             UpgradeRemain++;
         }
-        Text.text = string.Format("EXP : {0}/{1} LVL ; {2}", ExpNow, ExpRemain[EXPLevel],EXPLevel);
+        Text.text = string.Format("{0} ·¹º§", EXPLevel);
+        scb.size = (float)ExpNow / (float)ExpRemain[EXPLevel];
     }
 }
