@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
     public GameObject StartMenu;
     public GameObject GameStart;
     public GameObject Achievements;
-
     public GameObject Achievement;
     public GameObject Content;
     private void Start()

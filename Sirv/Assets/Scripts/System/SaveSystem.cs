@@ -4,12 +4,14 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Audio;
 public class SaveSystem : MonoBehaviour
 {
     // Start is called before the first frame update
     public TMP_Text[] txt;
     public static SaveSystem instance;
     public SaveData data;
+    public AudioMixer audioMixer;
     private void Awake()
     {
         if(instance == null)
@@ -23,6 +25,7 @@ public class SaveSystem : MonoBehaviour
         {
             d1.Create();
         }
+
     }
     void Start()
     {
@@ -79,7 +82,8 @@ public class SaveSystem : MonoBehaviour
         string path = Path.Combine(Application.persistentDataPath + "/save", string.Format("Data{0}",idx));
         string JsonData = File.ReadAllText(path);
         data = JsonUtility.FromJson<SaveData>(JsonData);
-
+        setAudio("SONG", this.data.songSound);
+        setAudio("SFX", this.data.sfxSound);
         SceneManager.LoadScene("Mainmenu");
     }
 
@@ -94,6 +98,29 @@ public class SaveSystem : MonoBehaviour
         data.death++;
         AchievementSystem.instance.DoAchievement();
         Save();
+    }
+
+    public void setAudio(string idx,float vol)
+    {
+        switch (idx)
+        {
+            case "SFX":
+                audioMixer.SetFloat("SFX", vol);
+                if (vol == -20)
+                {
+                    audioMixer.SetFloat("SFX", -80f);
+                }
+                this.data.sfxSound = vol;
+                break;
+            case "SONG":
+                audioMixer.SetFloat("SONG", vol);
+                if(vol == -20)
+                {
+                    audioMixer.SetFloat("SONG", -80f);
+                }
+                this.data.songSound = vol;
+                break;
+        }
     }
     public void Save()
     {
@@ -112,5 +139,9 @@ public class SaveData
     public int maxround;
     public List<int> achievement;
     public int death;
+
+    public float songSound = 1f;
+    public float sfxSound = 1f;
+    public bool showDmg = true;
 
 }

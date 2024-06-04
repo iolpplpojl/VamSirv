@@ -16,7 +16,7 @@ public class Moneymanager : MonoBehaviour
     public TMP_Text Text;
     private void Update()
     {
-        Text.text = string.Format("Gold : {0}", money);
+        Text.text = string.Format("{0}", money);
     }
     public void DropMoney(Vector3 pos, float ValuePer, float DropPer, int exp)
     {
