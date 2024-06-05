@@ -39,6 +39,7 @@ public class pause : MonoBehaviour
     
     public void DoQuit()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("mainmenu");
     }
     public void DoOption()
