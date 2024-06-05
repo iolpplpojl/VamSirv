@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -7,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] EnemyPrefs;
     public BoxCollider2D Box;
+    public Player player;
     public Moneymanager Moneymanager;
     public DamagePopupSystem DamagePopup;
     public bool Spawning = false;
@@ -14,7 +17,8 @@ public class EnemySpawner : MonoBehaviour
     public float SpawnTime_Mini;
     public float SpawnTime_Large;
     public float SpawnTime_Middle;
-    // Update is called once per frame
+    float distan = 2.0f;
+      // Update is called once per frame
 
 
 
@@ -55,11 +59,16 @@ public class EnemySpawner : MonoBehaviour
     IEnumerator Spawn1(int round)
     {
         while (true)
-        {
-            Vector2 pos = new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+        {   
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            while(Vector3.Distance(pos,player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            }
+
             for (int i = 0; i < 20; i++)
             {
-                GameObject enemy = Instantiate(EnemyPrefs[0], pos + new Vector2(Random.Range(0f,2f), Random.Range(0f, 2f)), Quaternion.identity, transform);
+                GameObject enemy = Instantiate(EnemyPrefs[0], pos + new Vector2(UnityEngine.Random.Range(0f,2f), UnityEngine.Random.Range(0f, 2f)), Quaternion.identity, transform);
                 Enemy m_enemy = enemy.GetComponent<Enemy>();
                 m_enemy.SetMoneymanager(Moneymanager);
                 m_enemy.HP += 1 * round;
@@ -74,13 +83,17 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            Vector2 pos = new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            }
             GameObject enemy = Instantiate(EnemyPrefs[0], pos, Quaternion.identity, transform);
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 1 * round;
             m_enemy.Damage += (int)(0.6 * round);
-            yield return new WaitForSeconds(SpawnTime_Mini * 3);
+            yield return new WaitForSeconds(SpawnTime_Mini*3);
 
         }
     }
@@ -89,7 +102,12 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
 
-            GameObject enemy = Instantiate(EnemyPrefs[1], new Vector2(Random.Range(-(Box.size.x / 2.2f), Box.size.x / 2.2f), Random.Range(-(Box.size.y / 2.2f), Box.size.y / 2.2f)), Quaternion.identity, transform);
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.2f), Box.size.x / 2.2f), UnityEngine.Random.Range(-(Box.size.y / 2.2f), Box.size.y / 2.2f));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.2f), Box.size.x / 2.2f), UnityEngine.Random.Range(-(Box.size.y / 2.2f), Box.size.y / 2.2f));
+            }
+            GameObject enemy = Instantiate(EnemyPrefs[1], pos, Quaternion.identity, transform);
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 10 * round;
@@ -103,8 +121,12 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
 
-            GameObject enemy = Instantiate(EnemyPrefs[2], new Vector2(Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f)), Quaternion.identity, transform);
-            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), UnityEngine.Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), UnityEngine.Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f));
+            }
+            GameObject enemy = Instantiate(EnemyPrefs[2], pos, Quaternion.identity, transform); Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 30 * round;
             m_enemy.Damage += (int)(1.3 * round);
@@ -117,8 +139,12 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
 
-            GameObject enemy = Instantiate(EnemyPrefs[3], new Vector2(Random.Range(-(Box.size.x / 2), Box.size.x / 2), Random.Range(-(Box.size.y / 2), Box.size.y / 2)), Quaternion.identity, transform);
-            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            }
+            GameObject enemy = Instantiate(EnemyPrefs[3], pos, Quaternion.identity, transform); Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 2 * round;
             m_enemy.Damage += (int)(0.5 * round);
