@@ -47,6 +47,7 @@ public class Scene_Man : MonoBehaviour
                 GameObject m_spawn = Instantiate(Spawner, m_System.transform);
                 GameObject m_moneymanager = Instantiate(Moneymanager, m_System.transform);
                 m_spawn.GetComponent<EnemySpawner>().SetMoneyManager(m_moneymanager.GetComponent<Moneymanager>()) ;
+                m_spawn.GetComponent <EnemySpawner>().player = m_Player.GetComponent<Player>();
                 GameObject m_ammoui =Instantiate(AmmoUI, m_System.transform);
                 m_ammoui.GetComponentInChildren<AmmoUI>().getData();
                 GameObject m_skillui = Instantiate(SkillUI, m_System.transform);
