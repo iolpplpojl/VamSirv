@@ -6,7 +6,7 @@ public class pause : MonoBehaviour
 {
     // Start is called before the first frame update
     bool stop = false;
-    bool Opt = false;
+    bool OptOn = false;
     public GameObject canvs;
     public GameObject Opt;
     // Update is called once per frame
@@ -19,13 +19,14 @@ public class pause : MonoBehaviour
 
     public void OptOpen()    
     {
-        if(!Opt){
+        if(!OptOn)
+        {
             Opt.SetActive(true);
-            Opt = true;
+            OptOn = true;
         }
         else{
             Opt.SetActive(false);
-            Opt = false;
+            OptOn = false;
         }
     }
     public void DoPause()
