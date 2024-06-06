@@ -127,7 +127,10 @@ MonoBehaviour:
   - {fileID: 3698675706433623664, guid: fe360fe3b2405974494e845a6f89b0a6, type: 3}
   - {fileID: 2413756430259508831, guid: c1d9d681a1ba57a49a5fad2f18a46175, type: 3}
   - {fileID: 2413756430259508831, guid: 329a1e3998569964ab6fff9a766581c4, type: 3}
+  Bosses_1:
+  - {fileID: 5637199353950137722, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
   Box: {fileID: 3145619300460181883}
+  player: {fileID: 0}
   Moneymanager: {fileID: 0}
   DamagePopup: {fileID: 0}
   Spawning: 0

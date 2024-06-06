@@ -8,20 +8,20 @@ public abstract class Enemy : MonoBehaviour
     public float speed;
     public GameObject target;
     public Rigidbody2D targetrigid;
-    public float Value; //Drop µ· °¡Ä¡
+    public float Value; //Drop µ· °¡Ä¡ * 2
     public float DropPer; // Drop µ· È®·ü
     public int exp;
     public bool Death = false;
     protected Rigidbody2D rigid;
-    Moneymanager moneymanager;
-    DamagePopupSystem damagepopup;
+    protected Moneymanager moneymanager;
+    protected DamagePopupSystem damagepopup;
 
     public AudioClip[] CritEffects;
     public AudioClip[] HitEffects;
 
     Color flashcolor = Color.white;
     float flashtime = 0f;
-    SpriteRenderer Sprite;
+    protected SpriteRenderer Sprite;
     // Start is called before the first frame update
     public int Damage;
 
@@ -115,7 +115,7 @@ public abstract class Enemy : MonoBehaviour
     {
         moneymanager = man;
     }
-    public void Dead()
+    public virtual void Dead()
     {
         if (Death == false)
         {

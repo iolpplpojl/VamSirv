@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickExit()
     {
+        SaveSystem.instance.Save();
         Application.Quit();
     }
 

@@ -26,7 +26,17 @@ public class Moneymanager : MonoBehaviour
             m_Coin.valuePer*=ValuePer;
             m_Coin.exp = exp;
         }
+    }
 
+    public void BossDropMoney(Vector3 pos, float ValuePer, int exp, int count)
+    {
+        for(int i = 0; i<count; i++)
+        {
+            Coin m_Coin = Instantiate(coin, pos, Quaternion.identity, transform).GetComponent<Coin>();
+            m_Coin.valuePer*=(ValuePer/count);
+            m_Coin.exp = (exp/count);
+            m_Coin.StartCoroutine(m_Coin.Boss());
+        }
     }
     public void RoundOver()
     {

@@ -25,7 +25,20 @@ public class Coin : MonoBehaviour
         transform.Translate(direction * 10f * Time.deltaTime);
     }
 
+    public IEnumerator Boss()
+    {
+        float x = Random.Range(-0.02f, 0.02f);
+        float y = Random.Range(-0.02f, 0.02f);
+        Vector2 vec = new Vector2(x, y);
 
+        Debug.Log(x + ""+ y);
+        for (int i = 0; i < Random.Range(15,30); i++) 
+        {
+            transform.Translate(transform.position * vec);
+            yield return new WaitForSeconds(0.02f);
+        }
+        yield break;
+    }
     public void GoMoney()
     {
         GetComponentInParent<Moneymanager>().GetMoney((int)(value * valuePer));

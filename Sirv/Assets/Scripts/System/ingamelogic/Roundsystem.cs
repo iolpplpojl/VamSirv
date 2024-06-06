@@ -5,6 +5,9 @@ using TMPro;
 public class Roundsystem : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    public static Roundsystem instance;
+
     public int Round = 0;
     public bool Playing = false;
     EnemySpawner Spawner;
@@ -13,6 +16,16 @@ public class Roundsystem : MonoBehaviour
     public TMP_Text Counter;
     public TMP_Text Rounder;
     int counter = 0;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }    
+    }
+
+
     IEnumerator Timer(float Time)
     {
         counter = (int)Time;
@@ -32,7 +45,17 @@ public class Roundsystem : MonoBehaviour
     }
     IEnumerator EndThreeCount()
     {
+
         yield return new WaitForSeconds(1.0f);
+        ExpSystem.instance.Open();
+        Playing = false;
+    }
+    IEnumerator EndThreeCountBoss()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Spawner.RoundClear();
+        moneymanager.RoundOver();
+        Towersystem.instance.RoundDone();
         ExpSystem.instance.Open();
         Playing = false;
     }
@@ -46,7 +69,25 @@ public class Roundsystem : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
             counter--;
         }
-        StartCoroutine(Timer(Time));
+        if (Round % 1 == 0)
+        {
+            setBoss();
+        }
+        else
+        {
+            StartCoroutine(Timer(Time));
+        }
+    }
+
+    public void setBoss()
+    {
+        Counter.text = "-";
+        Spawner.SpawnBoss(Round);
+    }
+    public void BossDead()
+    {
+
+        StartCoroutine(EndThreeCountBoss());
     }
     public void GetTurret(TurretManager Tur)
     {
@@ -146,8 +187,5 @@ public class Roundsystem : MonoBehaviour
     {
         this.moneymanager = m;
     }
-    void Update()
-    {
-        
-    }
+
 }

@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject[] EnemyPrefs;
+    public GameObject[] Bosses_1;
     public BoxCollider2D Box;
     public Player player;
     public Moneymanager Moneymanager;
@@ -55,6 +56,13 @@ public class EnemySpawner : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
         StopAllCoroutines();
+    }
+
+    public void SpawnBoss(int round)
+    {
+        GameObject enemy = Instantiate(Bosses_1[0], transform);
+        Enemy m_enemy = enemy.GetComponent<Enemy>();
+        m_enemy.SetMoneymanager(Moneymanager);
     }
     IEnumerator Spawn1(int round)
     {
