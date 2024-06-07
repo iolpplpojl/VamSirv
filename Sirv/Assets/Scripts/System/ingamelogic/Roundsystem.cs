@@ -52,8 +52,8 @@ public class Roundsystem : MonoBehaviour
     }
     IEnumerator EndThreeCountBoss()
     {
-        yield return new WaitForSeconds(3.0f);
         Spawner.RoundClear();
+        yield return new WaitForSeconds(3.0f);
         moneymanager.RoundOver();
         Towersystem.instance.RoundDone();
         ExpSystem.instance.Open();

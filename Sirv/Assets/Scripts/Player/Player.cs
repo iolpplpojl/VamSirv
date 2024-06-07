@@ -32,7 +32,8 @@ public abstract class Player : MonoBehaviour
 
     public float speed;
     public float speedPer = 1f;
-    public float speedPer_now;
+    public float slow = 0f;
+    public int onSlow = 0;
     [Space]
 
     public float critPer = 0f;
@@ -86,7 +87,6 @@ public abstract class Player : MonoBehaviour
         ammo = maxammonow;
         maxHealthNow = maxHealth;
         health = maxHealthNow;
-        speedPer_now = speedPer;
     }
 
     public void GetRewardsystem(Rewardsystem rewardsystem)
@@ -168,7 +168,7 @@ public abstract class Player : MonoBehaviour
     }
     private void Move()
     {
-        Vector2 norVec = inputVec.normalized * (speed*(speedPer_now+windwalk_now)) * Time.fixedDeltaTime;
+        Vector2 norVec = inputVec.normalized * (speed*(speedPer+windwalk_now-slow)) * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + norVec);
     }
     protected IEnumerator Reload()
@@ -430,7 +430,6 @@ public abstract class Player : MonoBehaviour
     protected void SpeedGet(float Per)
     {
         speedPer += Per;
-        speedPer_now = speedPer;
     }
     protected void maxAmmoGet(float Per)
     {
@@ -474,9 +473,17 @@ public abstract class Player : MonoBehaviour
 
     public IEnumerator Slow(float Per, float time)
     {
-        speedPer_now -= Per;
+        onSlow++;
+        if (slow < Per)
+        {
+            slow = Per;
+        }
         yield return new WaitForSeconds(time);
-        speedPer_now = speedPer;
+        onSlow--;
+        if (onSlow <= 0)
+        {
+            slow = 0;
+        }
         yield break;
     }
 }

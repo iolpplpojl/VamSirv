@@ -55,7 +55,7 @@ public abstract class Enemy : MonoBehaviour
     abstract public void Move(); 
     abstract public void Attack();
 
-    public void GetDamage(int Damage, bool BloodSuck)
+    public virtual void GetDamage(int Damage, bool BloodSuck)
     {
         if (Death == false)
         {
@@ -76,7 +76,7 @@ public abstract class Enemy : MonoBehaviour
             Uniquedamagesystem.instance.StartCoroutine(Uniquedamagesystem.instance.Fire(this));
         }
     }
-    public void GetCritDamage(int Damage, bool BloodSuck)
+    public virtual void GetCritDamage(int Damage, bool BloodSuck)
     {
         if (Death == false)
         {
@@ -98,7 +98,7 @@ public abstract class Enemy : MonoBehaviour
 
         }
     }
-    public void GetRawDamage(int Damage, bool BloodSuck,string Type) // 출혈, 화상 등 도트대미지 용
+    public virtual void GetRawDamage(int Damage, bool BloodSuck,string Type) // 출혈, 화상 등 도트대미지 용
     {
         if (Death == false)
         {

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public abstract class Boss : Enemy
 {
     // Start is called before the first frame update
 
     public int MaxHP;
     public int count;
+
+    public Scrollbar sb;
+    public Scrollbar sb2;
 
     void Start()
     {
@@ -33,5 +36,87 @@ public abstract class Boss : Enemy
             Resultsystem.instance.killUp();
             return;
         }
+    }
+
+    public override void GetDamage(int Damage, bool BloodSuck)
+    {
+        if (Death == false)
+        {
+            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
+            DamagePopupSystem.instance.Setup(transform, Damage);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", Color.white);
+            flashtime = 1f;
+            HP -= Damage;
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck();
+            }
+            if (HP <= 0)
+            {
+                Dead();
+            }
+            Uniquedamagesystem.instance.StartCoroutine(Uniquedamagesystem.instance.Fire(this));
+        }
+        StartCoroutine(DoDamage());
+
+    }
+    public override void GetCritDamage(int Damage, bool BloodSuck)
+    {
+        if (Death == false)
+        {
+            SFXsystem.instance.PlaySoundFX(CritEffects, transform, 0.1f);
+            DamagePopupSystem.instance.Setup(transform, Damage * 2, true);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
+            flashtime = 1f;
+            HP -= Damage * 2;
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck();
+            }
+            if (HP <= 0)
+            {
+                Dead();
+            }
+            Uniquedamagesystem.instance.Fire(this);
+            StartCoroutine(DoDamage());
+
+        }
+    }
+    public override void GetRawDamage(int Damage, bool BloodSuck, string Type) // 출혈, 화상 등 도트대미지 용
+    {
+        if (Death == false)
+        {
+            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
+            DamagePopupSystem.instance.Setup(transform, Damage, 21, Type);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", Color.white);
+            flashtime = 1f;
+            HP -= Damage;
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck();
+            }
+            if (HP <= 0)
+            {
+                Dead();
+            }
+            StartCoroutine(DoDamage());
+        }
+    }
+
+    IEnumerator DoDamage()
+    {
+        float sbsize = sb.size;
+        sb.size = (float)HP / (float)MaxHP;
+        float delay = sbsize - sb.size;
+        yield return new WaitForSeconds(0.75f);
+        for(int i = 0; i < 40; i++)
+        {
+            sb2.size -= delay / 40;
+            yield return new WaitForSeconds(0.01f);
+        }
+        yield break;
     }
 }
