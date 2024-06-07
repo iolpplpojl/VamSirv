@@ -11,10 +11,20 @@ public class Boss_Tree : Boss
     public float[] patternTimeTable;
     public float attackTimenow = 3.0f;
 
-
+    public GameObject minion;
+    public GameObject[] SpawnPoint;
+    public SpriteRenderer Sprite2;
 
     // Update is called once per frame  
-
+    void Start()
+    {
+        rigid = GetComponent<Rigidbody2D>();
+        target = GameObject.FindWithTag("Player");
+        targetrigid = target.GetComponent<Rigidbody2D>();
+        Sprite = GetComponent<SpriteRenderer>();
+        MaxHP = HP;
+        Sprite2 = transform.GetChild(0).GetComponent<SpriteRenderer>();
+    }
     private void FixedUpdate()
     {
         if(attackTimenow> 0)
@@ -26,7 +36,24 @@ public class Boss_Tree : Boss
             Attack();
         }
     }
-
+    private void Update()
+    {
+        if (flashtime > 0)
+        {
+            flashtime -= Time.deltaTime * 5f;
+            Sprite.material.SetFloat("_FlashAmount", flashtime);
+        }
+        if (targetrigid.position.x - rigid.position.x > 0)
+        {
+            Sprite.flipX = false;
+            Sprite2.flipX = false;
+        }
+        else
+        {
+            Sprite.flipX = true;
+            Sprite2.flipX = true;
+        }
+    }
     public override void Move()
     {
         return;
@@ -42,6 +69,24 @@ public class Boss_Tree : Boss
                 temps.targetrigid = targetrigid;
                 attackTimenow = patternTimeTable[0];
                 break;
+            case 1:
+                Player tempp = target.GetComponent<Player>();
+                tempp.StartCoroutine(tempp.Slow(0.3f, 3f));
+                StartCoroutine(SummonMinions());
+                attackTimenow = patternTimeTable[1];
+                break;
+
         }
+    }
+    IEnumerator SummonMinions()
+    {
+        for(int i = 0; i < 5; i++)
+        {
+            GameObject enemy = Instantiate(minion, SpawnPoint[Random.Range(0,SpawnPoint.Length)].transform.position, Quaternion.identity, transform.parent);
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(moneymanager);
+            yield return new WaitForSeconds(0.6f);
+        }
+        yield break; 
     }
 }

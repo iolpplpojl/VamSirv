@@ -19,8 +19,8 @@ public abstract class Enemy : MonoBehaviour
     public AudioClip[] CritEffects;
     public AudioClip[] HitEffects;
 
-    Color flashcolor = Color.white;
-    float flashtime = 0f;
+    protected Color flashcolor = Color.white;
+    protected float flashtime = 0f;
     protected SpriteRenderer Sprite;
     // Start is called before the first frame update
     public int Damage;
@@ -42,6 +42,14 @@ public abstract class Enemy : MonoBehaviour
         {
             flashtime -= Time.deltaTime * 5f;
             Sprite.material.SetFloat("_FlashAmount", flashtime);
+        }
+        if (targetrigid.position.x - rigid.position.x > 0)
+        {
+            Sprite.flipX = false;
+        }
+        else
+        {
+            Sprite.flipX = true;
         }
     }
     abstract public void Move(); 
