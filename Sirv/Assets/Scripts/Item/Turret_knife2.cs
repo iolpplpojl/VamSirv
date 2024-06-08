@@ -11,7 +11,6 @@ public class Turret_knife2 : Turret_Knife
     // Update is called once per frame
     private void Update()
     {
-        Debug.Log("Turret2");
         if (attacking == false)
         {
             MoveMent();

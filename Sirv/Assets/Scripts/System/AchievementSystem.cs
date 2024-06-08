@@ -44,6 +44,10 @@ public class AchievementSystem : MonoBehaviour
         {
             Geted.Add(new Achievement("난 죽음을 경험한 적이 있네", "1회 사망", 1, 26));
         }
+        if (SaveData.data.achievement.Contains(1000))
+        {
+            Geted.Add(new Achievement("돌 던지기", "오염된 골렘 1회 처치", 2, 26));
+        }
     }
     public void DoAchievement()
     {
@@ -53,6 +57,18 @@ public class AchievementSystem : MonoBehaviour
             SaveData.data.achievement.Add(1);
             Achievement temp = new Achievement("난 죽음을 경험한 적이 있네", "1회 사망", 1, 26);
             Loaded.Push(temp); 
+            Geted.Add(temp);
+            StartCoroutine(AchieveAnim());
+        }
+    }
+
+    public void DoAchievement_Boss(int idx)
+    {
+        if (idx == 1000 && !SaveData.data.achievement.Contains(idx))
+        {
+            SaveData.data.achievement.Add(1000);
+            Achievement temp = new Achievement("돌 던지기", "오염된 골렘 1회 처치", 2, 26);
+            Loaded.Push(temp);
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());
         }

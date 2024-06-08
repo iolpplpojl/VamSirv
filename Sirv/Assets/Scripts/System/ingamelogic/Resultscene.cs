@@ -40,6 +40,7 @@ public class Resultscene : MonoBehaviour
         {
             if (!clicked)
             {
+                SaveSystem.instance.Save();
                 SceneManager.LoadScene("Scenemanager", LoadSceneMode.Additive);
                 StartCoroutine(CheckLoad());
                 clicked = true;
@@ -47,6 +48,7 @@ public class Resultscene : MonoBehaviour
         }
         else
         {
+            SaveSystem.instance.Save();
             SceneManager.LoadScene("mainmenu");
         }
     }

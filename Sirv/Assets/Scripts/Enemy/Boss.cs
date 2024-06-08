@@ -8,7 +8,7 @@ public abstract class Boss : Enemy
 
     public int MaxHP;
     public int count;
-
+    public int achnum;
     public Scrollbar sb;
     public Scrollbar sb2;
 
@@ -23,6 +23,14 @@ public abstract class Boss : Enemy
 
     // Update is called once per frame
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<Player>().GetDamage(Damage);
+        }
+
+    }
     public override void Dead()
     {
         Debug.Log("Dead");
@@ -34,10 +42,13 @@ public abstract class Boss : Enemy
             Uniquedamagesystem.instance.Kill();
             Roundsystem.instance.BossDead();
             Resultsystem.instance.killUp();
+            AchievementSystem.instance.DoAchievement_Boss(achnum);
+            DeadUniq();
             return;
         }
     }
 
+    public abstract void DeadUniq();
     public override void GetDamage(int Damage, bool BloodSuck)
     {
         if (Death == false)

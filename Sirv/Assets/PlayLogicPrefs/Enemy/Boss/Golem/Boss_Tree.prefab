@@ -297,7 +297,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -610,7 +610,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.7}
+  m_Size: {x: 0.6, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &6038637462497472331
 MonoBehaviour:
@@ -624,13 +624,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa8f25fb8bbf9d54681be5c687e38e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 4500
+  HP: 5500
   speed: 0
   target: {fileID: 0}
   targetrigid: {fileID: 0}
-  Value: 100
+  Value: 50
   DropPer: 1
-  exp: 20
+  exp: 50
   Death: 0
   CritEffects:
   - {fileID: 8300000, guid: 6a97574b999754ab88af555cfbc0d8f4, type: 3}
@@ -640,16 +640,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8d745b333dbb6440e9da37b96b264e3a, type: 3}
   Damage: 50
   MaxHP: 0
-  count: 50
+  count: 25
+  achnum: 1000
   sb: {fileID: 2116899801468017753}
   sb2: {fileID: 1005290541984263792}
   Rocks: {fileID: 2749845425347848725, guid: 7b4c0c32bcc586e47a578d1cf0d6a350, type: 3}
   patternTimeTable:
-  - 3
+  - 4
   - 2.6
   - 0.4
   attackTimenow: 1.5
+  SummonCoolDown: 0
   minion: {fileID: 2413756430259508831, guid: b341685eb1cd90946980ce26bd91cd34, type: 3}
+  minion_2: {fileID: 2413756430259508831, guid: cf06aa7eaff4b1548b107e75a43bb89e, type: 3}
   windstorm: {fileID: 6197125210539841118, guid: d3475245f6af55548a776fcb74568c63, type: 3}
   SpawnPoint:
   - {fileID: 1974753317823798831}
@@ -659,6 +662,9 @@ MonoBehaviour:
   - {fileID: 4884854703271558405}
   - {fileID: 1578256834210333206}
   Sprite2: {fileID: 0}
+  StoneToss: {fileID: 8300000, guid: 134bab590d7624647a39e5ccb50d9cf5, type: 3}
+  Summonsf: {fileID: 8300000, guid: 73adcb4a7b227432a984158822a575e5, type: 3}
+  WindStormsf: {fileID: 8300000, guid: 48d1ed2d95e4586458b71e2a168347a9, type: 3}
 --- !u!95 &6168097421944917238
 Animator:
   serializedVersion: 5
@@ -865,6 +871,7 @@ GameObject:
   - component: {fileID: 1429586748501245965}
   - component: {fileID: 6330389640868885689}
   - component: {fileID: 1005290541984263792}
+  - component: {fileID: 1056212125356896039}
   m_Layer: 5
   m_Name: Scrollbar2
   m_TagString: Untagged
@@ -920,8 +927,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -979,6 +986,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1056212125356896039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750338846019734494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 4, y: 4}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8754531448300088742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1068,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1

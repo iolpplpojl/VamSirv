@@ -34,4 +34,12 @@ public class SFXsystem : MonoBehaviour
             float clipLength = m_SFX.clip.length;
             Destroy(m_SFX.gameObject, clipLength);
         }
+    public void PlaySoundFX(AudioClip source, Transform spawnTransform, float volume,float time)
+    {
+        AudioSource m_SFX = Instantiate(SFXobj, spawnTransform.position, Quaternion.identity);
+        m_SFX.clip = source;
+        m_SFX.volume = volume;
+        m_SFX.Play();
+        Destroy(m_SFX.gameObject, time);
+    }
 }

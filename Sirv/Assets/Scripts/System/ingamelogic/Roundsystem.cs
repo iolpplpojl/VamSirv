@@ -53,7 +53,7 @@ public class Roundsystem : MonoBehaviour
     IEnumerator EndThreeCountBoss()
     {
         Spawner.RoundClear();
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(5.0f);
         moneymanager.RoundOver();
         Towersystem.instance.RoundDone();
         ExpSystem.instance.Open();
@@ -69,7 +69,7 @@ public class Roundsystem : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
             counter--;
         }
-        if (Round % 1 == 0)
+        if (Round % 5 == 0)
         {
             setBoss();
         }
@@ -81,6 +81,7 @@ public class Roundsystem : MonoBehaviour
 
     public void setBoss()
     {
+        Rounder.text = string.Format("ROUND {0}", Round.ToString());
         Counter.text = "-";
         Spawner.SpawnBoss(Round);
     }

@@ -15,6 +15,7 @@ public class Boss_Tree_Stone : MonoBehaviour
     public int dmg;
     public BoxCollider2D col;
     bool moving = false;
+    public AudioClip toss;
 
     public string debug;
     void Start()
@@ -62,7 +63,9 @@ public class Boss_Tree_Stone : MonoBehaviour
         yield return new WaitForSeconds(0.66f);
         targetvec = targetrigid.position;
         dirvec = targetrigid.position - rigid.position;
+
         yield return new WaitForSeconds(0.44f);
+        SFXsystem.instance.PlaySoundFX(toss, transform, 1f);
 
         moving = true;
         while (speed > 0.3f)

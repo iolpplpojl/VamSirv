@@ -440,6 +440,7 @@ MonoBehaviour:
   sprite:
   - {fileID: -231283405, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   - {fileID: -444212504, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  - {fileID: 130995409, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   img: {fileID: 7377572856877447450}
 --- !u!95 &5949132504056897832
 Animator:

@@ -69,7 +69,7 @@ public abstract class Player : MonoBehaviour
     public Transform shotpoint;
     SpriteRenderer spriteRenderer;
     Vector2 inputVec;
-    Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
     public AudioClip[] Effects;
     [Header("Default")]
     Rewardsystem rewardsystem;
