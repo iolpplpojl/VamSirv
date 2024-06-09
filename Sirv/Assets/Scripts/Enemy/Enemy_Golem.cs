@@ -8,6 +8,10 @@ public class Enemy_Golem : Enemy
     public int Damage;
     public float Attackspeed;
     public float Attackspeed_now;
+<<<<<<< Updated upstream
+=======
+    public float Bulletspeed;
+>>>>>>> Stashed changes
     public GameObject Bullet;
     private void FixedUpdate()
     {
@@ -32,7 +36,14 @@ public class Enemy_Golem : Enemy
     override public void Attack()
     {
         GameObject m_Bull = Instantiate(Bullet, transform.position, Quaternion.LookRotation(Vector3.forward, target.transform.position-transform.position),transform.parent);
+<<<<<<< Updated upstream
         m_Bull.GetComponent<Enemy_Bullet>().damage = Damage;
+=======
+        m_Bull.transform.localScale = new Vector3(5, 5, 1);
+        Enemy_Bullet m_Bullet = m_Bull.GetComponent<Enemy_Bullet>();
+        m_Bullet.damage = Damage;
+        m_Bullet.speed = Bulletspeed;
+>>>>>>> Stashed changes
         Attackspeed_now = Attackspeed;
     }
     public override void Move()

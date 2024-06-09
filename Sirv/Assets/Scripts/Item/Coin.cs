@@ -15,5 +15,20 @@ public class Coin : MonoBehaviour
             Destroy(gameObject);
         }
     }
+<<<<<<< Updated upstream
+=======
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        Vector3 direction = (collision.transform.position - transform.position).normalized;
+        transform.Translate(direction * 10f * Time.deltaTime);
+    }
+
+
+    public void GoMoney()
+    {
+        GetComponentInParent<Moneymanager>().GetMoney((int)(value * valuePer));
+        Destroy(gameObject);
+    }
+>>>>>>> Stashed changes
 
 }

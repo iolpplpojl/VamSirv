@@ -9,6 +9,7 @@ public class Roundsystem : MonoBehaviour
     public bool Playing = false;
     EnemySpawner Spawner;
     TurretManager Turret;
+<<<<<<< Updated upstream
     IEnumerator Timer(float Time)
     {
         Spawner.SetSpawning(true);
@@ -16,6 +17,46 @@ public class Roundsystem : MonoBehaviour
         yield return new WaitForSeconds(Time);
         Playing = false;
         Spawner.RoundClear();
+=======
+    Moneymanager moneymanager;
+    public TMP_Text Counter;
+    public TMP_Text Rounder;
+    int counter = 0;
+    IEnumerator Timer(float Time)
+    {
+        counter = (int)Time;
+        Rounder.text = string.Format("ROUND {0}",Round.ToString());
+        Spawner.SetSpawning(Round);
+        Resultsystem.instance.setRound(Round);
+
+        for (int i = 0; i <= Time; i++) {
+            SetText();
+            yield return new WaitForSeconds(1.0f);
+            counter--;
+        }
+        Spawner.RoundClear();
+        moneymanager.RoundOver();
+        Towersystem.instance.RoundDone();
+        StartCoroutine(EndThreeCount());
+    }
+    IEnumerator EndThreeCount()
+    {
+        yield return new WaitForSeconds(1.0f);
+        ExpSystem.instance.Open();
+        Playing = false;
+    }
+    IEnumerator Threecount(float Time)
+    {
+        counter = 3;
+        Playing = true;
+        for (int i = 0; i < 3; i++)
+        {
+            SetText();
+            yield return new WaitForSeconds(0.75f);
+            counter--;
+        }
+        StartCoroutine(Timer(Time));
+>>>>>>> Stashed changes
     }
     public void GetTurret(TurretManager Tur)
     {
@@ -61,4 +102,11 @@ public class Roundsystem : MonoBehaviour
     {
         
     }
+<<<<<<< Updated upstream
+=======
+    void Update()
+    {
+        
+    }
+>>>>>>> Stashed changes
 }

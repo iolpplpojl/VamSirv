@@ -202,4 +202,8 @@ MonoBehaviour:
   Damage: 50
   Attackspeed: 2
   Attackspeed_now: 2
+<<<<<<< Updated upstream
+=======
+  Bulletspeed: 2
+>>>>>>> Stashed changes
   Bullet: {fileID: 2749845425347848725, guid: f4bef7ec5792dde48a175aa1611fc0ec, type: 3}
