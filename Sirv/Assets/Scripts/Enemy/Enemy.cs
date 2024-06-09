@@ -140,7 +140,15 @@ public abstract class Enemy : MonoBehaviour
     {
         for(int i = 0; i <6; i++)
         {
-            GetRawDamage(damage/6,false,"Fire");
+            if (damage / 6 == 0)
+            {
+                GetRawDamage(1, false, "Fire");
+
+            }
+            else
+            {
+                GetRawDamage(damage / 6, false, "Fire");
+            }
             yield return new WaitForSeconds(0.5f);
         }
         yield break;

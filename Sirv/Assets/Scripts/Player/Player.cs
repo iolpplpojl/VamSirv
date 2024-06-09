@@ -67,7 +67,7 @@ public abstract class Player : MonoBehaviour
 
     bool Death = false;
     public Transform shotpoint;
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     Vector2 inputVec;
     protected Rigidbody2D rigid;
     public AudioClip[] Effects;

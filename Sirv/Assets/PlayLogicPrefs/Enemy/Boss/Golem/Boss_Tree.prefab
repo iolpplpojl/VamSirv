@@ -662,6 +662,7 @@ MonoBehaviour:
   - {fileID: 4884854703271558405}
   - {fileID: 1578256834210333206}
   Sprite2: {fileID: 0}
+  Windstormnow: {fileID: 0}
   StoneToss: {fileID: 8300000, guid: 134bab590d7624647a39e5ccb50d9cf5, type: 3}
   Summonsf: {fileID: 8300000, guid: 73adcb4a7b227432a984158822a575e5, type: 3}
   WindStormsf: {fileID: 8300000, guid: 48d1ed2d95e4586458b71e2a168347a9, type: 3}

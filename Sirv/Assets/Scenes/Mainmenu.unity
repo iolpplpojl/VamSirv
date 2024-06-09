@@ -480,8 +480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119, y: 59.9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 30, y: 59.9}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &54208782
 MonoBehaviour:
@@ -7037,8 +7037,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -119, y: 59.9}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 30, y: 59.9}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1145301319
 MonoBehaviour:
@@ -9028,11 +9028,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2ed5381620a792e4d8c0a742c47561ac, type: 3}
   Bicons:
   - {fileID: 21300000, guid: 85b1766ee637bef49ae23b9c1d78dd08, type: 3}
-  - {fileID: 21300000, guid: 7c00b92571445254d8b0f88221147ed0, type: 3}
+  - {fileID: 1964390794, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   - {fileID: 21300000, guid: 976e9e2c8af550748bef92566090766e, type: 3}
   Aicons:
-  - {fileID: 21300000, guid: 54cb89bdb3c06314d9564d4a9dff5955, type: 3}
-  - {fileID: 21300000, guid: 976e9e2c8af550748bef92566090766e, type: 3}
+  - {fileID: 1316789810, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  - {fileID: 304304143, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   - {fileID: 21300000, guid: 1abc0dc67f259a84eb78243230be9973, type: 3}
 --- !u!1 &1512232572
 GameObject:

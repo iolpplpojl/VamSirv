@@ -298,7 +298,7 @@ MonoBehaviour:
   skillAcooltime: 3
   skillAcooltimenow: 0
   skillAcoolPer: 1
-  skillBcooltime: 0
+  skillBcooltime: 30
   skillBcooltimenow: 0
   skillBcoolPer: 1
   GetAttckTime: 1
@@ -308,7 +308,10 @@ MonoBehaviour:
   fireCount: 0
   windwalk_now: 0
   shotpoint: {fileID: 801464279253253962}
-  Effects: []
+  Effects:
+  - {fileID: 8300000, guid: de22649eba2e996468c09cc1fb570a9a, type: 3}
+  - {fileID: 8300000, guid: 8557f2bc88207744582f0596a01a1f20, type: 3}
+  - {fileID: 8300000, guid: a23b74ef7e88e8247a38eda05651bf0b, type: 3}
   bomb: 0
 --- !u!95 &1136717602863387516
 Animator:
