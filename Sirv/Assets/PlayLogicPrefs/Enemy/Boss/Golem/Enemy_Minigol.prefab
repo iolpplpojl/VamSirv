@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 617521915479624294}
   - component: {fileID: 6277731416544609252}
-  - component: {fileID: 4036342003835158509}
   - component: {fileID: 3929433820462424517}
   - component: {fileID: 4905094972048720996}
   - component: {fileID: 4686717637735508726}
   - component: {fileID: 2821772954990952110}
+  - component: {fileID: 4038066067890671004}
   m_Layer: 7
   m_Name: Enemy_Minigol
   m_TagString: Enemy
@@ -89,33 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4036342003835158509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2413756430259508831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e39d58ac5f27d5e4d8d8919b4b0cc210, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HP: 250
-  speed: 1
-  target: {fileID: 0}
-  targetrigid: {fileID: 0}
-  Value: 0
-  DropPer: 0
-  exp: 0
-  Death: 0
-  CritEffects:
-  - {fileID: 8300000, guid: 6a97574b999754ab88af555cfbc0d8f4, type: 3}
-  - {fileID: 8300000, guid: c47f17948f55d41c5876af88204e7f46, type: 3}
-  HitEffects:
-  - {fileID: 8300000, guid: 11c07a2f183894950b7b881a1fb66331, type: 3}
-  - {fileID: 8300000, guid: 8d745b333dbb6440e9da37b96b264e3a, type: 3}
-  Damage: 12
 --- !u!50 &3929433820462424517
 Rigidbody2D:
   serializedVersion: 4
@@ -254,3 +227,34 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &4038066067890671004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413756430259508831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2496bed50b5ff1d4b9f66ad7845e106b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 250
+  speed: 1
+  target: {fileID: 0}
+  targetrigid: {fileID: 0}
+  Value: 0
+  DropPer: 0
+  exp: 0
+  Death: 0
+  CritEffects:
+  - {fileID: 8300000, guid: 6a97574b999754ab88af555cfbc0d8f4, type: 3}
+  - {fileID: 8300000, guid: c47f17948f55d41c5876af88204e7f46, type: 3}
+  HitEffects:
+  - {fileID: 8300000, guid: 11c07a2f183894950b7b881a1fb66331, type: 3}
+  - {fileID: 8300000, guid: 8d745b333dbb6440e9da37b96b264e3a, type: 3}
+  Damage: 12
+  MaxHp: 250
+  Bulletspeed: 2
+  BulletSize: 0.6
+  Bullet: {fileID: 2749845425347848725, guid: 18794ee4d2d88824c84eef91a7b195fc, type: 3}
