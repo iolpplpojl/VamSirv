@@ -15,11 +15,17 @@ public class Option : MonoBehaviour
     public Image dmgBtn;
     public bool showDamage;
 
-    // Start is called before the first frame update
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     [System.Obsolete]
     void Start()
     {
+        InitUI();
         sfxSound.value = SaveSystem.instance.data.sfxSound;
         songSound.value = SaveSystem.instance.data.songSound;
         showDamage = SaveSystem.instance.data.showDmg;
@@ -31,7 +37,7 @@ public class Option : MonoBehaviour
         {
             dmgBtn.color = Color.white;
         }
-        InitUI();
+        
         
     }
 
@@ -59,14 +65,13 @@ public class Option : MonoBehaviour
     }
 
     [System.Obsolete]
-    void InitUI()
+    public void InitUI()
     {
         for(int i = 0; i<Screen.resolutions.Length; i++)
         {
             if (Screen.resolutions[i].refreshRate == 60)
                 resolutions.Add(Screen.resolutions[i]);
         }
-        resolutions.AddRange(Screen.resolutions);
         resolutionDropdown.options.Clear();
 
         int optionNum = 0;
@@ -97,7 +102,14 @@ public class Option : MonoBehaviour
     
     public void OkBtnClick()
     {
-        Screen.SetResolution(resolutions[resolutionNum].width,
-            resolutions[resolutionNum].height,screenMode);
+        Screen.SetResolution(resolutions[resolutionNum].width,resolutions[resolutionNum].height,screenMode);
+        StartCoroutine(CloseAfterDelay());
+    }
+    private IEnumerator CloseAfterDelay()
+    {
+        animator.SetTrigger("Close");
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
+        animator.ResetTrigger("Close");
     }
 }
