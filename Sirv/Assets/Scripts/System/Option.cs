@@ -77,7 +77,7 @@ public class Option : MonoBehaviour
         resolutionDropdown.options.Clear();
 
         int optionNum = 0;
-
+        int selectNum = 0;
         List<TMP_Dropdown.OptionData> option = new List<TMP_Dropdown.OptionData>();
         foreach (Resolution item in resolutions)
         {
@@ -85,10 +85,11 @@ public class Option : MonoBehaviour
             Debug.Log(item);
             //            resolutionDropdown.options.Add(option);
             if (item.width == Screen.width && item.height == Screen.height)
-                resolutionDropdown.value = optionNum;
+                selectNum = optionNum;
             optionNum++;
         }
         resolutionDropdown.AddOptions(option);
+        resolutionDropdown.value = selectNum;
         resolutionDropdown.RefreshShownValue();
 
         fullscreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
