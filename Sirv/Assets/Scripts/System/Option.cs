@@ -70,23 +70,25 @@ public class Option : MonoBehaviour
     {
         for(int i = 0; i<Screen.resolutions.Length; i++)
         {
-            if (Screen.resolutions[i].refreshRate == 60)
+            Debug.Log("asd");
+            if (Screen.resolutions[i].refreshRate == 240)
                 resolutions.Add(Screen.resolutions[i]);
         }
         resolutionDropdown.options.Clear();
 
         int optionNum = 0;
 
+        List<TMP_Dropdown.OptionData> option = new List<TMP_Dropdown.OptionData>();
         foreach (Resolution item in resolutions)
         {
-            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
-            option.text = item.width + " x " + item.height;
-            resolutionDropdown.options.Add(option);
-
+            option.Add(new TMP_Dropdown.OptionData(item.width + " x " + item.height));
+            Debug.Log(item);
+            //            resolutionDropdown.options.Add(option);
             if (item.width == Screen.width && item.height == Screen.height)
                 resolutionDropdown.value = optionNum;
             optionNum++;
         }
+        resolutionDropdown.AddOptions(option);
         resolutionDropdown.RefreshShownValue();
 
         fullscreenBtn.isOn = Screen.fullScreenMode.Equals(FullScreenMode.FullScreenWindow) ? true : false;
