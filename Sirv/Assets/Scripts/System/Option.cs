@@ -21,6 +21,14 @@ public class Option : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        if (showDamage)
+        {
+            dmgBtn.color = Color.red;
+        }
+        else
+        {
+            dmgBtn.color = Color.white;
+        }
     }
 
     [System.Obsolete]
@@ -72,7 +80,6 @@ public class Option : MonoBehaviour
         {
             Debug.Log("asd");
             resolutions.Add(Screen.resolutions[i]);
-
         }
         resolutionDropdown.options.Clear();
 
