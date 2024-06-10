@@ -10,7 +10,7 @@ public class Option : MonoBehaviour
     public Toggle fullscreenBtn;
     List<Resolution> resolutions = new List<Resolution>();
     public int resolutionNum;
-
+    public bool opened = false;
     public Slider sfxSound;
     public Slider songSound;
     public Image dmgBtn;
@@ -34,7 +34,6 @@ public class Option : MonoBehaviour
     [System.Obsolete]
     void Start()
     {
-        InitUI();
         sfxSound.value = SaveSystem.instance.data.sfxSound;
         songSound.value = SaveSystem.instance.data.songSound;
         showDamage = SaveSystem.instance.data.showDmg;
@@ -73,7 +72,14 @@ public class Option : MonoBehaviour
 
     }
 
-    [System.Obsolete]
+    public void ope()
+    {
+        if (opened == false)
+        {
+            InitUI();
+            opened = true;
+        }
+    }
     public void InitUI()
     {
         for(int i = 0; i<Screen.resolutions.Length; i++)
