@@ -4750,8 +4750,8 @@ MonoBehaviour:
   Start2: {fileID: 2036254097}
   GameStart: {fileID: 776478391}
   Achievements: {fileID: 320576024}
-  Achievement: {fileID: 0}
-  Content: {fileID: 0}
+  Achievement: {fileID: 2478401013428963274, guid: 9ef88092cad73224da4604c31f04fb34, type: 3}
+  Content: {fileID: 377369790}
 --- !u!1 &556408566
 GameObject:
   m_ObjectHideFlags: 0
