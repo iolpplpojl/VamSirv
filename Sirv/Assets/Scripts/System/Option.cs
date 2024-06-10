@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class Option : MonoBehaviour
 {
     FullScreenMode screenMode;
-    public Dropdown resolutionDropdown;
+    public TMP_Dropdown resolutionDropdown;
     public Toggle fullscreenBtn;
     List<Resolution> resolutions = new List<Resolution>();
     public int resolutionNum;
@@ -78,7 +79,7 @@ public class Option : MonoBehaviour
 
         foreach (Resolution item in resolutions)
         {
-            Dropdown.OptionData option = new Dropdown.OptionData();
+            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
             option.text = item.width + " x " + item.height;
             resolutionDropdown.options.Add(option);
 
