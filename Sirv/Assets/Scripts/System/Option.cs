@@ -71,16 +71,8 @@ public class Option : MonoBehaviour
         for(int i = 0; i<Screen.resolutions.Length; i++)
         {
             Debug.Log("asd");
-            if (Screen.resolutions[i].refreshRate == 60)
-                resolutions.Add(Screen.resolutions[i]);
-            if (Screen.resolutions[i].refreshRate == 120)
-                resolutions.Add(Screen.resolutions[i]);
-            if (Screen.resolutions[i].refreshRate == 144)
-                resolutions.Add(Screen.resolutions[i]);
-            if (Screen.resolutions[i].refreshRate == 180)
-                resolutions.Add(Screen.resolutions[i]);
-            if (Screen.resolutions[i].refreshRate == 240)
-                resolutions.Add(Screen.resolutions[i]);
+            resolutions.Add(Screen.resolutions[i]);
+
         }
         resolutionDropdown.options.Clear();
 
