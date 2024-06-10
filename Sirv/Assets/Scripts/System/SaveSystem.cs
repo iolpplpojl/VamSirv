@@ -100,6 +100,16 @@ public class SaveSystem : MonoBehaviour
         Save();
     }
 
+    public void Remove(int idx)
+    {
+        string path = Path.Combine(Application.persistentDataPath + "/save", string.Format("Data{0}", idx));
+        SaveData temp2 = new SaveData();
+        temp2.num = idx;
+        string temp = JsonUtility.ToJson(temp2, true); File.WriteAllText(path, temp);
+        SaveData temp3 = SaveDes(idx);
+        txt[idx-1].text = string.Format("Ã³Ä¡ : {0}\nÈ¹µæÇÑ °ñµå : {1}\nÃÖ´ë ¶ó¿îµå : {2}", temp3.kill, temp3.gold, temp3.maxround);
+
+    }
     public void setAudio(string idx,float vol)
     {
         switch (idx)

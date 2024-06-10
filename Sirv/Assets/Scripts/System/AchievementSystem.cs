@@ -44,6 +44,10 @@ public class AchievementSystem : MonoBehaviour
         {
             Geted.Add(new Achievement("난 죽음을 경험한 적이 있네", "1회 사망", 1, 26));
         }
+        if (SaveData.data.achievement.Contains(100))
+        {
+            Geted.Add(new Achievement("이름 없는 남자", "", 1, 26));
+        }
         if (SaveData.data.achievement.Contains(1000))
         {
             Geted.Add(new Achievement("돌 던지기", "오염된 골렘 1회 처치", 2, 26));
@@ -62,6 +66,25 @@ public class AchievementSystem : MonoBehaviour
         }
     }
 
+    public void DoAcievement_RoundandPlayer(int player,int round)
+    {
+        if (player == 0 && round >= 20 && !SaveData.data.achievement.Contains(100))
+        {
+            SaveData.data.achievement.Add(100);
+            Achievement temp = new Achievement("이름 없는 남자", "총잡이로 20라운드 도달", 3, 32);
+            Loaded.Push(temp);
+            Geted.Add(temp);
+            StartCoroutine(AchieveAnim());
+        }
+        if (player == 1 && round >= 1 && !SaveData.data.achievement.Contains(101))
+        {
+            SaveData.data.achievement.Add(101);
+            Achievement temp = new Achievement("기능장", "엔지니어로 20라운드 도달", 4, 32);
+            Loaded.Push(temp);
+            Geted.Add(temp);
+            StartCoroutine(AchieveAnim());
+        }
+    }
     public void DoAchievement_Boss(int idx)
     {
         if (idx == 1000 && !SaveData.data.achievement.Contains(idx))
