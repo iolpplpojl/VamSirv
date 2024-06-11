@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class Option : MonoBehaviour
 {
     FullScreenMode screenMode;
@@ -109,7 +110,15 @@ public class Option : MonoBehaviour
     }
     public void DropboxOptionChange(int x)
     {
-        resolutionNum = x;
+
+        resolutionNum = resolutionDropdown.value;
+        string temp = resolutionDropdown.captionText.text;
+        string[] temp2 = temp.Split("x");
+        int[] res = new int[] { int.Parse(temp2[0]), int.Parse(temp2[1])};
+        Screen.SetResolution(res[0], res[1], fullscreenBtn.isOn);
+        UnityEngine.Debug.Log(res[0] + "x" + res[1]+fullscreenBtn.isOn);
+
+
     }
 
     public void FullScreenBtn(bool isFull)
