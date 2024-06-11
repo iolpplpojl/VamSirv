@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject StartMenu;
+    public GameObject Start2;
     public GameObject GameStart;
     public GameObject Achievements;
     public GameObject Achievement;
@@ -20,6 +21,7 @@ public class MainMenu : MonoBehaviour
     {
         GameStart.SetActive(true);
         StartMenu.SetActive(false);        
+        Start2.SetActive(false);
     }
 
     public void OnClickAchievements()
@@ -39,12 +41,15 @@ public class MainMenu : MonoBehaviour
     {
         GameStart.SetActive(false);
         StartMenu.SetActive(true);
+        Start2.SetActive(true);
     }
 
     public void OnClickAchievementsMenuTurn()
     {
         Achievements.SetActive(false);
         StartMenu.SetActive(true);
+        Start2.SetActive(true);
+
     }
 
     public void setAchievement()

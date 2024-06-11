@@ -41,6 +41,6 @@ public class PlayerSelectUI : MonoBehaviour
         DefIcon.sprite = Dicons[idx];
         SkillAIcon.sprite = Aicons[idx];
         SkillBIcon.sprite = Bicons[idx];
-
+        
     }
 }
