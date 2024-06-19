@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: fdac903a7cee1454db4458abeb569533, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8875f9d976ab54d45adf524e3e9baf94, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -102,19 +102,19 @@ MonoBehaviour:
   PlayerComp: {fileID: 0}
   KnifeDamagePer: 0
   Rarity: 0
-  TurretNum: 0
+  TurretNum: 4
   Require: 2
   Nowamount: 0
   Radius: 1.8
   Attackspped: 0.8
   Attackspeed_Now: 0
   price: 28
-  "\uBCF4\uC870\uBB34\uAE30UI\uC2A4\uD504\uB77C\uC774\uD2B8": {fileID: -428273200, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  "\uBCF4\uC870\uBB34\uAE30UI\uC2A4\uD504\uB77C\uC774\uD2B8": {fileID: 21300000, guid: 8875f9d976ab54d45adf524e3e9baf94, type: 3}
   UpgradeTool: 0
   attacking: 0
   Level: 0
   Damage: 10
-  BonusdamageSheet: 0a000000120000001a00000026000000
+  BonusdamageSheet: 0d000000130000001a00000022000000
   AttackCount: 3
 --- !u!61 &3898902863644927350
 BoxCollider2D:
@@ -152,7 +152,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.06, y: 0.13}
+    oldSize: {x: 0.06, y: 0.3}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

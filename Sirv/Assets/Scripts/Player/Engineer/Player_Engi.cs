@@ -15,7 +15,7 @@ public class Player_Engi : Player
     }
     void GetUniqueWeapon()
     {
-        rewardsystem.DoTurret(3);
+        rewardsystem.DoTurret(0,1000);
         rewardsystem.UpdateSideArmUI();
     }
     public override void Attack()

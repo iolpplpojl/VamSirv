@@ -220,7 +220,7 @@ public class Rewardsystem : MonoBehaviour
                     moneymanager.money -= (int)ItemData[rairty[n]][idx[n]]["ITEMPRICE"];
                     buttons[n].gameObject.SetActive(false);
                 }
-                else if (DoTurret(idx[n] - Itemcount[rairty[n]]) == true)
+                else if (DoTurret(idx[n] - Itemcount[rairty[n]], rairty[n]) == true)
                 {
                     Debug.Log("Turret");
                     moneymanager.money -= (int)ItemData[rairty[n]][idx[n]]["ITEMPRICE"];
@@ -256,13 +256,13 @@ public class Rewardsystem : MonoBehaviour
         }
 
     }
-    public bool DoTurret(int n)
+    public bool DoTurret(int n,int rair)
     {
-        if (turret.Upgrade(turret.Turret[n]) == true)
+        if (turret.Upgrade(n,rair) == true)
         {
             return true;
         }
-        else if(GetTurret(n) == true)
+        else if(GetTurret(n,rair) == true)
         {
             return true;
         }
@@ -317,12 +317,12 @@ public class Rewardsystem : MonoBehaviour
         GameObject m_Obj = Instantiate(아이템프리팹, 스크롤뷰.transform);
         m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = UniqueData.Sprites[rare].sprite[idx];
     }
-    public bool GetTurret(int idx)
+    public bool GetTurret(int idx,int rair)
     {
         Debug.Log(turret.TurretMaxCount + "   " + turret.TurretCount);
         if (turret.TurretMaxCount != turret.TurretCount)
         {
-            turret.GetTurret(idx, 0);
+            turret.GetTurret(idx, rair);
             SetSideArmUI();
             return true;
         }
@@ -478,7 +478,7 @@ public class Rewardsystem : MonoBehaviour
             SidearmUI temp = m_OBJ.GetComponent<SidearmUI>();
             temp.idx = turret.TurretCount - 1;
             temp.son = 판매메뉴;
-            m_OBJ.GetComponent<RectTransform>().anchoredPosition = new Vector2(236, -340 - ( 130-(turret.TurretCount-1)));
+            m_OBJ.GetComponent<RectTransform>().anchoredPosition = new Vector2(236 + (130 * (turret.TurretCount - 4)), -340 - ( 130-(turret.TurretCount-1)));
         }
     }
     public void PlayRound()

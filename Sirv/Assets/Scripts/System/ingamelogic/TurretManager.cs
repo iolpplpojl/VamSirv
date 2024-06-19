@@ -27,23 +27,99 @@ public class TurretManager : MonoBehaviour
         this.player = player;
 
     }
-    private void Update()
-    {
-        if (on)
-        {
-            GetTurret(0,0);
-            on = false;
-        }
-    }
     public void GetTurret(int idx, int Rarity)
     {
         if (TurretMaxCount != TurretCount){
-            GameObject OBJ = Instantiate(Turret[idx]);
+            GameObject turret = null;
+
+            switch (Rarity)
+            {
+                case 0:
+                    switch (idx)
+                    {
+                        case 0:
+                            turret = Turret[0];
+                            break;
+                        case 1:
+                            turret = Turret[1];
+                            break;
+                        case 2:
+                            turret = Turret[2];
+                            break;
+                    }
+                    break;
+                case 1:
+                    switch (idx)
+                    {
+                        case 0:
+                            turret = Turret[4];
+                            break;
+                        case 1:
+                            turret = Turret[1];
+                            break;
+                        case 2:
+                            turret = Turret[2];
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (idx)
+                    {
+                        case 0:
+                            turret = Turret[0];
+                            break;
+                        case 1:
+                            turret = Turret[1];
+                            break;
+                        case 2:
+                            turret = Turret[2];
+                            break;
+                    }
+                    break;
+                case 3:
+                    switch (idx)
+                    {
+                        case 0:
+                            turret = Turret[0];
+                            break;
+                        case 1:
+                            turret = Turret[1];
+                            break;
+                        case 2:
+                            turret = Turret[2];
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch (idx)
+                    {
+                        case 0:
+                            turret = Turret[0];
+                            break;
+                        case 1:
+                            turret = Turret[1];
+                            break;
+                        case 2:
+                            turret = Turret[2];
+                            break;
+                    }
+                    break;
+                case 1000: //engi
+                    {
+                        switch (idx)
+                        {
+                            case 0:
+                                turret = Turret[3];
+                                break;
+                        }
+                    }
+                    break;
+            }
+            GameObject OBJ = Instantiate(turret);
             Turret Tur = OBJ.GetComponent<Turret>();
             Turrets_OBJ.Add(OBJ);
             Turrets.Add(Tur);
             Tur.GetPlayerComp(player);
-            Tur.Rarity = Rarity;
             Tur.Player = TurretPos[TurretCount];
             TurretCount++;
         }
@@ -74,16 +150,106 @@ public class TurretManager : MonoBehaviour
                 m_Rairty = 15;
                 break;
         }
-        Destroy(Turrets_OBJ[idx]);
-        Turrets.RemoveAt(idx);
+
+        GameObject temp = Turrets_OBJ[idx];
+        Destroy(temp);
+        Turrets_OBJ.Remove(temp);
+        Turrets.Remove(Turrets[idx]);
         TurretCount--;
         ResetPos();
         Debug.Log((int)((m_money * m_Rairty) * 0.66));
         return (int)((m_money * m_Rairty) * 0.66);
     }
-    public bool Upgrade(GameObject turret)
+    public bool Upgrade(int n, int rair)
     {
+        GameObject turret = null;
+
+        switch (rair) {
+            case 0:
+                switch (n)
+                {
+                    case 0:
+                        turret = Turret[0];
+                        break;
+                    case 1:
+                        turret = Turret[1];
+                        break;
+                    case 2:
+                        turret = Turret[2];
+                        break;
+                }
+                break;
+            case 1:
+                switch (n)
+                {
+                    case 0:
+                        turret = Turret[4];
+                        break;
+                    case 1:
+                        turret = Turret[1];
+                        break;
+                    case 2:
+                        turret = Turret[2];
+                        break;
+                }
+                break;
+            case 2:
+                switch (n)
+                {
+                    case 0:
+                        turret = Turret[0];
+                        break;
+                    case 1:
+                        turret = Turret[1];
+                        break;
+                    case 2:
+                        turret = Turret[2];
+                        break;
+                }
+                break;
+            case 3:
+                switch (n)
+                {
+                    case 0:
+                        turret = Turret[0];
+                        break;
+                    case 1:
+                        turret = Turret[1];
+                        break;
+                    case 2:
+                        turret = Turret[2];
+                        break;
+                }
+                break;
+            case 4:
+                switch (n)
+                {
+                    case 0:
+                        turret = Turret[0];
+                        break;
+                    case 1:
+                        turret = Turret[1];
+                        break;
+                    case 2:
+                        turret = Turret[2];
+                        break;
+                }
+                break;
+            case 1000: //engi
+                {
+                    switch (n)
+                    {
+                        case 0:
+                            turret = Turret[3];
+                            break;
+                    }
+                }
+                break;
+        }
+
         Turret m_turret = turret.GetComponent<Turret>();
+        Debug.Log(m_turret);
+
         List<Turret> Filtered = Turrets.Where(n => n.TurretNum == m_turret.TurretNum).ToList();
         if(Filtered.Count != 0)
         {
