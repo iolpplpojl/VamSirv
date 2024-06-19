@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         setAchievement();
+        MusicManager.instance.Sing("Main");
     }
 
     public void OnclickNewGame()

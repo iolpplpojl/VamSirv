@@ -79,6 +79,7 @@ public class Scene_Man : MonoBehaviour
                     m_Player.GetComponent<Player_Engi>().GetDefaultWeapon(m_Reward.GetComponent<Rewardsystem>());
                     m_Reward.GetComponent<Rewardsystem>().UpdateSideArmUI();
                 }
+                MusicManager.instance.Sing("Fight");
                 yield break;
             }
             yield return new WaitForFixedUpdate();
