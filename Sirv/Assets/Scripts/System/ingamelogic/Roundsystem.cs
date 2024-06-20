@@ -63,9 +63,17 @@ public class Roundsystem : MonoBehaviour
     {
         counter = 3;
         Playing = true;
+
         for (int i = 0; i < 3; i++)
         {
             SetText();
+            if (i == 2)
+            {
+                if (Round % 5 == 0)
+                {
+                    Spawner.PlayerSave();
+                }
+            }
             yield return new WaitForSeconds(0.75f);
             counter--;
         }
@@ -115,62 +123,62 @@ public class Roundsystem : MonoBehaviour
         switch(Round)
         {
             case 1:
-                m_Time = 15;
+                m_Time = 20;
                 m_SpawnTime[0] = 0.5f;
                 m_SpawnTime[1] = 2.0f;
                 m_SpawnTime[2] = 4.0f;
                 break;
             case 2:
-                m_Time = 20;
-                m_SpawnTime[0] = 0.45f;
+                m_Time = 21;
+                m_SpawnTime[0] = 0.47f;
                 m_SpawnTime[1] = 1.85f;
                 m_SpawnTime[2] = 3.85f;
                 break;
             case 3:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.4f;
+                m_Time = 22;
+                m_SpawnTime[0] = 0.45f;
                 m_SpawnTime[1] = 5f;
                 m_SpawnTime[2] = 3.6f;
                 break;
             case 4:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.4f;
+                m_Time = 23;
+                m_SpawnTime[0] = 0.44f;
                 m_SpawnTime[1] = 4.8f;
                 m_SpawnTime[2] = 3.6f;
                 break;
             case 5:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.4f;
+                m_Time = 24;
+                m_SpawnTime[0] = 0.43f;
                 m_SpawnTime[1] = 4.65f;
                 m_SpawnTime[2] = 7f;
                 break;
             case 6:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.4f;
+                m_Time = 28;
+                m_SpawnTime[0] = 0.42f;
                 m_SpawnTime[1] = 4.5f;
                 m_SpawnTime[2] = 6.7f;
                 break;
             case 7:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.4f;
+                m_Time = 29;
+                m_SpawnTime[0] = 0.41f;
                 m_SpawnTime[1] = 4.4f;
                 m_SpawnTime[2] = 6.5f;
                 break;
             case 8:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.33f;
+                m_Time = 30;
+                m_SpawnTime[0] = 0.4f;
                 m_SpawnTime[1] = 4.3f;
                 m_SpawnTime[2] = 6.3f;
                 break;
             case 9:
-                m_Time = 25;
-                m_SpawnTime[0] = 0.28f;
+                m_Time = 31;
+                m_SpawnTime[0] = 0.4f;
                 m_SpawnTime[1] = 4.2f;
                 m_SpawnTime[2] = 6.2f;
                 break;
             default:
                 m_Time = 35;
-                m_SpawnTime[0] = 0.22f;
+                m_SpawnTime[0] = 0.33f;
                 m_SpawnTime[1] = 4.15f;
                 m_SpawnTime[2] = 6.1f;
                 break;

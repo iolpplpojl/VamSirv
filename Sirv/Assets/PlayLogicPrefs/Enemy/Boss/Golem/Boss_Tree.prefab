@@ -644,6 +644,7 @@ MonoBehaviour:
   achnum: 1000
   sb: {fileID: 2116899801468017753}
   sb2: {fileID: 1005290541984263792}
+  bewaretime: 4
   Rocks: {fileID: 2749845425347848725, guid: 7b4c0c32bcc586e47a578d1cf0d6a350, type: 3}
   patternTimeTable:
   - 4

@@ -46,7 +46,11 @@ public class AchievementSystem : MonoBehaviour
         }
         if (SaveData.data.achievement.Contains(100))
         {
-            Geted.Add(new Achievement("이름 없는 남자", "", 1, 26));
+            Geted.Add(new Achievement("이름 없는 남자", "총잡이로 1회 승리", 1, 26));
+        }
+        if (SaveData.data.achievement.Contains(101))
+        {
+            Geted.Add(new Achievement("기능장", "엔지니어로 1회 승리", 4  , 26));
         }
         if (SaveData.data.achievement.Contains(1000))
         {
@@ -71,15 +75,15 @@ public class AchievementSystem : MonoBehaviour
         if (player == 0 && round >= 20 && !SaveData.data.achievement.Contains(100))
         {
             SaveData.data.achievement.Add(100);
-            Achievement temp = new Achievement("이름 없는 남자", "총잡이로 20라운드 도달", 3, 32);
+            Achievement temp = new Achievement("이름 없는 남자", "총잡이로 1회 승리", 3, 32);
             Loaded.Push(temp);
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());
         }
-        if (player == 1 && round >= 1 && !SaveData.data.achievement.Contains(101))
+        if (player == 1 && round >= 20 && !SaveData.data.achievement.Contains(101))
         {
             SaveData.data.achievement.Add(101);
-            Achievement temp = new Achievement("기능장", "엔지니어로 20라운드 도달", 4, 32);
+            Achievement temp = new Achievement("기능장", "엔지니어로 1회 승리", 4, 32);
             Loaded.Push(temp);
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());

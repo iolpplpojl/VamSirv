@@ -11,7 +11,8 @@ public abstract class Boss : Enemy
     public int achnum;
     public Scrollbar sb;
     public Scrollbar sb2;
-
+    public float bewaretime;
+    bool damaging = false;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -19,17 +20,26 @@ public abstract class Boss : Enemy
         targetrigid = target.GetComponent<Rigidbody2D>();
         Sprite = GetComponent<SpriteRenderer>();
         MaxHP = HP;
+        StartCoroutine(Spawnbeware());
     }
 
     // Update is called once per frame
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (damaging == true)
         {
-            collision.GetComponent<Player>().GetDamage(Damage);
+            if (collision.CompareTag("Player"))
+            {
+                collision.GetComponent<Player>().GetDamage(Damage);
+            }
         }
 
+    }
+    IEnumerator Spawnbeware()
+    {
+        yield return new WaitForSeconds(bewaretime);
+        damaging = true;
     }
     public override void Dead()
     {

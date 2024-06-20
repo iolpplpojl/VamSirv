@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] Bosses_1;
     public BoxCollider2D Box;
     public Player player;
+    public Transform safepos;
     public Moneymanager Moneymanager;
     public DamagePopupSystem DamagePopup;
     public bool Spawning = false;
@@ -64,7 +65,12 @@ public class EnemySpawner : MonoBehaviour
         }
         StopAllCoroutines();
     }
+    
+    public void PlayerSave()
+    {
+        player.transform.position = new Vector3(0, 0);
 
+    }
     public void SpawnBoss(int round)
     {
         GameObject enemy = Instantiate(Bosses_1[0], transform);
