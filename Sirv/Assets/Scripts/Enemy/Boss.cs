@@ -12,7 +12,7 @@ public abstract class Boss : Enemy
     public Scrollbar sb;
     public Scrollbar sb2;
     public float bewaretime;
-    bool damaging = false;
+    bool damaging = true;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
