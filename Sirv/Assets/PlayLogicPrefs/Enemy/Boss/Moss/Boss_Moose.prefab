@@ -685,8 +685,8 @@ MonoBehaviour:
   anim2: {fileID: 325434578206340265}
   bullet: {fileID: 2749845425347848725, guid: f4bef7ec5792dde48a175aa1611fc0ec, type: 3}
   patternTimeTable:
-  - 6
-  - 6
+  - 5
+  - 5
   rush: 0
   attackTimenow: 3
   AttackSFX:

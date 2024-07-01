@@ -11,6 +11,7 @@ public class Sidemenu : MonoBehaviour
     {
         Debug.Log("Sell" + idx);
         rewardsystem.SellSideArm(idx);
+        Close();
     }
     public void Close()
     {

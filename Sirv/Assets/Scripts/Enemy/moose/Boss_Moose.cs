@@ -106,7 +106,7 @@ public class Boss_Moose : Boss
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.DropPer = 0;
             m_enemy.SetMoneymanager(moneymanager);
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(2f);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -127,6 +127,15 @@ public class Boss_Moose : Boss
         {
             if (collision.gameObject.layer == Mathf.Log(LayerMask.GetMask("Enemy"),2))
             {
+                for (int i = 0; i < 5; i++)
+                {
+                    int temp = Random.Range(0, 360);
+                    GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, temp + (360 / 5) * i), transform.parent);
+                    bul.transform.localScale = new Vector3(6, 6, 1);
+                    Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
+                    m_Bullet.damage = Damage;
+                    m_Bullet.speed = 5f;
+                }
                 collision.gameObject.GetComponent<Enemy>().GetCritDamage(5000, false);
             }
         }
