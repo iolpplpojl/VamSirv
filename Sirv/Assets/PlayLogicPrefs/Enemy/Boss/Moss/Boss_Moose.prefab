@@ -607,10 +607,10 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 448
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 448
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -697,6 +697,12 @@ MonoBehaviour:
   Crushpos:
   - {fileID: 6876244945945536700}
   - {fileID: 3086656853862030724}
+  minions: {fileID: 2413756430259508831, guid: 48b02df7a033ddf4088378b4ce4da716, type: 3}
+  minionpos:
+  - {x: -5.65, y: 5.42}
+  - {x: -5.65, y: -5.26}
+  - {x: 7.6, y: 5.42}
+  - {x: 7.6, y: -5.26}
 --- !u!61 &2608200685867840920
 BoxCollider2D:
   m_ObjectHideFlags: 0

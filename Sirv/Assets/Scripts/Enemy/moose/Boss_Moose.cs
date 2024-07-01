@@ -15,6 +15,8 @@ public class Boss_Moose : Boss
     public AudioClip[] AttackSFX;
     bool Moving = true;
     public Transform[] Crushpos;
+    public GameObject minions;
+    public Vector2[] minionpos;
     public override void Attack()
     {
         int temp = Random.Range(0, patternTimeTable.Length);
@@ -60,6 +62,7 @@ public class Boss_Moose : Boss
         anim = GetComponent<Animator>();
         anim2 = transform.GetChild(0).GetComponent<Animator>();
         StartCoroutine(SetDirect());
+        StartCoroutine(Summon());
     }
     private void FixedUpdate()
     {
@@ -93,6 +96,19 @@ public class Boss_Moose : Boss
         }
     }
 
+    IEnumerator Summon()
+    {
+        yield return new WaitForSeconds(2.0f);
+        while (true)
+        {
+            int temp = Random.Range(0, minionpos.Length);
+            GameObject enemy = Instantiate(minions, minionpos[temp], Quaternion.identity, transform.parent);
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.DropPer = 0;
+            m_enemy.SetMoneymanager(moneymanager);
+            yield return new WaitForSeconds(3.0f);
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(rush == true)
@@ -102,6 +118,17 @@ public class Boss_Moose : Boss
         else
         {
             targetvec = targetrigid.position - rigid.position;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (rush == true)
+        {
+            if (collision.gameObject.layer == Mathf.Log(LayerMask.GetMask("Enemy"),2))
+            {
+                collision.gameObject.GetComponent<Enemy>().GetCritDamage(5000, false);
+            }
         }
     }
 
@@ -133,9 +160,9 @@ public class Boss_Moose : Boss
         }
         rush = false;
         yield return new WaitForSeconds(1.0f);
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 15; i++)
         {
-            GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 45+(360 / 12) * i), transform.parent);
+            GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 45+(360 / 15) * i), transform.parent);
             bul.transform.localScale = new Vector3(6, 6, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
