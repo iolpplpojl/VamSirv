@@ -56,6 +56,10 @@ public class AchievementSystem : MonoBehaviour
         {
             Geted.Add(new Achievement("돌 던지기", "오염된 골렘 1회 처치", 2, 26));
         }
+        if (SaveData.data.achievement.Contains(1001))
+        {
+            Geted.Add(new Achievement("유해조수 사냥", "토르누루크 1회 처치", 5, 26));
+        }
     }
     public void DoAchievement()
     {
@@ -95,6 +99,14 @@ public class AchievementSystem : MonoBehaviour
         {
             SaveData.data.achievement.Add(1000);
             Achievement temp = new Achievement("돌 던지기", "오염된 골렘 1회 처치", 2, 26);
+            Loaded.Push(temp);
+            Geted.Add(temp);
+            StartCoroutine(AchieveAnim());
+        }
+        if (idx == 1001 && !SaveData.data.achievement.Contains(idx))
+        {
+            SaveData.data.achievement.Add(1001);
+            Achievement temp = new Achievement("유해조수 사냥", "토르누루크 1회 처치", 5, 26);
             Loaded.Push(temp);
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());

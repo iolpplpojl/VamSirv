@@ -12,8 +12,9 @@ public class Boss_Moose : Boss
     public bool rush = false;
     Vector3 targetvec;
     public float attackTimenow = 3.0f;
-
+    public AudioClip[] AttackSFX;
     bool Moving = true;
+    public Transform[] Crushpos;
     public override void Attack()
     {
         int temp = Random.Range(0, patternTimeTable.Length);
@@ -35,7 +36,7 @@ public class Boss_Moose : Boss
 
     public override void DeadUniq()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void Move()
@@ -56,7 +57,8 @@ public class Boss_Moose : Boss
         Sprite = GetComponent<SpriteRenderer>();
         MaxHP = HP;
         Sprite2 = transform.GetChild(0).GetComponent<SpriteRenderer>();
-
+        anim = GetComponent<Animator>();
+        anim2 = transform.GetChild(0).GetComponent<Animator>();
         StartCoroutine(SetDirect());
     }
     private void FixedUpdate()
@@ -108,7 +110,9 @@ public class Boss_Moose : Boss
         Moving = false;
         rush = true;
         targetvec = targetrigid.position - rigid.position;
+        SFXsystem.instance.PlaySoundFX(AttackSFX[0], transform, 1.0f);
         yield return new WaitForSeconds(1.0f);
+        SFXsystem.instance.PlaySoundFX(AttackSFX[2], transform, 1.0f);
         while (rush == true)
         {
             Vector2 temp = targetvec.normalized * 12 * Time.fixedDeltaTime;
@@ -116,12 +120,16 @@ public class Boss_Moose : Boss
             yield return new WaitForFixedUpdate();
         }
         Debug.Log("Äô");
-        for(int i = 0; i < 12; i++)
+        SFXsystem.instance.PlaySoundFX(AttackSFX[1], transform, 1.0f);
+        SFXsystem.instance.PlaySoundFX(AttackSFX[3], transform, 1.0f);
+
+        for (int i = 0; i < 12; i++)
         {
             GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, (360/12)*i), transform.parent);
             bul.transform.localScale = new Vector3(6, 6, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
+            m_Bullet.speed = 5;
         }
         rush = false;
         yield return new WaitForSeconds(1.0f);
@@ -131,6 +139,7 @@ public class Boss_Moose : Boss
             bul.transform.localScale = new Vector3(6, 6, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
+            m_Bullet.speed = 5;
         }
         targetvec = targetrigid.position - rigid.position;
         Moving = true;
@@ -140,10 +149,24 @@ public class Boss_Moose : Boss
     IEnumerator Crush()
     {
         Moving = false;
-        yield return new WaitForSeconds(2.0f);
+        anim.SetInteger("Status", 1);
+        anim2.SetInteger("Status", 1);
+        SFXsystem.instance.PlaySoundFX(AttackSFX[0],transform,1.0f);
+        yield return new WaitForSeconds(1f);
+        SFXsystem.instance.PlaySoundFX(AttackSFX[1], transform, 1.0f);
+        Vector3 pos;
+        if(Sprite.flipX == false)
+        {
+            pos = Crushpos[0].position;
+        }
+        else
+        {
+            pos = Crushpos[1].position;
+        }
+
         for (int i = 0; i < 12; i++)
         {
-            GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 30 + (360 / 12) * i), transform.parent);
+            GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 30 + (360 / 12) * i), transform.parent);
             bul.transform.localScale = new Vector3(6, 6, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
@@ -152,7 +175,7 @@ public class Boss_Moose : Boss
         yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < 12; i++)
         {
-            GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 35 + (360 / 12) * i), transform.parent);
+            GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 35 + (360 / 12) * i), transform.parent);
             bul.transform.localScale = new Vector3(6, 6, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
@@ -161,13 +184,25 @@ public class Boss_Moose : Boss
         yield return new WaitForSeconds(0.2f);
         for (int i = 0; i < 12; i++)
         {
-            GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 40 + (360 / 12) * i), transform.parent);
+            GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 40 + (360 / 12) * i), transform.parent);
+            bul.transform.localScale = new Vector3(6, 6, 1);
+            Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
+            m_Bullet.damage = Damage;
+            m_Bullet.speed = 2.5f;
+        }
+        yield return new WaitForSeconds(0.2f);
+        for (int i = 0; i < 12; i++)
+        {
+            GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 45 + (360 / 12) * i), transform.parent);
             bul.transform.localScale = new Vector3(6, 6, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
             m_Bullet.speed = 2.5f;
         }
 
+        yield return new WaitForSeconds(0.5f);
+        anim.SetInteger("Status", 0);
+        anim2.SetInteger("Status", 0);
         Moving = true;
 
 
@@ -176,16 +211,18 @@ public class Boss_Moose : Boss
     {
         while (true)
         {
-            bool rand = (Random.value > 0.5f);
-            if (rand)
+            if (rush == false && Moving == true)
             {
-                targetvec = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+                bool rand = (Random.value > 0.5f);
+                if (rand)
+                {
+                    targetvec = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f));
+                }
+                else
+                {
+                    targetvec = targetrigid.position - rigid.position;
+                }
             }
-            else
-            {
-                targetvec = targetrigid.position - rigid.position;
-            }
-
             yield return new WaitForSeconds(10f);
         }
     }
