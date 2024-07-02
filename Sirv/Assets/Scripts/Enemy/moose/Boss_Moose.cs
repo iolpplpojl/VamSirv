@@ -127,9 +127,10 @@ public class Boss_Moose : Boss
         {
             if (collision.gameObject.layer == Mathf.Log(LayerMask.GetMask("Enemy"),2))
             {
+                int temp = Random.Range(0, 360);
+
                 for (int i = 0; i < 5; i++)
                 {
-                    int temp = Random.Range(0, 360);
                     GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, temp + (360 / 5) * i), transform.parent);
                     bul.transform.localScale = new Vector3(6, 6, 1);
                     Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
@@ -168,7 +169,16 @@ public class Boss_Moose : Boss
             m_Bullet.speed = 5;
         }
         rush = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 12; i++)
+        {
+            GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 20+(360 / 12) * i), transform.parent);
+            bul.transform.localScale = new Vector3(6, 6, 1);
+            Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
+            m_Bullet.damage = Damage;
+            m_Bullet.speed = 5;
+        }
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < 15; i++)
         {
             GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, 45+(360 / 15) * i), transform.parent);
@@ -203,7 +213,7 @@ public class Boss_Moose : Boss
         for (int i = 0; i < 12; i++)
         {
             GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 30 + (360 / 12) * i), transform.parent);
-            bul.transform.localScale = new Vector3(6, 6, 1);
+            bul.transform.localScale = new Vector3(5, 5, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
             m_Bullet.speed = 2.5f;
@@ -212,7 +222,7 @@ public class Boss_Moose : Boss
         for (int i = 0; i < 12; i++)
         {
             GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 35 + (360 / 12) * i), transform.parent);
-            bul.transform.localScale = new Vector3(6, 6, 1);
+            bul.transform.localScale = new Vector3(5, 5, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
             m_Bullet.speed = 2.5f;
@@ -221,7 +231,7 @@ public class Boss_Moose : Boss
         for (int i = 0; i < 12; i++)
         {
             GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 40 + (360 / 12) * i), transform.parent);
-            bul.transform.localScale = new Vector3(6, 6, 1);
+            bul.transform.localScale = new Vector3(5, 5, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
             m_Bullet.speed = 2.5f;
@@ -230,7 +240,7 @@ public class Boss_Moose : Boss
         for (int i = 0; i < 12; i++)
         {
             GameObject bul = Instantiate(bullet, pos, Quaternion.Euler(0, 0, 45 + (360 / 12) * i), transform.parent);
-            bul.transform.localScale = new Vector3(6, 6, 1);
+            bul.transform.localScale = new Vector3(5, 5, 1);
             Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
             m_Bullet.damage = Damage;
             m_Bullet.speed = 2.5f;

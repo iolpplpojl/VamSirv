@@ -59,11 +59,12 @@ public abstract class Player : MonoBehaviour
     public float BloodSuck;
     public float fire;
     public int fireCount;
+    public int fireDamage = 0;
 
     int windwalk = 0;
     public float windwalk_now = 0;
 
- 
+    public int armor = 0;
 
     bool Death = false;
     public Transform shotpoint;
@@ -185,18 +186,18 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.05f;
+                        damagePer += 0.04f;
                         attackspeedPer += 0.03f;
                         maxHealthGet(-0.03f);
                         break;
                     case 1:
                         attackspeedPer += 0.06f;
-                        damagePer -= 0.02f;
+                        damagePer -= 0.03f;
                         break;
                     case 2:
-                        maxAmmoGet(0.05f);
+                        maxAmmoGet(0.03f);
                         attackspeedPer += 0.02f;
-                        SpeedGet(-0.02f);
+                        SpeedGet(-0.01f);
                         break;
                     case 3:
                         critPer += 0.03f;
@@ -204,14 +205,14 @@ public abstract class Player : MonoBehaviour
                         attackspeedPer -= 0.03f;
                         break;
                     case 4:
-                        maxHealthGet(0.06f);
-                        SpeedGet(-0.02f);
+                        maxHealthGet(0.04f);
+                        SpeedGet(-0.01f);
                         break;
                     case 5:
                         SpeedGet(0.04f);
-                        damagePer += 0.03f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.05f);
+                        damagePer += 0.04f;
+                        attackspeedPer += 0.04f;
+                        armor--;
                         break;
                     case 6:
                         attackspeedPer -= 0.01f;
@@ -316,9 +317,8 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.05f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.03f);
+                        armor -= 20;
+                        damagePer += 0.33f;
                         break;
                     case 1:
                         attackspeedPer += 0.06f;
@@ -360,9 +360,7 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.05f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.03f);
+                        fireDamage++;
                         break;
                     case 1:
                         attackspeedPer += 0.06f;
@@ -446,13 +444,18 @@ public abstract class Player : MonoBehaviour
     {
         if (GetAttackTimenow <= 0)
         {
-            health -= damage;
-            Debug.Log("Player Damaged : " + damage);
-            GetAttackTimenow = GetAttckTime;
-            if(health <= 0)
+            int dmg = (damage - armor);
+            if (dmg > 0)
             {
-                Dead();
+                health -= dmg;
+                GetAttackTimenow = GetAttckTime;
+                if (health <= 0)
+                {
+                    Dead();
+                }
             }
+            Debug.Log("Player Damaged : " + damage + "armor decrese : " + armor + "result : " + (damage - armor));
+
         }
     }
     void Dead()

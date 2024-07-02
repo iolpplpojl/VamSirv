@@ -308,18 +308,23 @@ MonoBehaviour:
   maxammoPer: 1
   speed: 3
   speedPer: 1
+  slow: 0
+  onSlow: 0
   critPer: 0
   reloadtime: 1
   reloadtimenow: 0
   skillAcooltime: 6
   skillAcooltimenow: 0
+  skillAcoolPer: 1
   skillBcooltime: 7
   skillBcooltimenow: 0
+  skillBcoolPer: 1
   GetAttckTime: 1
   GetAttackTimenow: 0
   BloodSuck: 0
   fire: 0.1
   fireCount: 0
+  fireDamage: 0
   windwalk_now: 0
   shotpoint: {fileID: 8174159504366851679}
   Effects:

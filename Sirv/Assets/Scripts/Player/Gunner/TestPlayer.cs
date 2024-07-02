@@ -32,7 +32,7 @@ public class TestPlayer : Player
             }
 
             ammo--;
-            attackspeed_now = 1.0f / (attackspeed*attackspeedPer);
+            attackspeed_now = 1.0f / (attackspeed*Mathf.Clamp(attackspeedPer,0.00001f,99999999));
         }
         if (ammo == 0 && reloading == false)
         {

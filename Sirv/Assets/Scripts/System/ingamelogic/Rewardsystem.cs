@@ -20,7 +20,8 @@ public class Rewardsystem : MonoBehaviour
     public TMP_Text[] TextsTitle;
     public List<sprites> Sprites;
     public Image[] Images;
-
+    public Image[] RairBG;
+    Color[] RairBGcol = new Color[] { new Color(0.5061855f, 0.6785174f, 0.8584906f,1), new Color(0.5061855f, 0.8588235f, 0.6055597f, 1), new Color(0.5912698f, 0.5058824f, 0.8588235f, 1), new Color(0.849929f, 0.8588235f, 0.5058824f, 1), new Color(0.8588235f, 0.5157437f, 0.5058824f, 1) };
     public int[] Itemcount;
     public int[] Turretcount;
     public int[] UniqueCount;
@@ -84,14 +85,15 @@ public class Rewardsystem : MonoBehaviour
         this.turret = Turret;
         this.moneymanager = Money;
         UniqueData = Instantiate(Datas[PlayerType], this.transform).GetComponent<UniqueItemData>();
-        //UniqueCount;
-        UpdateSideArmUI();
 
+        UpdateSideArmUI();
+        UniqueCount[2] = UniqueData.ItemData[2].Count;
+        UniqueCount[3] = UniqueData.ItemData[3].Count;
     }
 
     private void Update()
     {
-        if(roundsystem.Playing == true)
+        if (roundsystem.Playing == true)
         {
             Close();
         }
@@ -137,11 +139,11 @@ public class Rewardsystem : MonoBehaviour
         {
             rairty[i] = 3;
         }
-        else if (m_random <= 0.1f + 0.005f * roundsystem.Round)
+        else if (m_random <= 0.15f + 0.003f * roundsystem.Round)
         {
             rairty[i] = 2;
         }
-        else if (m_random <= 0.2f + 0.01f * roundsystem.Round)
+        else if (m_random <= 0.35f + 0.003f * roundsystem.Round)
         {
             rairty[i] = 1;
         }
@@ -197,6 +199,7 @@ public class Rewardsystem : MonoBehaviour
             Images[i].sprite = Sprites[rairty[i]].sprite[idx[i]];
 
         }
+        RairBG[i].color = RairBGcol[rairty[i]];
     }
 
     public void SetReload()
@@ -309,7 +312,7 @@ public class Rewardsystem : MonoBehaviour
         Debug.Log(m_Obj.transform.GetChild(1).GetComponent<Image>());
         Debug.Log(idx + "" + rare);
         Debug.Log(Sprites[rare].sprite[idx]);
-        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = Sprites[rare].sprite[idx];   
+        m_Obj.transform.GetChild(1).GetComponent<Image>().sprite = Sprites[rare].sprite[idx];
 
     }
     void SetUniqueItemList(int idx, int rare)
@@ -339,7 +342,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Ω∫≈».text += "<color=#A2FF00>";
         }
-        else if( player.maxHealthPer == 1f)
+        else if((int)player.maxHealthPer == 1)
         {
             Ω∫≈».text += "<color=white>";
         }
@@ -354,7 +357,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Ω∫≈».text += "<color=#A2FF00>";
         }
-        else if (player.damagePer == 1f)
+        else if ((int)player.damagePer == 1)
         {
             Ω∫≈».text += "<color=white>";
         }
@@ -369,7 +372,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Ω∫≈».text += "<color=#A2FF00>";
         }
-        else if (player.attackspeedPer == 1f)
+        else if ((int)player.attackspeedPer == 1)
         {
             Ω∫≈».text += "<color=white>";
         }
@@ -384,7 +387,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Ω∫≈».text += "<color=#A2FF00>";
         }
-        else if (player.critPer == 0f)
+        else if ((int)player.critPer == 0)
         {
             Ω∫≈».text += "<color=white>";
         }
@@ -399,7 +402,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Ω∫≈».text += "<color=#A2FF00>";
         }
-        else if (player.speedPer == 1f)
+        else if ((int)player.speedPer == 1)
         {
             Ω∫≈».text += "<color=white>";
         }
@@ -414,7 +417,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Ω∫≈».text += "<color=#A2FF00>";
         }
-        else if (player.maxammoPer == 1f)
+        else if ((int)player.maxammoPer == 1)
         {
             Ω∫≈».text += "<color=white>";
         }
@@ -423,6 +426,34 @@ public class Rewardsystem : MonoBehaviour
             Ω∫≈».text += "<color=#0099FF>";
         }
         Ω∫≈».text += ((int)(player.maxammoPer * 100)).ToString();
+        Ω∫≈».text += "</color><br>";
+        if (player.armor > 0)
+        {
+            Ω∫≈».text += "<color=#A2FF00>";
+        }
+        else if (player.armor == 0)
+        {
+            Ω∫≈».text += "<color=white>";
+        }
+        else
+        {
+            Ω∫≈».text += "<color=#0099FF>";
+        }
+        Ω∫≈».text += ((int)(player.armor * 1)).ToString();
+        Ω∫≈».text += "</color><br>";
+        if (player.fireCount > 0)
+        {
+            Ω∫≈».text += "<color=#A2FF00>";
+        }
+        else if (player.fireCount == 0)
+        {
+            Ω∫≈».text += "<color=white>";
+        }
+        else
+        {
+            Ω∫≈».text += "<color=#0099FF>";
+        }
+        Ω∫≈».text += ((int)(player.fireCount * 1)).ToString();
         Ω∫≈».text += "</color><br>";
     }
     public void UpdateSideArmUI()

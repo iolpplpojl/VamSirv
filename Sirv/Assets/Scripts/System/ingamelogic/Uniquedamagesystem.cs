@@ -39,7 +39,13 @@ public class Uniquedamagesystem : MonoBehaviour
             }
             if (Random.Range(0f, 1f) <= player.fire)
             {
-                enemy.StartCoroutine(enemy.Fire((int)(12 * player.damagePer)));
+                int damage = (int)(12);
+                for(int k = 0; k < player.fireDamage; k++)
+                {
+                    damage = damage * 2;
+                }
+                
+                enemy.StartCoroutine(enemy.Fire((int)(damage*player.damagePer)));
                 yield return new WaitForSeconds(0.02f);
             }
         }
