@@ -65,6 +65,7 @@ public abstract class Enemy : MonoBehaviour
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
             HP -= Damage;
+            Uniquedamagesystem.instance.Explode(transform.position);
             if (BloodSuck == true)
             {
                 Uniquedamagesystem.instance.BloodSuck();
@@ -86,6 +87,7 @@ public abstract class Enemy : MonoBehaviour
             Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
             flashtime = 1f;
             HP -= Damage * 2;
+            Uniquedamagesystem.instance.Explode(transform.position);
             if (BloodSuck == true)
             {
                 Uniquedamagesystem.instance.BloodSuck();
@@ -94,7 +96,7 @@ public abstract class Enemy : MonoBehaviour
             {
                 Dead();
             }
-            Uniquedamagesystem.instance.Fire(this);
+            Uniquedamagesystem.instance.StartCoroutine(Uniquedamagesystem.instance.Fire(this));
 
         }
     }
@@ -104,6 +106,27 @@ public abstract class Enemy : MonoBehaviour
         {
             SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
             DamagePopupSystem.instance.Setup(transform, Damage,21,Type);
+            Sprite.material.SetFloat("_FlashAmount", 1f);
+            Sprite.material.SetColor("_Flashcolor", Color.white);
+            flashtime = 1f;
+            HP -= Damage;
+            if (BloodSuck == true)
+            {
+                Uniquedamagesystem.instance.BloodSuck();
+            }
+            if (HP <= 0)
+            {
+                Dead();
+            }
+
+        }
+    }
+    public virtual void GetRawDamage(int Damage, bool BloodSuck,int size) // Æø¹ß¿ë
+    {
+        if (Death == false)
+        {
+            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
+            DamagePopupSystem.instance.Setup(transform, Damage, false, size);
             Sprite.material.SetFloat("_FlashAmount", 1f);
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;

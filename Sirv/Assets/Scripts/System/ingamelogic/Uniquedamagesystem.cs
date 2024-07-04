@@ -30,6 +30,17 @@ public class Uniquedamagesystem : MonoBehaviour
         }
     }
 
+    public void Explode(Vector3 transform)
+    {
+        if (Random.value <= (1 - (1 / (0.1f*player.ExplodeCount + 1))))
+        {
+            var hit = Physics2D.OverlapCircleAll(transform, 0.3f, LayerMask.GetMask("Enemy"));
+            foreach (var hitcol in hit)
+            {
+                hitcol.GetComponent<Enemy>().GetRawDamage((int)(8 * player.damagePer), true, 21);
+            }
+        }
+    }
     public IEnumerator Fire(Enemy enemy)
     {
         for (int i = 0; i < player.fireCount; i++) {

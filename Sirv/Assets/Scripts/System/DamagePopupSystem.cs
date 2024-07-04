@@ -68,7 +68,6 @@ public class DamagePopupSystem : MonoBehaviour
             TMP_Text m_Text = M_Popup.GetComponentInChildren<TMP_Text>();
             M_Popup.GetComponentInChildren<DamagePopupPos>().setDamagePopupPos(transform.position);
             m_Text.text = Damage.ToString();
-            m_Text.color = new Color(1f, 0.58f, 0f, 1f);
             m_Text.fontSize = size;
         }
     }

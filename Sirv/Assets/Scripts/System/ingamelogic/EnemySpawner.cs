@@ -27,7 +27,10 @@ public class EnemySpawner : MonoBehaviour
     public void SetSpawning(int a)
     {
         StartCoroutine(Spawn1(a));
-        StartCoroutine(Spawn1_2(a));
+        if (a < 6)
+        {
+            StartCoroutine(Spawn1_2(a));
+        }
         if (a >= 2)
         {
             StartCoroutine(Spawn4(a));
@@ -43,6 +46,7 @@ public class EnemySpawner : MonoBehaviour
         if(a >= 6)
         {
             StartCoroutine(Spawn5(a));
+            StartCoroutine(Spawn1_3(a));
         }
 
     }
@@ -79,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// 扁夯 棱各 家券.
+    /// 扁夯 棱各 公府 家券.
     /// </summary>
     IEnumerator Spawn1(int round)
     {
@@ -105,7 +109,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
     /// <summary>
-    /// 扁夯 棱各 公府 家券.
+    /// 扁夯 棱各 家券.
     /// </summary>
     IEnumerator Spawn1_2(int round)
     {
@@ -125,6 +129,28 @@ public class EnemySpawner : MonoBehaviour
 
         }
     }
+    /// <summary>
+    /// 郡府飘 棱各 家券.
+    /// </summary>
+    IEnumerator Spawn1_3(int round)
+    {
+        while (true)
+        {
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+            }
+            GameObject enemy = Instantiate(EnemyPrefs[5], pos, Quaternion.identity, transform);
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 2 * round;
+            m_enemy.Damage += (int)(1 * round);
+            yield return new WaitForSeconds(SpawnTime_Mini * 3);
+
+        }
+    }
+
     /// <summary>
     /// 榜方 家券
     /// </summary>

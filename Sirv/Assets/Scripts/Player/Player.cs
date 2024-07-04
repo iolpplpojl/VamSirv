@@ -61,6 +61,7 @@ public abstract class Player : MonoBehaviour
     public int fireCount;
     public int fireDamage = 0;
 
+    public int ExplodeCount = 0;
     int windwalk = 0;
     public float windwalk_now = 0;
 
@@ -321,8 +322,7 @@ public abstract class Player : MonoBehaviour
                         damagePer += 0.33f;
                         break;
                     case 1:
-                        attackspeedPer += 0.06f;
-                        damagePer -= 0.02f;
+                        ExplodeCount++;
                         break;
                     case 2:
                         maxAmmoGet(0.05f);
