@@ -1,6 +1,6 @@
 ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE,RAIRTY
 0,유리 대포,대미지 + <color=#00ff00ff>33%</color><br>방어력 - <color=#B90E0A>20</color>,88,0
-1,유폭탄,공격이 적중한 적이 10%<size=30%><color=#4FFBFF>곱연산</color></size> 확률로 폭발하여 8의 범위 대미지를 입힙니다.,79,0
+1,유폭탄,공격이 적중한 적이 10%<size=50%><color=#4FFBFF>곱연산</color></size> 확률로 폭발하여 8의 범위 대미지<size=50%>고정 대미지</color>를 입힙니다.,79,0
 2,주머니,최대 탄약 + <color=#00ff00ff>5%</color><br>공격속도 +<color=#00ff00ff>2%</color><br>이동속도 - <color=#B90E0A>2%</color>,18,0
 3,너클,치명타 + <color=#00ff00ff>3%</color><br>대미지 + <color=#00ff00ff>3%</color><br>공격속도 - <color=#B90E0A>3%</color>,22,0
 4,벨트,체력 + <color=#00ff00ff>6%</color> <br> 이동속도 - <color=#B90E0A>2%</color>,23,0

@@ -41,7 +41,14 @@ public class EnemySpawner : MonoBehaviour
         }
         if (a >= 4)
         {
-            StartCoroutine(Spawn3(a));
+            if (a >= 10)
+            {
+                StartCoroutine(Spawn3_1(a));
+            }
+            else
+            {
+                StartCoroutine(Spawn3(a));
+            }
         }
         if(a >= 6)
         {
@@ -190,6 +197,27 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(EnemyPrefs[2], pos, Quaternion.identity, transform); Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 30 * round;
+            m_enemy.Damage += (int)(1.3 * round);
+            yield return new WaitForSeconds(SpawnTime_Large);
+
+        }
+    }
+    /// <summary>
+    /// 笛 説光wave2 社発
+    /// </summary>
+    IEnumerator Spawn3_1(int round)
+    {
+        while (true)
+        {
+
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), UnityEngine.Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), UnityEngine.Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f));
+            }
+            GameObject enemy = Instantiate(EnemyPrefs[2], pos, Quaternion.identity, transform); Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 50 * round;
             m_enemy.Damage += (int)(1.3 * round);
             yield return new WaitForSeconds(SpawnTime_Large);
 

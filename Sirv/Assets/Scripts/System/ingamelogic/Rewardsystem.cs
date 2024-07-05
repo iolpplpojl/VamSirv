@@ -33,7 +33,7 @@ public class Rewardsystem : MonoBehaviour
 
     public GameObject 스크롤뷰;
     public GameObject 아이템프리팹;
-
+    public StatDescer statdes;
     List<List<Dictionary<string, object>>> ItemData;
     Roundsystem roundsystem;
     TurretManager turret;
@@ -47,6 +47,7 @@ public class Rewardsystem : MonoBehaviour
     public TMP_Text 보조무기Txt;
     public List<GameObject> 보조무기UI리스트;
     public TMP_Text 스탯;
+
 
     public GameObject 보조무기부모;
     public GameObject 판매메뉴;
@@ -89,6 +90,7 @@ public class Rewardsystem : MonoBehaviour
         UpdateSideArmUI();
         UniqueCount[2] = UniqueData.ItemData[2].Count;
         UniqueCount[3] = UniqueData.ItemData[3].Count;
+        statdes.player = player;
     }
 
     private void Update()

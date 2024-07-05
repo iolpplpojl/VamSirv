@@ -37,7 +37,7 @@ public class Uniquedamagesystem : MonoBehaviour
             var hit = Physics2D.OverlapCircleAll(transform, 0.3f, LayerMask.GetMask("Enemy"));
             foreach (var hitcol in hit)
             {
-                hitcol.GetComponent<Enemy>().GetRawDamage((int)(8 * player.damagePer), true, 21);
+                hitcol.GetComponent<Enemy>().GetRawDamage((int)(12), true, 21);
             }
         }
     }

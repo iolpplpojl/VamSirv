@@ -61,24 +61,7 @@ public abstract class Boss : Enemy
     public abstract void DeadUniq();
     public override void GetDamage(int Damage, bool BloodSuck)
     {
-        if (Death == false)
-        {
-            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
-            DamagePopupSystem.instance.Setup(transform, Damage);
-            Sprite.material.SetFloat("_FlashAmount", 1f);
-            Sprite.material.SetColor("_Flashcolor", Color.white);
-            flashtime = 1f;
-            HP -= Damage;
-            if (BloodSuck == true)
-            {
-                Uniquedamagesystem.instance.BloodSuck();
-            }
-            if (HP <= 0)
-            {
-                Dead();
-            }
-            Uniquedamagesystem.instance.StartCoroutine(Uniquedamagesystem.instance.Fire(this));
-        }
+        base.GetDamage(Damage, BloodSuck);
         StartCoroutine(DoDamage());
 
     }
@@ -86,21 +69,7 @@ public abstract class Boss : Enemy
     {
         if (Death == false)
         {
-            SFXsystem.instance.PlaySoundFX(CritEffects, transform, 0.1f);
-            DamagePopupSystem.instance.Setup(transform, Damage * 2, true);
-            Sprite.material.SetFloat("_FlashAmount", 1f);
-            Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
-            flashtime = 1f;
-            HP -= Damage * 2;
-            if (BloodSuck == true)
-            {
-                Uniquedamagesystem.instance.BloodSuck();
-            }
-            if (HP <= 0)
-            {
-                Dead();
-            }
-            Uniquedamagesystem.instance.Fire(this);
+            base.GetCritDamage(Damage, BloodSuck);
             StartCoroutine(DoDamage());
 
         }
@@ -109,20 +78,7 @@ public abstract class Boss : Enemy
     {
         if (Death == false)
         {
-            SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
-            DamagePopupSystem.instance.Setup(transform, Damage, 21, Type);
-            Sprite.material.SetFloat("_FlashAmount", 1f);
-            Sprite.material.SetColor("_Flashcolor", Color.white);
-            flashtime = 1f;
-            HP -= Damage;
-            if (BloodSuck == true)
-            {
-                Uniquedamagesystem.instance.BloodSuck();
-            }
-            if (HP <= 0)
-            {
-                Dead();
-            }
+            base.GetRawDamage(Damage, BloodSuck,Type);
             StartCoroutine(DoDamage());
         }
     }
