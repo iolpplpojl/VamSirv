@@ -98,6 +98,20 @@ public class StatDescer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     texts[2].text = player.fireCount.ToString();
                     icon.sprite = icons[7];
                     break;
+                case "Reload":
+                    Desc.GetComponent<RectTransform>().anchoredPosition = new Vector2(7, -230);
+                    texts[0].text = DescData[8]["NAME"].ToString();
+                    texts[1].text = DescData[8]["DESC"].ToString();
+                    texts[2].text = ((int)(player.reloadtimePer * 100)).ToString();
+                    icon.sprite = icons[8];
+                    break;
+                case "HealthATK":
+                    Desc.GetComponent<RectTransform>().anchoredPosition = new Vector2(7, -230);
+                    texts[0].text = DescData[9]["NAME"].ToString();
+                    texts[1].text = DescData[9]["DESC"].ToString();
+                    texts[2].text = ((int)(player.BloodSuck * 100)).ToString();
+                    icon.sprite = icons[9];
+                    break;
             }
             Desc.SetActive(true);
             click = true;
@@ -122,5 +136,7 @@ public class StatDescer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerExit(PointerEventData eventData)
     {
         clickable=false;
+        Desc.SetActive(false);
+        click = false;
     }
 }

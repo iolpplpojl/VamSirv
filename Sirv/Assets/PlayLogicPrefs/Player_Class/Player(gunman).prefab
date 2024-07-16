@@ -313,6 +313,7 @@ MonoBehaviour:
   critPer: 0
   reloadtime: 1
   reloadtimenow: 0
+  reloadtimePer: 1
   skillAcooltime: 6
   skillAcooltimenow: 0
   skillAcoolPer: 1
@@ -325,12 +326,20 @@ MonoBehaviour:
   fire: 0.1
   fireCount: 0
   fireDamage: 0
+  ExplodeCount: 0
   windwalk_now: 0
+  armor: 0
   shotpoint: {fileID: 8174159504366851679}
   Effects:
   - {fileID: 8300000, guid: af66162561d2eed40ad49268cab318bb, type: 3}
   - {fileID: 0}
   - {fileID: 8300000, guid: a58e438b7cfa445498120af0e6169082, type: 3}
+  ReloadSound:
+  - {fileID: 8300000, guid: 979cbe1dd09cbbb41ab33d8d810fe7f0, type: 3}
+  - {fileID: 8300000, guid: fdc3d603959956942a7a5ba7b1905558, type: 3}
+  SkillIcon:
+  - {fileID: 1316789810, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  - {fileID: 184526804, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   Bullet: {fileID: 6516944877753444422, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
   Dynamite: {fileID: 1608535200985290773, guid: ed8b0a1cb3b1ce542b6e5696e7b65058, type: 3}
   skillADamage: 120

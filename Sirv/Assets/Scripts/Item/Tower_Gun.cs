@@ -36,6 +36,6 @@ public class Tower_Gun : Tower
         {
             BulComp.Crit = true;
         }
-        Attackspeed_Now = 1.0f / (Attackspped * (1f + ((PlayerComp.attackspeedPer - 1f))) * PlayerComp.SideArmAttackSpeedper) + Random.Range(-0.05f, 0.05f);
+        Attackspeed_Now = 1.0f / Attackspped;
     }
 }

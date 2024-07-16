@@ -6,6 +6,7 @@ public abstract class Player : MonoBehaviour
 {
     // Start is called before the first frame update
 
+
     public int health;
     public int maxHealth;
     public int maxHealthNow;
@@ -41,6 +42,7 @@ public abstract class Player : MonoBehaviour
 
     public float reloadtime;
     public float reloadtimenow;
+    public float reloadtimePer = 1f;
     protected bool reloading = false;
     [Space]
 
@@ -73,8 +75,10 @@ public abstract class Player : MonoBehaviour
     Vector2 inputVec;
     protected Rigidbody2D rigid;
     public AudioClip[] Effects;
+    public AudioClip[] ReloadSound;
     [Header("Default")]
     Rewardsystem rewardsystem;
+    public Sprite[] SkillIcon;
 
   
 
@@ -117,7 +121,10 @@ public abstract class Player : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E) && skillBcooltimenow <= 0)
                 {
                     Skill_B();
-
+                }
+                if (Input.GetKeyDown(KeyCode.R) && reloading == false && maxammonow != ammo)
+                {
+                    Reload();
                 }
             }
 
@@ -164,6 +171,10 @@ public abstract class Player : MonoBehaviour
                 {
                     ammo = maxammonow;
                     reloading = false;
+                    if (ReloadSound != null)
+                    {
+                        SFXsystem.instance.PlaySoundFX(ReloadSound[1], transform, 0.5f);
+                    }
                 }
             }
         }
@@ -173,11 +184,14 @@ public abstract class Player : MonoBehaviour
         Vector2 norVec = inputVec.normalized * (speed*(speedPer+windwalk_now-slow)) * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + norVec);
     }
-    protected IEnumerator Reload()
+    protected void Reload()
     {
-        yield return new WaitForSeconds(reloadtime);
-        ammo = maxammonow;
-        reloading = false;
+        reloading = true;
+        reloadtimenow = reloadtime * (1f / reloadtimePer);
+        if(ReloadSound != null)
+        {
+            SFXsystem.instance.PlaySoundFX(ReloadSound[0],transform,0.5f);
+        }
     }
     public void GetItem(int idx, int rare)
     {
@@ -213,19 +227,12 @@ public abstract class Player : MonoBehaviour
                         SpeedGet(0.04f);
                         damagePer += 0.04f;
                         attackspeedPer += 0.04f;
+                        maxHealthGet(-0.02f);
                         armor--;
                         break;
                     case 6:
                         attackspeedPer -= 0.01f;
                         damagePer += 0.04f;
-                        break;
-                    case 7:
-                        skillAcoolPer -= 0.01f;
-                        critPer -= 0.01f;
-                        break;
-                    case 8:
-                        skillBcoolPer -= 0.01f;
-                        critPer -= 0.01f;
                         break;
                 }
                 break;
@@ -233,13 +240,12 @@ public abstract class Player : MonoBehaviour
                 switch (idx)
                 {
                     case 0:
-                        damagePer += 0.05f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.03f);
+                        armor += 2;
+                        maxHealthGet(0.04f);
+                        SpeedGet(-0.02f);
                         break;
                     case 1:
-                        attackspeedPer += 0.06f;
-                        damagePer -= 0.02f;
+                        fireCount++;
                         break;
                     case 2:
                         maxAmmoGet(0.05f);
@@ -280,7 +286,9 @@ public abstract class Player : MonoBehaviour
                         maxHealthGet(-0.03f);
                         break;
                     case 1:
-                        fireCount++;
+                        damagePer += 0.12f;
+                        attackspeedPer -= 0.03f;
+                        speedPer -= 0.05f;
                         break;
                     case 2:
                         maxAmmoGet(0.05f);
@@ -319,7 +327,7 @@ public abstract class Player : MonoBehaviour
                 {
                     case 0:
                         armor -= 20;
-                        damagePer += 0.33f;
+                        damagePer += 0.66f;
                         break;
                     case 1:
                         ExplodeCount++;

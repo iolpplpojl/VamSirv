@@ -283,6 +283,7 @@ public class Rewardsystem : MonoBehaviour
         {
             Reload();
             player.health = player.maxHealthNow;
+            player.ammo = player.maxammonow;
             Selected = true;
         }
         transform.GetChild(0).gameObject.SetActive(true);
@@ -456,6 +457,34 @@ public class Rewardsystem : MonoBehaviour
             Ω∫≈».text += "<color=#0099FF>";
         }
         Ω∫≈».text += ((int)(player.fireCount * 1)).ToString();
+        Ω∫≈».text += "</color><br>";
+        if (player.reloadtimePer > 1f)
+        {
+            Ω∫≈».text += "<color=#A2FF00>";
+        }
+        else if (player.reloadtimePer == 1)
+        {
+            Ω∫≈».text += "<color=white>";
+        }
+        else
+        {
+            Ω∫≈».text += "<color=#0099FF>";
+        }
+        Ω∫≈».text += ((int)(player.reloadtimePer * 100)).ToString();
+        Ω∫≈».text += "</color><br>";
+        if (player.BloodSuck > 0f)
+        {
+            Ω∫≈».text += "<color=#A2FF00>";
+        }
+        else if (player.BloodSuck == 0)
+        {
+            Ω∫≈».text += "<color=white>";
+        }
+        else
+        {
+            Ω∫≈».text += "<color=#0099FF>";
+        }
+        Ω∫≈».text += ((int)(player.BloodSuck * 100)).ToString();
         Ω∫≈».text += "</color><br>";
     }
     public void UpdateSideArmUI()

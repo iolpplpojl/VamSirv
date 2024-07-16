@@ -295,6 +295,7 @@ MonoBehaviour:
   critPer: 0
   reloadtime: 0
   reloadtimenow: 0
+  reloadtimePer: 1
   skillAcooltime: 3
   skillAcooltimenow: 0
   skillAcoolPer: 1
@@ -307,12 +308,18 @@ MonoBehaviour:
   fire: 0.1
   fireCount: 0
   fireDamage: 0
+  ExplodeCount: 0
   windwalk_now: 0
+  armor: 0
   shotpoint: {fileID: 801464279253253962}
   Effects:
   - {fileID: 8300000, guid: de22649eba2e996468c09cc1fb570a9a, type: 3}
   - {fileID: 8300000, guid: 8557f2bc88207744582f0596a01a1f20, type: 3}
   - {fileID: 8300000, guid: a23b74ef7e88e8247a38eda05651bf0b, type: 3}
+  ReloadSound: []
+  SkillIcon:
+  - {fileID: 304304143, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  - {fileID: 1964390794, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   bomb: 0
 --- !u!95 &1136717602863387516
 Animator:

@@ -19,25 +19,25 @@ public class Uniquedamagesystem : MonoBehaviour
     {
         if (Random.Range(0f, 1f) <= player.BloodSuck)
         {
-            if (player.health + 3 >= player.maxHealthNow)
+            if (player.health + 2 >= player.maxHealthNow)
             {
                 player.health = player.maxHealthNow;
             }
             else
             {
-                player.health += 3;
+                player.health += 2;
             }
         }
     }
 
     public void Explode(Vector3 transform)
     {
-        if (Random.value <= (1 - (1 / (0.1f*player.ExplodeCount + 1))))
+        if (Random.value <= (1 - (1 / (0.2f*player.ExplodeCount + 1))))
         {
             var hit = Physics2D.OverlapCircleAll(transform, 0.3f, LayerMask.GetMask("Enemy"));
             foreach (var hitcol in hit)
             {
-                hitcol.GetComponent<Enemy>().GetRawDamage((int)(12), true, 21);
+                hitcol.GetComponent<Enemy>().GetRawDamage((int)(8), true, 21);
             }
         }
     }

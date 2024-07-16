@@ -36,37 +36,31 @@ public class TestPlayer : Player
         }
         if (ammo == 0 && reloading == false)
         {
-            reloading = true;
-            reloadtimenow = reloadtime;
+            Reload();
         }
     }
+
     public override void Skill_A()
     {
         ammo = maxammonow;
         reloading = false;
         reloadtimenow = reloadtime;
         StartCoroutine(Panning());
-        if (skillAcooltime * skillAcoolPer <= maxammonow * 0.1f)
-        {
-            skillAcooltimenow = maxammonow * 0.105f + 0.1f;
-        }
-        else
-        {
-            skillAcooltimenow = skillAcooltime * skillAcoolPer;
-        }
 
-        }
-        IEnumerator Panning()
+     }
+    IEnumerator Panning()
     {
+        skillAcooltimenow = 999;
         SkillABuffnow = SkillABuff;
         bullethrough += SkillABulletThrough;
-        for (int i = 0; i<=maxammonow; i++)
+        for (int i = 0; i <= maxammonow; i++)
         {
             Attack();
             yield return new WaitForSeconds(0.1f);
         }
         SkillABuffnow = 1f;
         bullethrough -= SkillABulletThrough;
+        skillAcooltimenow = skillAcooltime * (1 / skillAcoolPer);
 
         yield break;
     }
@@ -84,7 +78,7 @@ public class TestPlayer : Player
         {
             DynaComp.Firebomb = true;
         }
-        skillBcooltimenow = skillBcooltime * skillBcoolPer;
+        skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
 
     }
 
