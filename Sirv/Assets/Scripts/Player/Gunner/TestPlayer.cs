@@ -16,30 +16,35 @@ public class TestPlayer : Player
     public float SkillABuff;
     float SkillABuffnow = 1;
     public int SkillABulletThrough = 0;
+    public int Akimbo = 1;
 
     public override void Attack()
     {
-        if (ammo > 0)
+        for (int i = 0; i < Akimbo; i++)
         {
-            SFXsystem.instance.PlaySoundFX(Effects[0], transform, 0.5f);
-            GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
-            BulletMove BulComp = Bul.GetComponent<BulletMove>();
-            BulComp.damage = (int)((damage * SkillABuffnow) * damagePer) ;
-            BulComp.bullethrough = bullethrough;
-            if((int)(critPer*100) > Random.Range(0, 100))
+            if (ammo > 0)
             {
-                BulComp.Crit = true;
-            }
+                SFXsystem.instance.PlaySoundFX(Effects[0], transform, 0.5f);
+                GameObject Bul = Instantiate(Bullet, shotpoint.position, shotpoint.rotation);
+                BulletMove BulComp = Bul.GetComponent<BulletMove>();
+                BulComp.damage = (int)((damage * SkillABuffnow) * damagePer);
+                BulComp.bullethrough = bullethrough;
+                Bul.transform.rotation = Bul.transform.rotation * Quaternion.Euler(0, 0, Random.Range(-3f, 3f)); ;
 
-            ammo--;
-            attackspeed_now = 1.0f / (attackspeed*Mathf.Clamp(attackspeedPer,0.00001f,99999999));
-        }
-        if (ammo == 0 && reloading == false)
-        {
-            Reload();
+                if ((int)(critPer * 100) > Random.Range(0, 100))
+                {
+                    BulComp.Crit = true;
+                }
+
+                ammo--;
+                attackspeed_now = 1.0f / (attackspeed * Mathf.Clamp(attackspeedPer, 0.00001f, 99999999));
+            }
+            if (ammo == 0 && reloading == false)
+            {
+                Reload();
+            }
         }
     }
-
     public override void Skill_A()
     {
         ammo = maxammonow;
@@ -53,7 +58,7 @@ public class TestPlayer : Player
         skillAcooltimenow = 999;
         SkillABuffnow = SkillABuff;
         bullethrough += SkillABulletThrough;
-        for (int i = 0; i <= maxammonow; i++)
+        for (int i = 0; i <= maxammonow/Akimbo; i++)
         {
             Attack();
             yield return new WaitForSeconds(0.1f);
@@ -104,14 +109,17 @@ public class TestPlayer : Player
                 SkillABulletThrough++;
                 break;
             case 3:
-                damage += 10;
+                damage += 5;
                 break;
             case 4:
                 maxAmmoGet(0.1f);
                 maxHealthGet(0.2f);
                 break;
             case 5:
-                damage += 10;
+                Akimbo++;
+                maxammo *= 2;
+                maxAmmoGet(0f);
+                reloadtime *= 2;
                 break;
             case 6:
                 maxAmmoGet(0.1f);

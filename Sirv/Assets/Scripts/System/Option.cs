@@ -86,7 +86,11 @@ public class Option : MonoBehaviour
         for(int i = 0; i<Screen.resolutions.Length; i++)
         {
             Debug.Log("asd");
-            resolutions.Add(Screen.resolutions[i]);
+            Debug.Log((float)Screen.resolutions[i].width / Screen.resolutions[i].height);
+            if ((int)(((float)Screen.resolutions[i].width / Screen.resolutions[i].height) * 100) == 177)
+            {
+                resolutions.Add(Screen.resolutions[i]);
+            }
         }
         resolutionDropdown.options.Clear();
 

@@ -106,7 +106,7 @@ MonoBehaviour:
   target: {fileID: 0}
   targetrigid: {fileID: 0}
   Value: 0.5
-  DropPer: 0.4
+  DropPer: 0.5
   exp: 1
   Death: 0
   CritEffects:

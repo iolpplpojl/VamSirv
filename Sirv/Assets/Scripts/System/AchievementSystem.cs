@@ -46,7 +46,7 @@ public class AchievementSystem : MonoBehaviour
         }
         if (SaveData.data.achievement.Contains(100))
         {
-            Geted.Add(new Achievement("이름 없는 남자", "총잡이로 1회 승리", 1, 26));
+            Geted.Add(new Achievement("이름 없는 남자", "총잡이로 1회 승리", 3, 26));
         }
         if (SaveData.data.achievement.Contains(101))
         {

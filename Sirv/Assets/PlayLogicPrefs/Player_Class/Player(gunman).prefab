@@ -349,6 +349,7 @@ MonoBehaviour:
   Firebomb: 0
   SkillABuff: 1.4
   SkillABulletThrough: 0
+  Akimbo: 1
 --- !u!95 &6730629171284667288
 Animator:
   serializedVersion: 5

@@ -297,7 +297,7 @@ public class EnemySpawner : MonoBehaviour
             }
             GameObject enemy = Instantiate(EnemyPrefs[6], pos, Quaternion.identity, transform); Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
-            m_enemy.HP += 50 * round;
+            m_enemy.HP += 40 * round;
             m_enemy.Damage += (int)(1.3 * round);
             yield return new WaitForSeconds(SpawnTime_Large);
 

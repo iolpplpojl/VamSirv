@@ -7,6 +7,7 @@ public class Player_Engi : Player
     // Start is called before the first frame update
     Rewardsystem rewardsystem;
     public bool bomb = false;
+    public int overheatarmor = 0;
     bool overheat;
     public void GetDefaultWeapon(Rewardsystem rewardsystem)
     {
@@ -46,6 +47,7 @@ public class Player_Engi : Player
     {
         AudioSource temp = SFXsystem.instance.PlaySoundFX(Effects[0], transform, 0.3f, true,false);
         overheat = true;
+        armor += overheatarmor;
         float tempdmg = 0f;
         float tempatk = 0f;
         for (int i = 0; i < 660; i++)
@@ -61,6 +63,7 @@ public class Player_Engi : Player
             tempatk += 0.003f;
             yield return new WaitForSeconds(0.01f);
         }
+        armor -= overheatarmor;
         fireCount += 5;
         for(int i = 0; i<400; i++)
         {
@@ -110,7 +113,9 @@ public class Player_Engi : Player
             case 1:
                 bomb = true;
                 break;
-
+            case 2:
+                overheatarmor += 10;
+                break;
         }
         
     }
