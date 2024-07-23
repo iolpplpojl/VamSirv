@@ -4300,7 +4300,7 @@ MonoBehaviour:
   - sprite:
     - {fileID: -1976438792, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
     - {fileID: 47706727, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
-    - {fileID: 21300000, guid: e6c85791e2261b14fa452fa96d5fe329, type: 3}
+    - {fileID: 2114091501, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
     - {fileID: 21300000, guid: e6c85791e2261b14fa452fa96d5fe329, type: 3}
     - {fileID: 21300000, guid: e6c85791e2261b14fa452fa96d5fe329, type: 3}
     - {fileID: 21300000, guid: e6c85791e2261b14fa452fa96d5fe329, type: 3}
@@ -4443,7 +4443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uACFC\uB3C4"
+  m_text: "\uAE30\uBB18\uD55C<br>\uBAA9\uAC78\uC774"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2172b2ae07465e4cbf833e38e40f4a2, type: 2}
   m_sharedMaterial: {fileID: 3986171753272259002, guid: f2172b2ae07465e4cbf833e38e40f4a2, type: 2}

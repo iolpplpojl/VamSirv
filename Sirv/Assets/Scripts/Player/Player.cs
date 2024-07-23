@@ -248,9 +248,9 @@ public abstract class Player : MonoBehaviour
                         fireCount++;
                         break;
                     case 2:
-                        maxAmmoGet(0.05f);
-                        attackspeedPer += 0.02f;
-                        SpeedGet(-0.02f);
+                        BloodSuck += 0.02f;
+                        attackspeedPer += 0.04f;
+                        critPer -= 0.02f;
                         break;
                     case 3:
                         critPer += 0.03f;
