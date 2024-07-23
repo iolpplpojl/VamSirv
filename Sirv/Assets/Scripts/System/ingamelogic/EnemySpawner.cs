@@ -97,7 +97,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnBoss(int round)
     {
-        GameObject enemy = Instantiate(Bosses_1[1], transform);
+        GameObject enemy = Instantiate(Bosses_1[UnityEngine.Random.Range(0,Bosses_1.Length)], transform);
         Enemy m_enemy = enemy.GetComponent<Enemy>();
         m_enemy.SetMoneymanager(Moneymanager);
     }

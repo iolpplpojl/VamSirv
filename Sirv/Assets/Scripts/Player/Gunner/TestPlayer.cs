@@ -17,7 +17,7 @@ public class TestPlayer : Player
     float SkillABuffnow = 1;
     public int SkillABulletThrough = 0;
     public int Akimbo = 1;
-
+    public bool minibomb = false;
     public override void Attack()
     {
         for (int i = 0; i < Akimbo; i++)
@@ -72,19 +72,41 @@ public class TestPlayer : Player
     public override void Skill_B()
     {
         SFXsystem.instance.PlaySoundFX(Effects[2], transform, 1f);
-        GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
-        Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);
-        Dynamite DynaComp = Dyna.GetComponent<Dynamite>();
-        DynaComp.damage = (int)(skillADamage * damagePer);
-        DynaComp.explosionradius = skillAExplodeRadius;
-        DynaComp.explosionTime = skillAExplodeTime;
-
-        if (Firebomb == true)
+        if (!minibomb)
         {
-            DynaComp.Firebomb = true;
-        }
-        skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
+            GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
+            Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);
+            Dynamite DynaComp = Dyna.GetComponent<Dynamite>();
+            DynaComp.damage = (int)(skillADamage * damagePer);
+            DynaComp.explosionradius = skillAExplodeRadius;
+            DynaComp.explosionTime = skillAExplodeTime;
 
+            if (Firebomb == true)
+            {
+                DynaComp.Firebomb = true;
+            }
+            skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
+        }
+        else
+        {
+            for(int i = -1; i <= 1; i++)
+            {
+                GameObject Dyna = Instantiate(Dynamite, shotpoint.position, shotpoint.rotation);
+                Dyna.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+                Dyna.transform.rotation = Dyna.transform.rotation * Quaternion.Euler(0, 0, i*30); ;
+                Dyna.GetComponent<Rigidbody2D>().AddForce(Dyna.transform.up * 25f, ForceMode2D.Impulse);
+                Dynamite DynaComp = Dyna.GetComponent<Dynamite>();
+                DynaComp.damage = (int)(skillADamage * damagePer);
+                DynaComp.explosionradius = skillAExplodeRadius;
+                DynaComp.explosionTime = skillAExplodeTime;
+
+                if (Firebomb == true)
+                {
+                    DynaComp.Firebomb = true;
+                }
+                skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
+            }
+        }
     }
 
     public override void GetUniqueItem(int idx)
@@ -122,8 +144,8 @@ public class TestPlayer : Player
                 reloadtime *= 2;
                 break;
             case 6:
-                maxAmmoGet(0.1f);
-                maxHealthGet(0.2f);
+                minibomb = true;
+                skillAExplodeRadius /= 2;
                 break;
             case 7:
                 damage += 10;
