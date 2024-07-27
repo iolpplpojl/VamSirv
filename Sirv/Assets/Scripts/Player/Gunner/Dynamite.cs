@@ -9,6 +9,8 @@ public class Dynamite : MonoBehaviour
     public float explosionradius;
     public float explosionTime;
     public bool Firebomb = false;
+    public bool Frag = false;
+    public GameObject FragBul;
     public GameObject Firebombprefs;
     Rigidbody2D rigid;
     // Update is called once per frame
@@ -39,6 +41,17 @@ public class Dynamite : MonoBehaviour
             Firegrid m_Fire = Fire.GetComponent<Firegrid>();
             m_Fire.radius = explosionradius;
             m_Fire.Damage = damage*5;
+        }
+        if(Frag == true)
+        {
+            for(int i = 1; i <= 12; i++)
+            {
+                GameObject Bul = Instantiate(FragBul, transform.position, Quaternion.Euler(0f,0f,i*30f));
+                BulletMove Bulcomp = Bul.GetComponent<BulletMove>();
+                Bulcomp.bullethrough = 1;
+                Bulcomp.damage = damage / 10;
+
+            }
         }
         foreach (var HitCol in hit)
         {

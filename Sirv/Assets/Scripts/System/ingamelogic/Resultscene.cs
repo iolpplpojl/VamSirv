@@ -11,6 +11,8 @@ public class Resultscene : MonoBehaviour
     public TMP_Text gold;
     public TMP_Text exp;
     public TMP_Text round;
+    public TMP_Text WIN;
+
     public int Player;
     bool clicked = false;
     private void Awake()
@@ -29,6 +31,14 @@ public class Resultscene : MonoBehaviour
         this.gold.text = gold.ToString();
         this.exp.text = exp.ToString();
         this.round.text = round.ToString();
+        if(round >= 30)
+        {
+            WIN.text = "½Â¸®";
+        }
+        else
+        {
+            WIN.text = "ÆÐ¹è";
+        }
         this.Player = player;
         SaveSystem.instance.addVal(kill, gold, round);
         AchievementSystem.instance.DoAcievement_RoundandPlayer(player, round);

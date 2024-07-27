@@ -724,6 +724,7 @@ MonoBehaviour:
   gold: {fileID: 129739973}
   exp: {fileID: 293047128}
   round: {fileID: 1835411246}
+  WIN: {fileID: 195109198}
   Player: 0
 --- !u!1 &493409707
 GameObject:

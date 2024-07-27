@@ -337,6 +337,10 @@ MonoBehaviour:
   ReloadSound:
   - {fileID: 8300000, guid: 979cbe1dd09cbbb41ab33d8d810fe7f0, type: 3}
   - {fileID: 8300000, guid: fdc3d603959956942a7a5ba7b1905558, type: 3}
+  Pain:
+  - {fileID: 8300000, guid: 11d95ded16495274c9f6fb34a78424b0, type: 3}
+  - {fileID: 8300000, guid: 1500f61e037b4994cba5214ea317d388, type: 3}
+  - {fileID: 8300000, guid: 47aeb01ac2ddee74ba09007c4a470fd6, type: 3}
   SkillIcon:
   - {fileID: 1316789810, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   - {fileID: 184526804, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
@@ -350,6 +354,8 @@ MonoBehaviour:
   SkillABuff: 1.4
   SkillABulletThrough: 0
   Akimbo: 1
+  minibomb: 0
+  Frag: 0
 --- !u!95 &6730629171284667288
 Animator:
   serializedVersion: 5

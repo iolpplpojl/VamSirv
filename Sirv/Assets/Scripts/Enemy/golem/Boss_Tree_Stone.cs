@@ -34,7 +34,7 @@ public class Boss_Tree_Stone : MonoBehaviour
             rigid.MovePosition(rigid.position + nextvec);
             rigid.velocity = Vector2.zero;
             debug = rigid.position + "\n" + targetvec;
-            if (Vector2.Distance(rigid.position, targetvec) < 0.1f)
+            if (Vector2.Distance(rigid.position, targetvec) < 0.15f)
             {
                 moving = false;
                 col.enabled = true;

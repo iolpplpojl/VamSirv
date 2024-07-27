@@ -18,6 +18,8 @@ public class TestPlayer : Player
     public int SkillABulletThrough = 0;
     public int Akimbo = 1;
     public bool minibomb = false;
+    float PanningTime = 0.1f;
+    public bool Frag = false;
     public override void Attack()
     {
         for (int i = 0; i < Akimbo; i++)
@@ -61,7 +63,7 @@ public class TestPlayer : Player
         for (int i = 0; i <= maxammonow/Akimbo; i++)
         {
             Attack();
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(PanningTime);
         }
         SkillABuffnow = 1f;
         bullethrough -= SkillABulletThrough;
@@ -85,6 +87,10 @@ public class TestPlayer : Player
             {
                 DynaComp.Firebomb = true;
             }
+            if(Frag == true)
+            {
+                DynaComp.Frag = true;
+            }
             skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
         }
         else
@@ -103,6 +109,10 @@ public class TestPlayer : Player
                 if (Firebomb == true)
                 {
                     DynaComp.Firebomb = true;
+                }
+                if (Frag == true)
+                {
+                    DynaComp.Frag = true;
                 }
                 skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
             }
@@ -148,11 +158,11 @@ public class TestPlayer : Player
                 skillAExplodeRadius /= 2;
                 break;
             case 7:
-                damage += 10;
+                PanningTime = 0.05f;
                 break;
             case 8:
-                maxAmmoGet(0.1f);
-                maxHealthGet(0.2f);
+                Frag = true;
+                skillAExplodeRadius *= 0.9f;
                 break;
         }
     }

@@ -76,6 +76,8 @@ public abstract class Player : MonoBehaviour
     protected Rigidbody2D rigid;
     public AudioClip[] Effects;
     public AudioClip[] ReloadSound;
+
+    public AudioClip[] Pain;
     [Header("Default")]
     Rewardsystem rewardsystem;
     public Sprite[] SkillIcon;
@@ -110,7 +112,7 @@ public abstract class Player : MonoBehaviour
 
             if (rewardsystem.Selected != true && ExpSystem.instance.selecting != true)
             {
-                if (Input.GetMouseButton(0) && attackspeed_now <= 0)
+                if (Input.GetMouseButton(0) && attackspeed_now <= 0 && reloading == false)
                 {
                     Attack();
                 }
@@ -455,6 +457,8 @@ public abstract class Player : MonoBehaviour
             int dmg = (damage - armor);
             if (dmg > 0)
             {
+                DamagePopupSystem.instance.Setup(transform, dmg, 50, "Blood");
+                SFXsystem.instance.PlaySoundFX(Pain, transform, 0.75f);
                 health -= dmg;
                 GetAttackTimenow = GetAttckTime;
                 if (health <= 0)
@@ -462,6 +466,8 @@ public abstract class Player : MonoBehaviour
                     Dead();
                 }
             }
+
+
             Debug.Log("Player Damaged : " + damage + "armor decrese : " + armor + "result : " + (damage - armor));
 
         }
