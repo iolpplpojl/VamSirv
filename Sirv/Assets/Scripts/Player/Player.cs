@@ -243,11 +243,12 @@ public abstract class Player : MonoBehaviour
                 {
                     case 0:
                         armor += 2;
-                        maxHealthGet(0.04f);
+                        maxHealthGet(0.06f);
                         SpeedGet(-0.02f);
                         break;
                     case 1:
                         fireCount++;
+                        attackspeedPer += 0.02f;
                         break;
                     case 2:
                         BloodSuck += 0.02f;
@@ -255,19 +256,19 @@ public abstract class Player : MonoBehaviour
                         critPer -= 0.02f;
                         break;
                     case 3:
-                        critPer += 0.03f;
-                        damagePer += 0.03f;
-                        attackspeedPer -= 0.03f;
+                        maxHealthGet(0.02f);
+                        SpeedGet(0.02f);
+                        maxAmmoGet(0.02f);
                         break;
                     case 4:
-                        maxHealthGet(0.06f);
-                        SpeedGet(-0.02f);
+                        damagePer += 0.02f;
+                        attackspeedPer += 0.02f;
                         break;
                     case 5:
-                        SpeedGet(0.04f);
-                        damagePer += 0.03f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.05f);
+                        reloadtimePer += 0.02f;
+                        maxAmmoGet(0.03f);
+                        attackspeedPer += 0.04f;
+                        damagePer -= 0.02f;
                         break;
                     case 6:
                         Towersystem.instance.GetTower(0);

@@ -205,7 +205,7 @@ public class EnemySpawner : MonoBehaviour
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += 2 * round;
-            m_enemy.Damage += (int)(1 * round);
+            m_enemy.Damage += (int)(0.6 * round);
             yield return new WaitForSeconds(SpawnTime_Mini * 3);
 
         }
@@ -230,7 +230,7 @@ public class EnemySpawner : MonoBehaviour
                 Enemy m_enemy = enemy.GetComponent<Enemy>();
                 m_enemy.SetMoneymanager(Moneymanager);
                 m_enemy.HP += 2 * round;
-                m_enemy.Damage += (int)(1 * round);
+                m_enemy.Damage += (int)(0.6 * round);
                 yield return new WaitForSeconds(0.05f);
             }
             yield return new WaitForSeconds(SpawnTime_Mini * 20);

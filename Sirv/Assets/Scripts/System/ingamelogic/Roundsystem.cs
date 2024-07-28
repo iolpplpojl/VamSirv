@@ -173,7 +173,7 @@ public class Roundsystem : MonoBehaviour
                 m_Time = 31;
                 m_SpawnTime[0] = 0.4f;
                 m_SpawnTime[1] = 4.2f;
-                m_SpawnTime[2] = 6.2f;
+                m_SpawnTime[2] = 6.1f;
                 break;
             default:
                 m_Time = 35;
