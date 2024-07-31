@@ -22,6 +22,8 @@ public class PlayerSelectUI : MonoBehaviour
     public Sprite[] Aicons;
     List<Dictionary<string, object>> Data;
 
+    public Player[] players;
+
     private void Start()
     {
         Data = new List<Dictionary<string, object>>();
@@ -37,7 +39,7 @@ public class PlayerSelectUI : MonoBehaviour
         SkillADesc[1].text = Data[idx]["ASK"].ToString();
         SkillBDesc[0].text = Data[idx]["BSKNAME"].ToString();
         SkillBDesc[1].text = Data[idx]["BSK"].ToString();
-
+        Stats.text = string.Format("HP : {0}",players[idx].maxHealth.ToString());
         DefIcon.sprite = Dicons[idx];
         SkillAIcon.sprite = Aicons[idx];
         SkillBIcon.sprite = Bicons[idx];

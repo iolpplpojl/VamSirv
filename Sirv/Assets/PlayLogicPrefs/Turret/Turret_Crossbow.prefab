@@ -147,4 +147,5 @@ MonoBehaviour:
   bullethrough: 1
   critPer: 0.2
   BonusdamageSheet: 08000000090000000b0000000d000000
+  bulletspeed: 20
   Pellet: 8

@@ -10,6 +10,7 @@ public class Turret_Gun : Turret
     public int bullethrough;
     public float critPer;
     public int[] BonusdamageSheet;
+    public int bulletspeed;
     // Update is called once per frame
     void Update()
     {
@@ -56,7 +57,7 @@ public class Turret_Gun : Turret
         BulletMove BulComp = Bul.GetComponent<BulletMove>();
         BulComp.damage = (int)(Damage * KnifeDamagePer * PlayerComp.SideArmDamagePer);
         BulComp.bullethrough = bullethrough;
-        BulComp.speed = Random.Range(18, 22);
+        BulComp.speed = Random.Range(bulletspeed-2, bulletspeed+2);
         if ((int)(critPer * 100) > Random.Range(0, 100))
         {
             BulComp.Crit = true;

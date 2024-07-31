@@ -80,7 +80,7 @@ public class TurretManager : MonoBehaviour
                     switch (idx)
                     {
                         case 0:
-                            turret = Turret[0];
+                            turret = Turret[5];
                             break;
                         case 1:
                             turret = Turret[1];
@@ -211,7 +211,7 @@ public class TurretManager : MonoBehaviour
                 switch (n)
                 {
                     case 0:
-                        turret = Turret[0];
+                        turret = Turret[5];
                         break;
                     case 1:
                         turret = Turret[1];

@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 9117484842096930427, guid: 2383f330e66e93042a73685fb6e75116, type: 3}
   - {fileID: 8984956371352389330, guid: 5cd8899537280154c8b27824fd99e667, type: 3}
   - {fileID: 3982483331314742997, guid: ffe3b2cffb4c85f46bd7d356482108c6, type: 3}
+  - {fileID: 8984956371352389330, guid: 962e002094e5fa243a608736b117c7d3, type: 3}
   TurretMaxCount: 0
   TurretCount: 0
   Turrets_OBJ: []
