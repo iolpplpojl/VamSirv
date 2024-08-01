@@ -145,6 +145,6 @@ MonoBehaviour:
   Bullet: {fileID: 6787473082500420283, guid: bb4d27b1749c57c46970109391fecc0e, type: 3}
   Damage: 30
   bullethrough: 1
-  critPer: 0.4
-  BonusdamageSheet: 1e00000032000000460000005a000000
+  critPer: 0
+  BonusdamageSheet: 3c0000006900000096000000dc000000
   bulletspeed: 8

@@ -4103,7 +4103,7 @@ RectTransform:
   m_Father: {fileID: 2492161492083406560}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4354,7 +4354,7 @@ MonoBehaviour:
   - {fileID: 2898941563576910260}
   - {fileID: 2902403195454091211}
   Itemcount: 0700000007000000080000000800000008000000
-  Turretcount: 0200000002000000030000000300000003000000
+  Turretcount: 0200000002000000030000000200000003000000
   UniqueCount: 0000000000000000010000000100000000000000
   UniqueData: {fileID: 0}
   Datas:
@@ -5685,7 +5685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1316754172275674996
 RectTransform:
   m_ObjectHideFlags: 0
