@@ -299,7 +299,7 @@ MonoBehaviour:
   skillAcooltime: 3
   skillAcooltimenow: 0
   skillAcoolPer: 1
-  skillBcooltime: 30
+  skillBcooltime: 15
   skillBcooltimenow: 0
   skillBcoolPer: 1
   GetAttckTime: 1

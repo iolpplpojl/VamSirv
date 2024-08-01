@@ -286,7 +286,7 @@ public abstract class Player : MonoBehaviour
                 {
                     case 0:
                         windwalk++;
-                        maxHealthGet(-0.03f);
+                        maxHealthGet(-0.01f);
                         break;
                     case 1:
                         damagePer += 0.12f;

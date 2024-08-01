@@ -7,6 +7,7 @@ public class Player_Engi : Player
     // Start is called before the first frame update
     Rewardsystem rewardsystem;
     public bool bomb = false;
+    bool TP_ATS;
     public int overheatarmor = 0;
     bool overheat;
     public void GetDefaultWeapon(Rewardsystem rewardsystem)
@@ -31,6 +32,10 @@ public class Player_Engi : Player
         if (bomb) {
             StartCoroutine(Bombed());
         }
+        if (TP_ATS)
+        {
+            StartCoroutine(TPATS());
+        }
         return;
     }
     public override void Skill_B()
@@ -38,7 +43,7 @@ public class Player_Engi : Player
         if (overheat == false)
         {
             StartCoroutine(OverHeat());
-            skillBcooltimenow = skillBcooltime * skillBcoolPer;
+            skillBcooltimenow = 999;
         }
         return;
     }
@@ -63,7 +68,6 @@ public class Player_Engi : Player
             tempatk += 0.003f;
             yield return new WaitForSeconds(0.01f);
         }
-        armor -= overheatarmor;
         fireCount += 5;
         for(int i = 0; i<400; i++)
         {
@@ -83,7 +87,18 @@ public class Player_Engi : Player
         fireCount -= 5;
         overheat = false;
         spriteRenderer.color = Color.white;
+        armor -= overheatarmor;
+        skillBcooltimenow = skillBcooltime * skillBcoolPer;
 
+        yield break;
+    }
+    IEnumerator TPATS()
+    {
+        attackspeedPer += 0.33f;
+        speedPer += 0.33f;
+        yield return new WaitForSeconds(2.0f);
+        attackspeedPer -= 0.33f;
+        speedPer -= 0.33f;
         yield break;
     }
     IEnumerator Bombed()
@@ -114,9 +129,18 @@ public class Player_Engi : Player
                 bomb = true;
                 break;
             case 2:
-                overheatarmor += 10;
+                overheatarmor += 7;
+                break;
+            case 3:
+                TP_ATS = true;
+                break;
+            case 4:
+                GetUniqueWeapon();
+                GetUniqueWeapon();
+                GetUniqueWeapon();
+                GetUniqueWeapon();
                 break;
         }
-        
+
     }
 }
