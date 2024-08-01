@@ -146,5 +146,5 @@ MonoBehaviour:
   Damage: 9
   bullethrough: 1
   critPer: 0.55
-  BonusdamageSheet: 090000000a0000000b0000000d000000
+  BonusdamageSheet: 0a0000000d0000001100000016000000
   bulletspeed: 20
