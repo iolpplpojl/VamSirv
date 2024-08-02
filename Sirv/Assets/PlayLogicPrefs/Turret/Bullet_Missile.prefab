@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1470953436149211753, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1470953436149211753, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1470953436149211753, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -122,4 +122,4 @@ MonoBehaviour:
   damage: 0
   bullethrough: 0
   Crit: 0
-  radius: 1.5
+  radius: 1.25

@@ -9,6 +9,9 @@ public class Player_Engi : Player
     public bool bomb = false;
     bool TP_ATS;
     public int overheatarmor = 0;
+    bool overheatTime = false;
+    int overheatDuration = 400;
+    public bool TP_MOS = false;
     bool overheat;
     public void GetDefaultWeapon(Rewardsystem rewardsystem)
     {
@@ -22,20 +25,41 @@ public class Player_Engi : Player
     }
     public override void Attack()
     {
+        Debug.Log(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)));
         return;
     }
     public override void Skill_A()
     {
-        Vector2 pos = shotpoint.up.normalized * 2;
-        rigid.position = rigid.position + pos;
+        if (TP_MOS == false)
+        {
+            Vector2 pos = shotpoint.up.normalized * 2;
+            rigid.position = rigid.position + pos;
+        }
+        else
+        {
+            Debug.Log(Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+            if (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) <= 3f)
+            {
+                rigid.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            else
+            {
+                Vector2 pos = shotpoint.up.normalized * 3;
+                rigid.position = rigid.position + pos;
+            }
+        }
         skillAcooltimenow = skillAcooltime * skillAcoolPer;
+
+        /**
         if (bomb) {
             StartCoroutine(Bombed());
         }
+        **/
         if (TP_ATS)
         {
             StartCoroutine(TPATS());
         }
+        SFXsystem.instance.PlaySoundFX(new AudioClip[] { Effects[3], Effects[4]},transform,1f);
         return;
     }
     public override void Skill_B()
@@ -55,21 +79,32 @@ public class Player_Engi : Player
         armor += overheatarmor;
         float tempdmg = 0f;
         float tempatk = 0f;
-        for (int i = 0; i < 660; i++)
+        if (overheatTime == false)
         {
-            if(temp == null)
+            for (int i = 0; i < 660; i++)
             {
-                temp = SFXsystem.instance.PlaySoundFX(Effects[1], transform, 0.3f, true,true);
+                if (temp == null)
+                {
+                    temp = SFXsystem.instance.PlaySoundFX(Effects[1], transform, 0.3f, true, true);
+                }
+                damagePer -= 0.001f;
+                tempdmg += 0.001f;
+                spriteRenderer.color = new Color(1, 1f - ((0.7f / 660) * i), 1f - ((1f / 660) * i), 1f);
+                attackspeedPer += 0.003f;
+                tempatk += 0.003f;
+                yield return new WaitForSeconds(0.01f);
             }
-            damagePer -= 0.001f;
-            tempdmg += 0.001f;
-            spriteRenderer.color = new Color(1, 1f-((0.7f/660)*i), 1f - ((1f / 660)*i), 1f);
-            attackspeedPer += 0.003f;
-            tempatk += 0.003f;
-            yield return new WaitForSeconds(0.01f);
+        }
+        else
+        {
+            damagePer -= 0.001f*660;
+            tempdmg += 0.001f * 660;
+            spriteRenderer.color = new Color(1, 1f - 0.7f, 1f - 1f, 1f);
+            attackspeedPer += 0.003f * 660;
+            tempatk += 0.003f * 660;
         }
         fireCount += 5;
-        for(int i = 0; i<400; i++)
+        for(int i = 0; i< overheatDuration; i++)
         {
             if (temp == null)
             {
@@ -94,11 +129,11 @@ public class Player_Engi : Player
     }
     IEnumerator TPATS()
     {
-        attackspeedPer += 0.33f;
-        speedPer += 0.33f;
-        yield return new WaitForSeconds(2.0f);
-        attackspeedPer -= 0.33f;
-        speedPer -= 0.33f;
+        attackspeedPer += 0.66f;
+        speedPer += 0.20f;
+        yield return new WaitForSeconds(1.0f);
+        attackspeedPer -= 0.66f;
+        speedPer -= 0.20f;
         yield break;
     }
     IEnumerator Bombed()
@@ -126,15 +161,33 @@ public class Player_Engi : Player
     {
         switch (idx) {
             case 1:
-                bomb = true;
+                GetUniqueWeapon();
+                GetUniqueWeapon();
                 break;
             case 2:
                 overheatarmor += 7;
                 break;
             case 3:
-                TP_ATS = true;
+                TP_MOS = true;
                 break;
             case 4:
+                GetUniqueWeapon();
+                GetUniqueWeapon();
+                break;
+            case 5:
+                overheatTime = true;
+                overheatDuration = 520;
+                skillBcooltime = 10f;
+                break;
+            case 6:
+                GetUniqueWeapon();
+                GetUniqueWeapon();
+                GetUniqueWeapon();
+                break;
+            case 7:
+                TP_ATS = true;
+                break;
+            case 8:
                 GetUniqueWeapon();
                 GetUniqueWeapon();
                 GetUniqueWeapon();
