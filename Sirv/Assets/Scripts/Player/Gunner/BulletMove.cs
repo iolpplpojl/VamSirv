@@ -16,7 +16,7 @@ public class BulletMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         rigid.velocity = transform.up * speed;
     }

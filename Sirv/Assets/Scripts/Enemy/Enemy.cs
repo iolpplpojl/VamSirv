@@ -24,6 +24,7 @@ public abstract class Enemy : MonoBehaviour
     protected SpriteRenderer Sprite;
     // Start is called before the first frame update
     public int Damage;
+    public float Weakness = 1f;
 
 
     void Start()
@@ -60,11 +61,11 @@ public abstract class Enemy : MonoBehaviour
         if (Death == false)
         {
             SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.1f);
-            DamagePopupSystem.instance.Setup(transform, Damage);
+            DamagePopupSystem.instance.Setup(transform, (int)(Damage * Weakness));
             Sprite.material.SetFloat("_FlashAmount", 1f);
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
-            HP -= Damage;
+            HP -= (int)(Damage * Weakness);
             Uniquedamagesystem.instance.Explode(transform.position);
             if (BloodSuck == true)
             {
@@ -82,11 +83,11 @@ public abstract class Enemy : MonoBehaviour
         if (Death == false)
         {
             SFXsystem.instance.PlaySoundFX(CritEffects, transform, 0.1f);
-            DamagePopupSystem.instance.Setup(transform, Damage * 2, true);
+            DamagePopupSystem.instance.Setup(transform, (int)(Damage * 2 * Weakness), true);
             Sprite.material.SetFloat("_FlashAmount", 1f);
             Sprite.material.SetColor("_Flashcolor", new Color(0.9137255f, 0.3459885f, 0.2627451f));
             flashtime = 1f;
-            HP -= Damage * 2;
+            HP -= (int)(Damage * 2 * Weakness);
             Uniquedamagesystem.instance.Explode(transform.position);
             if (BloodSuck == true)
             {
@@ -105,11 +106,11 @@ public abstract class Enemy : MonoBehaviour
         if (Death == false)
         {
             SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
-            DamagePopupSystem.instance.Setup(transform, Damage,21,Type);
+            DamagePopupSystem.instance.Setup(transform, (int)(Damage * Weakness), 21,Type);
             Sprite.material.SetFloat("_FlashAmount", 1f);
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
-            HP -= Damage;
+            HP -= (int)(Damage * Weakness);
             if (BloodSuck == true)
             {
                 Uniquedamagesystem.instance.BloodSuck();
@@ -126,11 +127,11 @@ public abstract class Enemy : MonoBehaviour
         if (Death == false)
         {
             SFXsystem.instance.PlaySoundFX(HitEffects, transform, 0.04f);
-            DamagePopupSystem.instance.Setup(transform, Damage, false, size);
+            DamagePopupSystem.instance.Setup(transform, (int)(Damage * Weakness), false, size);
             Sprite.material.SetFloat("_FlashAmount", 1f);
             Sprite.material.SetColor("_Flashcolor", Color.white);
             flashtime = 1f;
-            HP -= Damage;
+            HP -= (int)(Damage * Weakness);
             if (BloodSuck == true)
             {
                 Uniquedamagesystem.instance.BloodSuck();
@@ -175,5 +176,16 @@ public abstract class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         yield break;
+    }
+
+    public void GetWeak(float pcnt, float duration)
+    {
+        StartCoroutine(Weak(pcnt, duration));
+    }
+    public IEnumerator Weak(float pcnt, float duration)
+    {
+        Weakness += pcnt + 0.001f;
+        yield return new WaitForSeconds(duration);
+        Weakness -= pcnt;
     }
 }

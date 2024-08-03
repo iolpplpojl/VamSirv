@@ -69,17 +69,17 @@ public abstract class Player : MonoBehaviour
 
     public int armor = 0;
 
-    bool Death = false;
+    protected bool Death = false;
     public Transform shotpoint;
     protected SpriteRenderer spriteRenderer;
-    Vector2 inputVec;
+    protected Vector2 inputVec;
     protected Rigidbody2D rigid;
     public AudioClip[] Effects;
     public AudioClip[] ReloadSound;
 
     public AudioClip[] Pain;
     [Header("Default")]
-    Rewardsystem rewardsystem;
+    protected Rewardsystem rewardsystem;
     public Sprite[] SkillIcon;
 
   
