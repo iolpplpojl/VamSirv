@@ -52,6 +52,10 @@ public class AchievementSystem : MonoBehaviour
         {
             Geted.Add(new Achievement("±â´ÉÀå", "¿£Áö´Ï¾î·Î 1È¸ ½Â¸®", 4  , 26));
         }
+        if (SaveData.data.achievement.Contains(102))
+        {
+            Geted.Add(new Achievement("¾Ç¸¶ »ç³É²Û", "»ç³É²ÛÀ¸·Î 1È¸ ½Â¸®", 6, 26));
+        }
         if (SaveData.data.achievement.Contains(1000))
         {
             Geted.Add(new Achievement("µ¹ ´øÁö±â", "¿À¿°µÈ °ñ·½ 1È¸ Ã³Ä¡", 2, 26));
@@ -76,7 +80,7 @@ public class AchievementSystem : MonoBehaviour
 
     public void DoAcievement_RoundandPlayer(int player,int round)
     {
-        if (player == 0 && round >= 20 && !SaveData.data.achievement.Contains(100))
+        if (player == 0 && round >= 30 && !SaveData.data.achievement.Contains(100))
         {
             SaveData.data.achievement.Add(100);
             Achievement temp = new Achievement("ÀÌ¸§ ¾ø´Â ³²ÀÚ", "ÃÑÀâÀÌ·Î 1È¸ ½Â¸®", 3, 32);
@@ -84,10 +88,18 @@ public class AchievementSystem : MonoBehaviour
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());
         }
-        if (player == 1 && round >= 20 && !SaveData.data.achievement.Contains(101))
+        if (player == 1 && round >= 30 && !SaveData.data.achievement.Contains(101))
         {
             SaveData.data.achievement.Add(101);
             Achievement temp = new Achievement("±â´ÉÀå", "¿£Áö´Ï¾î·Î 1È¸ ½Â¸®", 4, 32);
+            Loaded.Push(temp);
+            Geted.Add(temp);
+            StartCoroutine(AchieveAnim());
+        }
+        if (player == 2 && round >= 30 && !SaveData.data.achievement.Contains(102))
+        {
+            SaveData.data.achievement.Add(102);
+            Achievement temp = new Achievement("¾Ç¸¶ »ç³É²Û", "»ç³É²ÛÀ¸·Î 1È¸ ½Â¸®", 6, 32);
             Loaded.Push(temp);
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());

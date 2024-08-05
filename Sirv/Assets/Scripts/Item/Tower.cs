@@ -60,7 +60,7 @@ public abstract class Tower : MonoBehaviour
      
         }
     }
-    void FindEnemy()
+    protected void FindEnemy()
     {
         var hit = Physics2D.OverlapCircle(transform.position, Radius, LayerMask.GetMask("Enemy"));
         if (hit != null)

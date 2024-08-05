@@ -48,7 +48,7 @@ public class Uniquedamagesystem : MonoBehaviour
             {
                 yield break;
             }
-            if (Random.Range(0f, 1f) <= player.fire)
+            if (Random.Range(0f, 1f) <= 0.1f)
             {
                 int damage = (int)(12);
                 for(int k = 0; k < player.fireDamage; k++)

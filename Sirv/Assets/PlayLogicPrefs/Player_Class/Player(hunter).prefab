@@ -417,6 +417,7 @@ MonoBehaviour:
   Trap: {fileID: 6787473082500420283, guid: e2f3a9002fbadcf4db8ef604589a47ab, type: 3}
   KnifeWeak: 0.3
   KnifeDura: 5
+  KnifeThr: 0
   TrapDama: 30
   TrapRad: 1.3
   TrapDura: 3

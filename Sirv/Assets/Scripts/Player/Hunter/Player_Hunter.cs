@@ -102,13 +102,13 @@ public class Player_Hunter : Player
                 Pellet++;
                 break;
             case 3:
-                reloadtimePer += 0.33f;
+                Towersystem.instance.GetTower(1);
                 break;
             case 4:
                 Pellet++;
                 break;
             case 5:
-                Towersystem.instance.GetTower(1);
+                reloadtimePer = 0.33f;
                 break;
             case 6:
                 Pellet++;
