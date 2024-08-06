@@ -7,6 +7,8 @@ public class Boss_Moose : Boss
     SpriteRenderer Sprite2;
     public Animator anim;
     public Animator anim2;
+    public GameObject bewareobj;
+    public Animator bewareanim;
     public GameObject bullet;
     public float[] patternTimeTable;
     public bool rush = false;
@@ -147,6 +149,8 @@ public class Boss_Moose : Boss
         Moving = false;
         rush = true;
         targetvec = targetrigid.position - rigid.position;
+        bewareanim.Play("moose_beware");
+        bewareobj.transform.rotation = Quaternion.LookRotation(Vector3.forward,targetvec) * Quaternion.Euler(0,0,90);
         SFXsystem.instance.PlaySoundFX(AttackSFX[0], transform, 1.0f);
         yield return new WaitForSeconds(1.0f);
         SFXsystem.instance.PlaySoundFX(AttackSFX[2], transform, 1.0f);

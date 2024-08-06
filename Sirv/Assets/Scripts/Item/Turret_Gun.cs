@@ -51,7 +51,7 @@ public class Turret_Gun : Turret
                 break;
         }
     }
-    void shot()
+    protected void shot()
     {
         GameObject Bul = Instantiate(Bullet, transform.position, Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position));
         BulletMove BulComp = Bul.GetComponent<BulletMove>();
