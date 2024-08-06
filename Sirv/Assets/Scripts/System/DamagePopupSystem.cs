@@ -56,6 +56,9 @@ public class DamagePopupSystem : MonoBehaviour
                 case "Blood":
                     m_Text.color = new Color(0.745283f, 0.1152728f, 0.09491812f);
                     break;
+                case "Heal":
+                    m_Text.color = new Color(0.6436017f, 1f, 0.3726415f);
+                    break;
             }
         }
 

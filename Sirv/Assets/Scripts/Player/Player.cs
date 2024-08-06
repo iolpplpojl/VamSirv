@@ -195,6 +195,18 @@ public abstract class Player : MonoBehaviour
             SFXsystem.instance.PlaySoundFX(ReloadSound[0],transform,0.5f);
         }
     }
+
+    public void Heal(int amount)
+    {
+        if (health + amount >= maxHealthNow)
+        {
+            health = maxHealthNow;
+        }
+        else
+        {
+            health += amount;
+        }
+    }
     public void GetItem(int idx, int rare)
     {
         switch (rare)
@@ -294,9 +306,7 @@ public abstract class Player : MonoBehaviour
                         speedPer -= 0.05f;
                         break;
                     case 2:
-                        maxAmmoGet(0.05f);
-                        attackspeedPer += 0.02f;
-                        SpeedGet(-0.02f);
+                        Towersystem.instance.GetTower(2);
                         break;
                     case 3:
                         critPer += 0.03f;

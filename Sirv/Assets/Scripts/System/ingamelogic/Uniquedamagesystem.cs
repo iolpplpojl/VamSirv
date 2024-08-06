@@ -19,14 +19,7 @@ public class Uniquedamagesystem : MonoBehaviour
     {
         if (Random.Range(0f, 1f) <= player.BloodSuck)
         {
-            if (player.health + 2 >= player.maxHealthNow)
-            {
-                player.health = player.maxHealthNow;
-            }
-            else
-            {
-                player.health += 2;
-            }
+            player.Heal(2);
         }
     }
 
