@@ -1,10 +1,10 @@
 ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE,RAIRTY
-0,깃털 장화,적 처치시 이동속도 <color=#00ff00ff>10%</color>증가<br>최대 체력 - <color=#B90E0A>1%</color>,39,0
+0,깃털 장화,적 처치시 일시적으로 이동속도 <color=#00ff00ff>+ 10%</color><br>최대 체력 - <color=#B90E0A>1%</color>,39,0
 1,거대<br>양날도끼,대미지 + <color=#00ff00ff>12%</color><br>이동속도 - <color=#B90E0A>5%</color><br>공격속도 - <color=#B90E0A>3%</color>,45,0
 2,호박벌,주기적으로 주변의 플레이어를 치유합니다.<br>치유량 : 3<br>치유 속도 0.5/초<br>타워,44,0
-3,너클,치명타 + <color=#00ff00ff>3%</color><br>대미지 + <color=#00ff00ff>3%</color><br>공격속도 - <color=#B90E0A>3%</color>,22,0
-4,벨트,체력 + <color=#00ff00ff>6%</color> <br> 이동속도 - <color=#B90E0A>2%</color>,23,0
-5,채찍,이동속도 + <color=#00ff00ff>7%</color><br>공격력 + <color=#00ff00ff>3%</color><br>공격속도 + <color=#00ff00ff>3%</color><br>체력 - <color=#B90E0A>5%</color>,30,0
+3,만병치료제,대미지 + <color=#00ff00ff>2%</color><br>공격속도 + <color=#00ff00ff>2%</color><br>최대 체력 + <color=#00ff00ff>2%</color><br>치명타 + <color=#00ff00ff>2%</color><br>이동속도 + <color=#00ff00ff>2%</color><br>최대탄약 + <color=#00ff00ff>2%</color><br>재장전 + <color=#00ff00ff>2%</color>,48,0
+4,거북이,최대 체력 + <color=#00ff00ff>18%</color><br>이동속도 - <color=#B90E0A>6%</color>,50,0
+5,손망치,공격 적중시 10%의 확률로 최대 체력의 10%*아이템 개수의 대미지를 추가로 입힙니다.<br>최대 체력 + <color=#00ff00ff>5%</color><br>공격속도 - <color=#B90E0A>5%</color>,52,0
 6,계약서,대미지 + <color=#00ff00ff>4%</color><br>공격속도 + <color=#B90E0A>1%</color>,20,0
 7,빨간 열매,일반 스킬 쿨타임 - <color=#00ff00ff>5% </color><br>치명타 - <color=#B90E0A>1%</color>,24,0
 8,석궁,대미지 : 25 x 3 <br>공격속도 : 0.66/초<br>원거리<br>치명타 확률 : 15%<br>보조 무기,47,0

@@ -64,6 +64,7 @@ public abstract class Player : MonoBehaviour
     public int fireDamage = 0;
 
     public int ExplodeCount = 0;
+    public int HammerCount = 0;
     int windwalk = 0;
     public float windwalk_now = 0;
 
@@ -309,19 +310,22 @@ public abstract class Player : MonoBehaviour
                         Towersystem.instance.GetTower(2);
                         break;
                     case 3:
-                        critPer += 0.03f;
-                        damagePer += 0.03f;
-                        attackspeedPer -= 0.03f;
+                        damagePer += 0.02f;
+                        attackspeedPer += 0.02f;
+                        speedPer += 0.02f;
+                        critPer += 0.02f;
+                        maxHealthGet(0.02f);
+                        reloadtimePer += 0.02f;
+                        maxAmmoGet(0.02f);
                         break;
                     case 4:
-                        maxHealthGet(0.06f);
-                        SpeedGet(-0.02f);
+                        maxHealthGet(0.18f);
+                        SpeedGet(-0.06f);
                         break;
                     case 5:
-                        SpeedGet(0.04f);
-                        damagePer += 0.03f;
-                        attackspeedPer += 0.03f;
-                        maxHealthGet(-0.05f);
+                        HammerCount++;
+                        maxHealthGet(0.05f);
+                        attackspeedPer -= 0.05f;
                         break;
                     case 6:
                         attackspeedPer -= 0.01f;
@@ -346,9 +350,10 @@ public abstract class Player : MonoBehaviour
                         ExplodeCount++;
                         break;
                     case 2:
-                        maxAmmoGet(0.05f);
-                        attackspeedPer += 0.02f;
-                        SpeedGet(-0.02f);
+                        damagePer += Random.Range(-0.2f, 0.4f);
+                        critPer += Random.Range(-0.2f, 0.4f);
+                        attackspeedPer += Random.Range(-0.2f, 0.4f);
+                        maxHealthGet(Random.Range(-0.2f, 0.4f));
                         break;
                     case 3:
                         critPer += 0.03f;

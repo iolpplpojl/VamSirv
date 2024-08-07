@@ -67,6 +67,7 @@ public abstract class Enemy : MonoBehaviour
             flashtime = 1f;
             HP -= (int)(Damage * Weakness);
             Uniquedamagesystem.instance.Explode(transform.position);
+            Uniquedamagesystem.instance.Hammer(this);
             if (BloodSuck == true)
             {
                 Uniquedamagesystem.instance.BloodSuck();
@@ -89,6 +90,7 @@ public abstract class Enemy : MonoBehaviour
             flashtime = 1f;
             HP -= (int)(Damage * 2 * Weakness);
             Uniquedamagesystem.instance.Explode(transform.position);
+            Uniquedamagesystem.instance.Hammer(this);
             if (BloodSuck == true)
             {
                 Uniquedamagesystem.instance.BloodSuck();

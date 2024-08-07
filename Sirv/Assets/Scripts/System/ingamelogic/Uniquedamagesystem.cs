@@ -23,6 +23,16 @@ public class Uniquedamagesystem : MonoBehaviour
         }
     }
 
+    public void Hammer(Enemy enemy)
+    {
+        if(player.HammerCount > 0)
+        {
+            if (Random.Range(0f, 1f) <= 0.2f)
+            {
+                enemy.GetRawDamage((int)(player.maxHealthNow * player.HammerCount * 0.1f * player.damagePer),false,35);
+            }
+        }
+    }
     public void Explode(Vector3 transform)
     {
         if (Random.value <= (1 - (1 / (0.2f*player.ExplodeCount + 1))))
