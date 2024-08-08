@@ -68,6 +68,7 @@ public abstract class Player : MonoBehaviour
     int windwalk = 0;
     public float windwalk_now = 0;
 
+    public int bullethrough = 1;
     public int armor = 0;
 
     protected bool Death = false;
@@ -389,8 +390,7 @@ public abstract class Player : MonoBehaviour
                         fireDamage++;
                         break;
                     case 1:
-                        attackspeedPer += 0.06f;
-                        damagePer -= 0.02f;
+                        bullethrough++;
                         break;
                     case 2:
                         maxAmmoGet(0.05f);

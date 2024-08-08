@@ -18,7 +18,6 @@ public class Player_Hunter : Player
     public float TrapDura = 3f;
 
     public int KnifeDama = 100;
-    public int bullethrough;
     public int Pellet = 12;
 
     Towersystem towersystem;
@@ -108,7 +107,7 @@ public class Player_Hunter : Player
                 Pellet++;
                 break;
             case 5:
-                reloadtimePer = 0.33f;
+                reloadtimePer += 0.33f;
                 break;
             case 6:
                 Pellet++;

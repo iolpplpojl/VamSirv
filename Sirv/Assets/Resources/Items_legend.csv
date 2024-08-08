@@ -1,6 +1,6 @@
 ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE,RAIRTY
 0,업화,<color=#FF8500>화상</color> 대미지가 2배 증가합니다.,152,0
-1,이쑤시개,공격속도 + <color=#00ff00ff>6%</color><br>대미지 - <color=#B90E0A>2%</color>,22,0
+1,관통의 날,플레이어가 직접 가하는 투사체형 공격이 적을 1회 관통합니다.,200,0
 2,주머니,최대 탄약 + <color=#00ff00ff>5%</color><br>공격속도 +<color=#00ff00ff>2%</color><br>이동속도 - <color=#B90E0A>2%</color>,18,0
 3,너클,치명타 + <color=#00ff00ff>3%</color><br>대미지 + <color=#00ff00ff>3%</color><br>공격속도 - <color=#B90E0A>3%</color>,22,0
 4,벨트,체력 + <color=#00ff00ff>6%</color> <br> 이동속도 - <color=#B90E0A>2%</color>,23,0

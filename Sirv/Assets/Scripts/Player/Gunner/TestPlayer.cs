@@ -9,7 +9,6 @@ public class TestPlayer : Player
     public GameObject Bullet;
     public GameObject Dynamite;
     public float skillADamage;
-    public int bullethrough;  // °üÅë¼ö
     public float skillAExplodeRadius;
     public float skillAExplodeTime;
     public bool Firebomb = false;

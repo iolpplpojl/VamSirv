@@ -4333,7 +4333,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 5798561f884af524c888dc775dc1747e, type: 3}
   - sprite:
     - {fileID: -2101672028, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
-    - {fileID: 21300000, guid: ea04acc1bb14f7545b691740ff3455fa, type: 3}
+    - {fileID: -340348600, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
     - {fileID: 21300000, guid: ea04acc1bb14f7545b691740ff3455fa, type: 3}
     - {fileID: 21300000, guid: ea04acc1bb14f7545b691740ff3455fa, type: 3}
     - {fileID: 21300000, guid: ea04acc1bb14f7545b691740ff3455fa, type: 3}

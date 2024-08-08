@@ -68,6 +68,10 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(Spawn5(a));
             StartCoroutine(Spawn1_3(a));
         }
+        if (a >= 15)
+        {
+            StartCoroutine(Spawn6(a));
+        }
 
     }
     public void SetMoneyManager(Moneymanager Manager)
@@ -343,6 +347,28 @@ public class EnemySpawner : MonoBehaviour
             m_enemy.HP += 2 * round;
             m_enemy.Damage += (int)(0.5 * round);
             yield return new WaitForSeconds(SpawnTime_Large);
+
+        }
+    }
+
+    /// <summary>
+    /// 오크 소환
+    /// </summary>
+    IEnumerator Spawn6(int round)
+    {
+        while (true)
+        {
+
+            Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), UnityEngine.Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f));
+            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            {
+                pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2.4f), Box.size.x / 2.4f), UnityEngine.Random.Range(-(Box.size.y / 2.4f), Box.size.y / 2.4f));
+            }
+            GameObject enemy = Instantiate(EnemyPrefs[7], pos, Quaternion.identity, transform); Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += 20 * round;
+            m_enemy.Damage += (int)(2 * round);
+            yield return new WaitForSeconds(SpawnTime_Large*2);
 
         }
     }
