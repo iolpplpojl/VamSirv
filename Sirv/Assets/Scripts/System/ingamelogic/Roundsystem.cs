@@ -76,7 +76,7 @@ public class Roundsystem : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
             counter--;
         }
-        if (Round % 5 == 0)
+        if (Round % 1 == 0)
         {
             setBoss();
         }

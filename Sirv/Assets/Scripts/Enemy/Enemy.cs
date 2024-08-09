@@ -33,6 +33,8 @@ public abstract class Enemy : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         targetrigid = target.GetComponent<Rigidbody2D>();
         Sprite = GetComponent<SpriteRenderer>();
+
+
     }
 
     // Update is called once per frame

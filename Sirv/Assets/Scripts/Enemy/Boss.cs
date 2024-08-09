@@ -20,6 +20,10 @@ public abstract class Boss : Enemy
         target = GameObject.FindWithTag("Player");
         targetrigid = target.GetComponent<Rigidbody2D>();
         Sprite = GetComponent<SpriteRenderer>();
+        if(Sprite == null)
+        {
+            Sprite = GetComponentInChildren<SpriteRenderer>();
+        }
         MaxHP = HP;
         StartCoroutine(Spawnbeware());
     }

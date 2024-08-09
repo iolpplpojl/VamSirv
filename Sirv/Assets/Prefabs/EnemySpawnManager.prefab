@@ -132,8 +132,7 @@ MonoBehaviour:
   - {fileID: 2413756430259508831, guid: 413650e954afc33438964c3e42495e33, type: 3}
   - {fileID: 2413756430259508831, guid: ab7cf9e3a1181284799ca3c6740da26a, type: 3}
   Bosses_1:
-  - {fileID: 5637199353950137722, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
-  - {fileID: 5385765550554102021, guid: 1e4be87324b8c1741982d4062dd5e7fe, type: 3}
+  - {fileID: 4111994174266715149, guid: 15f26d9d4c6efac48b2b41f708aa24a5, type: 3}
   Box: {fileID: 3145619300460181883}
   player: {fileID: 0}
   safepos: {fileID: 0}
