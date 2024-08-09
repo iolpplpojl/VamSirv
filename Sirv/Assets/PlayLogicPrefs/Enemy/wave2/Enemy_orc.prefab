@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7594571831827727763}
   - component: {fileID: 3656406524205371010}
   m_Layer: 7
-  m_Name: Enemy_wave2 1
+  m_Name: Enemy_orc
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4de5f13dd19cd244b8a08c759e09418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 110
+  HP: 230
   speed: 1.66
   target: {fileID: 0}
   targetrigid: {fileID: 0}

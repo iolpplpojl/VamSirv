@@ -231,7 +231,7 @@ public abstract class Player : MonoBehaviour
                         SpeedGet(-0.01f);
                         break;
                     case 3:
-                        critPer += 0.03f;
+                        critPer += 0.02f;
                         damagePer += 0.03f;
                         attackspeedPer -= 0.03f;
                         break;
@@ -249,6 +249,14 @@ public abstract class Player : MonoBehaviour
                     case 6:
                         attackspeedPer -= 0.01f;
                         damagePer += 0.04f;
+                        break;
+                    case 7:
+                        damagePer += 0.01f;
+                        maxHealthGet(0.02f);
+                        break;
+                    case 8:
+                        speedPer += 0.01f;
+                        attackspeedPer += 0.02f;                                                
                         break;
                 }
                 break;
@@ -329,8 +337,12 @@ public abstract class Player : MonoBehaviour
                         attackspeedPer -= 0.05f;
                         break;
                     case 6:
-                        attackspeedPer -= 0.01f;
-                        damagePer += 0.04f;
+                        skillAcoolPer += 0.06f;
+                        damagePer -= 0.03f;
+                        break;                    
+                    case 7:
+                        skillBcoolPer += 0.06f;
+                        damagePer -= 0.03f;
                         break;
                     case 500:
                         GetUniqueItem(0);

@@ -106,11 +106,25 @@ public class StatDescer : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
                     icon.sprite = icons[8];
                     break;
                 case "HealthATK":
-                    Desc.GetComponent<RectTransform>().anchoredPosition = new Vector2(7, -230);
+                    Desc.GetComponent<RectTransform>().anchoredPosition = new Vector2(7, -260);
                     texts[0].text = DescData[9]["NAME"].ToString();
                     texts[1].text = DescData[9]["DESC"].ToString();
                     texts[2].text = ((int)(player.BloodSuck * 100)).ToString();
                     icon.sprite = icons[9];
+                    break;
+                case "SkillA":
+                    Desc.GetComponent<RectTransform>().anchoredPosition = new Vector2(7, -290);
+                    texts[0].text = DescData[10]["NAME"].ToString();
+                    texts[1].text = DescData[10]["DESC"].ToString();
+                    texts[2].text = ((int)(player.skillAcoolPer * 100)).ToString();
+                    icon.sprite = icons[10];
+                    break;
+                case "SkillB":
+                    Desc.GetComponent<RectTransform>().anchoredPosition = new Vector2(7, -320);
+                    texts[0].text = DescData[11]["NAME"].ToString();
+                    texts[1].text = DescData[11]["DESC"].ToString();
+                    texts[2].text = ((int)(player.skillBcoolPer * 100)).ToString();
+                    icon.sprite = icons[11];
                     break;
             }
             Desc.SetActive(true);

@@ -486,6 +486,34 @@ public class Rewardsystem : MonoBehaviour
         }
         Ω∫≈».text += ((int)(player.BloodSuck * 100)).ToString();
         Ω∫≈».text += "</color><br>";
+        if (player.skillAcoolPer > 1f)
+        {
+            Ω∫≈».text += "<color=#A2FF00>";
+        }
+        else if (player.skillAcoolPer == 1)
+        {
+            Ω∫≈».text += "<color=white>";
+        }
+        else
+        {
+            Ω∫≈».text += "<color=#0099FF>";
+        }
+        Ω∫≈».text += ((int)(player.skillAcoolPer * 100)).ToString();
+        Ω∫≈».text += "</color><br>";
+        if (player.skillBcoolPer > 1f)
+        {
+            Ω∫≈».text += "<color=#A2FF00>";
+        }
+        else if (player.skillBcoolPer == 1)
+        {
+            Ω∫≈».text += "<color=white>";
+        }
+        else
+        {
+            Ω∫≈».text += "<color=#0099FF>";
+        }
+        Ω∫≈».text += ((int)(player.skillBcoolPer * 100)).ToString();
+        Ω∫≈».text += "</color><br>";
     }
     public void UpdateSideArmUI()
     {
