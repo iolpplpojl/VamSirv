@@ -22,7 +22,7 @@ public class Enemy_Orc : Enemy_Normal
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>().GetDamage(Damage);
+            collision.GetComponent<Player>().GetDamage(Damage/2);
         }
     }
 

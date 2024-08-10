@@ -9,6 +9,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] EnemyPrefs;
     public GameObject[] Bosses_1;
+    public GameObject[] Bosses_2;
     public BoxCollider2D Box;
     public Player player;
     public Transform safepos;
@@ -101,9 +102,18 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnBoss(int round)
     {
-        GameObject enemy = Instantiate(Bosses_1[UnityEngine.Random.Range(0,Bosses_1.Length)], transform);
-        Enemy m_enemy = enemy.GetComponent<Enemy>();
-        m_enemy.SetMoneymanager(Moneymanager);
+        if (round <= 10)
+        {
+            GameObject enemy = Instantiate(Bosses_1[UnityEngine.Random.Range(0, Bosses_1.Length)], transform);
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+        }
+        else
+        {
+            GameObject enemy = Instantiate(Bosses_2[UnityEngine.Random.Range(0, Bosses_2.Length)], transform);
+            Enemy m_enemy = enemy.GetComponent<Enemy>();
+            m_enemy.SetMoneymanager(Moneymanager);
+        }
     }
 
     /// <summary>
