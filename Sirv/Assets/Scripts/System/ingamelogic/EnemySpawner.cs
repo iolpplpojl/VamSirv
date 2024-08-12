@@ -102,17 +102,18 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnBoss(int round)
     {
-        if (round <= 10)
+        if (round / 5 <= Bosses_1.Length)
         {
-            GameObject enemy = Instantiate(Bosses_1[UnityEngine.Random.Range(0, Bosses_1.Length)], transform);
+            GameObject enemy = Instantiate(Bosses_1[round / 5-1], transform);
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
         }
         else
         {
-            GameObject enemy = Instantiate(Bosses_2[UnityEngine.Random.Range(0, Bosses_2.Length)], transform);
+            GameObject enemy = Instantiate(Bosses_1[Bosses_1.Length-1], transform);
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
+            m_enemy.HP += round / 5 - Bosses_1.Length * 3500;
         }
     }
 
@@ -124,7 +125,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {   
             Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
-            while(Vector3.Distance(pos,player.transform.position) <= distan)
+            while(Vector3.Distance(pos,player.transform.position) <= distan + 1.5f)
             {
                 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
             }
@@ -152,7 +153,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
-            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            while (Vector3.Distance(pos, player.transform.position) <= distan + 1.5f)
             {
                 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
             }
@@ -233,7 +234,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
-            while (Vector3.Distance(pos, player.transform.position) <= distan)
+            while (Vector3.Distance(pos, player.transform.position) <= distan + 1.5f)
             {
                 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
             }

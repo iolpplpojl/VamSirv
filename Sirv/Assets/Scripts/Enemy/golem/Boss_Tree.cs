@@ -26,6 +26,7 @@ public class Boss_Tree : Boss
     public AudioClip StoneToss;
     public AudioClip Summonsf;
     public AudioClip WindStormsf;
+
     // Update is called once per frame  
     void Start()
     {
@@ -84,14 +85,13 @@ public class Boss_Tree : Boss
                 temps.targetrigid = targetrigid;
                 attackTimenow = patternTimeTable[0];
                 SFXsystem.instance.PlaySoundFX(StoneToss, transform, 1f);
-
                 break;
             case 1: //summon
                 if (SummonCoolDown <= 0)
                 {
                     StartCoroutine(SummonMinions());
                     attackTimenow = patternTimeTable[1];
-                    SummonCoolDown = 10f;
+                    SummonCoolDown = 12f;
                     SFXsystem.instance.PlaySoundFX(Summonsf, transform, 0.3f,2.0f);
                 }
                 break;

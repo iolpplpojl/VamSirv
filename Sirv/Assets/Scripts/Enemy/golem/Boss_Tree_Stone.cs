@@ -16,8 +16,9 @@ public class Boss_Tree_Stone : MonoBehaviour
     public BoxCollider2D col;
     bool moving = false;
     public AudioClip toss;
-
     public string debug;
+    public Animator anim;
+    public GameObject Stoneanim;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -60,13 +61,14 @@ public class Boss_Tree_Stone : MonoBehaviour
     }
     IEnumerator setSpeed()
     {
-        yield return new WaitForSeconds(0.66f);
+        yield return new WaitForSeconds(0.44f);
         targetvec = targetrigid.position;
         dirvec = targetrigid.position - rigid.position;
-
-        yield return new WaitForSeconds(0.44f);
+        Stoneanim.transform.position = targetvec;
+        anim.Play("Stone_beware");
+        yield return new WaitForSeconds(0.66f);
+        Stoneanim.SetActive(false);
         SFXsystem.instance.PlaySoundFX(toss, transform, 1f);
-
         moving = true;
         while (speed > 0.3f)
         {

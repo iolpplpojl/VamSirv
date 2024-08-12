@@ -22,7 +22,7 @@ public class Enemy_Orc : Enemy_Normal
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>().GetDamage(Damage/2);
+            //collision.GetComponent<Player>().GetDamage(Damage/2);
         }
     }
 
@@ -49,7 +49,20 @@ public class Enemy_Orc : Enemy_Normal
     {
         attacking = true;
         anim.Play("orc_boom");
-        yield return new WaitForSeconds(1.35f);
+        AnimatorStateInfo animstat = anim.GetCurrentAnimatorStateInfo(0);
+        while (!animstat.IsName("orc_boom"))
+        {
+            animstat = anim.GetCurrentAnimatorStateInfo(0);
+            yield return new WaitForFixedUpdate();
+
+        }
+        while (animstat.IsName("orc_boom") && animstat.normalizedTime <= 0.925f)
+        {
+            Debug.Log("name : " +  animstat.IsName("orc_boom") + "dura" + animstat.normalizedTime);
+            animstat = anim.GetCurrentAnimatorStateInfo(0);
+            yield return new WaitForFixedUpdate();
+        }
+        Debug.Log("Boom");
         var hit = Physics2D.OverlapCircle(transform.position, Radius, LayerMask.GetMask("Player"));
         if(hit != null)
         {

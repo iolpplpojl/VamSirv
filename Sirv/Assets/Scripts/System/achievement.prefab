@@ -445,6 +445,7 @@ MonoBehaviour:
   - {fileID: -276004488, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   - {fileID: -519686894, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   - {fileID: 340507644, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  - {fileID: -1834119329, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
   img: {fileID: 7377572856877447450}
 --- !u!95 &5949132504056897832
 Animator:

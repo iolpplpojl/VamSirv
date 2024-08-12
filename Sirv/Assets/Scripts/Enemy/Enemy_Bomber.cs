@@ -83,7 +83,7 @@ public class Enemy_Bomber : Enemy_Normal
     {
         if(MaxHp/2 >= HP && first == false)
         {
-            float random = Random.Range(0, 360);
+            float random = 180;
             for(int i = 0; i < 6; i++)
             {
                 GameObject bul = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, random+i * 60), transform.parent);
@@ -96,7 +96,7 @@ public class Enemy_Bomber : Enemy_Normal
         }
         if(HP <= 0)
         {
-            float random = Random.Range(0, 360);
+            float random = 90;
 
             for (int i = 0; i < 6; i++)
             {

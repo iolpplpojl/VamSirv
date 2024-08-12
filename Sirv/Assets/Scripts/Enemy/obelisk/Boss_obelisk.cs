@@ -18,6 +18,8 @@ public class Boss_obelisk : Boss
     public AudioClip[] effects;
     int beforepattern = 999;
     AudioSource beamsound;
+
+    float spintimenow;
     public override void Attack()
     {
         int temp = Random.Range(0, patternTimeTable.Length);
@@ -37,18 +39,20 @@ public class Boss_obelisk : Boss
                 attackTimenow = patternTimeTable[temp];
                 beforepattern = temp;
                 break;
-
             case 2:
-                if (spawntimenow <= 0)
-                {
-                    summon(450);
-                    spawntimenow = 6;
-                }
-                break;
-            case 3:
-                StartCoroutine(spin());
+                Debug.Log("Shoot3");
+                StartCoroutine(Shoot3());
                 attackTimenow = patternTimeTable[temp];
                 beforepattern = temp;
+                break;
+            case 3:
+                if (spintimenow <= 0)
+                {
+                    StartCoroutine(spin());
+                    attackTimenow = patternTimeTable[temp];
+                    beforepattern = temp;
+                    spintimenow = 60;
+                }
                 break;
         }
     }
@@ -66,11 +70,14 @@ public class Boss_obelisk : Boss
         {
             spawntimenow -= Time.fixedDeltaTime;
         }
+        if(spintimenow > 0)
+        {
+            spintimenow -= Time.fixedDeltaTime;
+        }
     }
     public override void DeadUniq()
     {
         Destroy(beamsound);
-        throw new System.NotImplementedException();
     }
 
     public override void Move()
@@ -107,6 +114,23 @@ public class Boss_obelisk : Boss
                 BulComp.speed = 6;
             }
             yield return new WaitForSeconds(0.15f);
+        }
+    }
+
+    IEnumerator Shoot3()
+    {
+        for (int p = 0; p < 5; p++)
+        {
+            for (int i = -2 + -p; i <= 2 + p; i++)
+            {
+                GameObject bul = Instantiate(Bullet, transform.position, Quaternion.LookRotation(Vector3.forward, target.transform.position - transform.position) * Quaternion.Euler(0,0,(150/(5 + p)*i)), transform.parent);
+                bul.transform.localScale = new Vector3(5, 5, 1);
+                Enemy_Bullet BulComp = bul.GetComponent<Enemy_Bullet>();
+                BulComp.damage = Damage;
+                BulComp.speed = 6;
+            }
+            yield return new WaitForSeconds(0.25f);
+
         }
     }
 
@@ -152,7 +176,7 @@ public class Boss_obelisk : Boss
         spinpos.SetActive(true);    
         foreach (var dar in beam)
         {
-            dar.transform.localScale = new Vector3(0.3f, 0, 0);
+            dar.transform.localScale = new Vector3(0.2f, 0, 0);
         }
         for (int i = 0; i < 45; i++)
         {
