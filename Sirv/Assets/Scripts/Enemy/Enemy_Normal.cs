@@ -29,7 +29,7 @@ public class Enemy_Normal : Enemy
     public override void Move()
     {
         Vector2 dirvec = targetrigid.position - rigid.position;
-        Vector2 nextvec = dirvec.normalized * speed * Time.fixedDeltaTime;
+        Vector2 nextvec = dirvec.normalized * (Slow * speed) * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextvec);
         rigid.velocity = Vector2.zero;
     }

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet_Missile : BulletMove
+public class Bullet_Fireball : BulletMove
 {
     // Start is called before the first frame update
+    
     public float radius;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,10 +22,12 @@ public class Bullet_Missile : BulletMove
                         if (Crit == false)
                         {
                             m_enemy.GetDamage(damage, true);
+                            m_enemy.StartCoroutine(m_enemy.Fire(damage / 5));
                         }
                         else
                         {
                             m_enemy.GetCritDamage(damage, true);
+                            m_enemy.StartCoroutine(m_enemy.Fire(damage / 5));
                         }
                     }
                 }

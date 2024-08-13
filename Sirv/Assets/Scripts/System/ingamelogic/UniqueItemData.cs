@@ -45,6 +45,16 @@ public class UniqueItemData : MonoBehaviour
 
                 Debug.Log(ItemData.Count);
                 break;
+            case 3:
+                ItemData.Add(null);
+                ItemData.Add(null);
+                ItemData.Add(CSVReader.Read("kniunique"));
+                ItemData.Add(CSVReader.Read("kniunique_epic"));
+                ItemData.Add(null);
+
+
+                Debug.Log(ItemData.Count);
+                break;
         }
         for (int l = 0; l < ItemData.Count; l++)
         {

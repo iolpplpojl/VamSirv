@@ -25,7 +25,7 @@ public abstract class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public int Damage;
     public float Weakness = 1f;
-
+    public float Slow = 1;
 
     void Start()
     {
@@ -191,5 +191,12 @@ public abstract class Enemy : MonoBehaviour
         Weakness += pcnt + 0.001f;
         yield return new WaitForSeconds(duration);
         Weakness -= pcnt;
+    }
+    public IEnumerator GetSlow(float pcnt, float duration)
+    {
+        Slow += pcnt + 0.001f;
+        yield return new WaitForSeconds(duration);
+        Slow -= pcnt;
+
     }
 }

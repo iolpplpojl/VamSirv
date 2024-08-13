@@ -94,6 +94,16 @@ public class ExpSystem : MonoBehaviour
                     }
                     break;
                 }
+            case 3:
+                {
+                    U_Updatas = CSVReader.Read("upgrade_kni");
+                    Debug.Log("unique");
+                    for (int i = 0; i < U_Updatas.Count; i++)
+                    {
+                        Debug.Log(i);
+                    }
+                    break;
+                }
         }
     }
 

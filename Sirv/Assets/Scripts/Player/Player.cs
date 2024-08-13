@@ -183,7 +183,7 @@ public abstract class Player : MonoBehaviour
             }
         }
     }
-    private void Move()
+    virtual protected void Move()
     {
         Vector2 norVec = inputVec.normalized * (speed*(speedPer+windwalk_now-slow)) * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + norVec);
@@ -478,7 +478,7 @@ public abstract class Player : MonoBehaviour
         maxHealthNow = (int)(maxHealth * maxHealthPer);
         health = maxHealthNow;
     }
-    public void GetDamage(int damage)
+    public virtual void GetDamage(int damage)
     {
         if (GetAttackTimenow <= 0)
         {
