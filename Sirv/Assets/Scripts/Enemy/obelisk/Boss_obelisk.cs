@@ -40,8 +40,7 @@ public class Boss_obelisk : Boss
                 beforepattern = temp;
                 break;
             case 2:
-                Debug.Log("Shoot3");
-                StartCoroutine(Shoot3());
+                Shoot3();
                 attackTimenow = patternTimeTable[temp];
                 beforepattern = temp;
                 break;
@@ -103,6 +102,7 @@ public class Boss_obelisk : Boss
     }
     IEnumerator Shoot1()
     {
+        AudioSource temp = SFXsystem.instance.PlaySoundFX(effects[3], transform, 1.0f,true);
         for(int i = 0; i < 12; i++)
         {
             for(int p = -6; p <= 6; p++)
@@ -115,27 +115,25 @@ public class Boss_obelisk : Boss
             }
             yield return new WaitForSeconds(0.15f);
         }
+        Destroy(temp);
     }
 
-    IEnumerator Shoot3()
+    void Shoot3()
     {
-        for (int p = 0; p < 5; p++)
-        {
-            for (int i = -2 + -p; i <= 2 + p; i++)
+        SFXsystem.instance.PlaySoundFX(effects[4], transform, 1.0f);
+        for (int i = -3; i <= 3; i++)
             {
-                GameObject bul = Instantiate(Bullet, transform.position, Quaternion.LookRotation(Vector3.forward, target.transform.position - transform.position) * Quaternion.Euler(0,0,(150/(5 + p)*i)), transform.parent);
+                GameObject bul = Instantiate(Bullet, transform.position, Quaternion.LookRotation(Vector3.forward, target.transform.position - transform.position) * Quaternion.Euler(0,0,(15*i)), transform.parent);
                 bul.transform.localScale = new Vector3(5, 5, 1);
                 Enemy_Bullet BulComp = bul.GetComponent<Enemy_Bullet>();
                 BulComp.damage = Damage;
-                BulComp.speed = 6;
+                BulComp.speed = 8;
             }
-            yield return new WaitForSeconds(0.25f);
-
-        }
     }
 
     IEnumerator Shoot2()
     {
+        AudioSource temp = SFXsystem.instance.PlaySoundFX(effects[2], transform, 1.0f, true);
         for (int i = 0; i < 18; i++)
         {
             GameObject bul = Instantiate(Bullet, shootpos[0].position, Quaternion.Euler(0, 0, 360/18*i), transform.parent);
@@ -162,6 +160,8 @@ public class Boss_obelisk : Boss
             BulComp.damage = Damage;
             BulComp.speed = 6;
         }
+        yield return new WaitForSeconds(0.66f);
+        Destroy(temp);
     }
 
     IEnumerator spin()
@@ -200,7 +200,7 @@ public class Boss_obelisk : Boss
                     GameObject bul = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 360 / 18 * k), transform.parent);
                     bul.transform.localScale = new Vector3(6, 6, 1);
                     Enemy_Bullet BulComp = bul.GetComponent<Enemy_Bullet>();
-                    BulComp.damage = Damage;
+                    BulComp.damage = (int)(Damage*0.7f);
                     BulComp.speed = 5f;
                 }
             }
@@ -220,7 +220,7 @@ public class Boss_obelisk : Boss
                     GameObject bul = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 360 / 18 * k), transform.parent);
                     bul.transform.localScale = new Vector3(6, 6, 1);
                     Enemy_Bullet BulComp = bul.GetComponent<Enemy_Bullet>();
-                    BulComp.damage = Damage;
+                    BulComp.damage = (int)(Damage * 0.7f);
                     BulComp.speed = 5f;
                 }
             }

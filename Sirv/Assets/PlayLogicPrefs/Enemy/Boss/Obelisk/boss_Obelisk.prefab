@@ -1134,7 +1134,7 @@ MonoBehaviour:
   speed: 0
   target: {fileID: 0}
   targetrigid: {fileID: 0}
-  Value: 75
+  Value: 150
   DropPer: 1
   exp: 150
   Death: 0
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   patternTimeTable:
   - 5
   - 4.5
-  - 3
+  - 2
   - 33
   attackTimenow: 3
   pos:
@@ -1179,6 +1179,9 @@ MonoBehaviour:
   effects:
   - {fileID: 8300000, guid: dda8853ea5724144086d14964f804a2e, type: 3}
   - {fileID: 8300000, guid: 39c5584d23693c346a301a72f06277cf, type: 3}
+  - {fileID: 8300000, guid: ed6e2447bdf9e594da457a1d2d61ebef, type: 3}
+  - {fileID: 8300000, guid: c42efc88d084ffd4eb817ecb7a9fed39, type: 3}
+  - {fileID: 8300000, guid: 81d3295512dee3c4d8d9dae0ad035650, type: 3}
 --- !u!1 &4143630067073945789
 GameObject:
   m_ObjectHideFlags: 0

@@ -800,9 +800,9 @@ MonoBehaviour:
   speed: 1.8
   target: {fileID: 0}
   targetrigid: {fileID: 0}
-  Value: 50
+  Value: 90
   DropPer: 1
-  exp: 80
+  exp: 105
   Death: 0
   CritEffects:
   - {fileID: 8300000, guid: 6a97574b999754ab88af555cfbc0d8f4, type: 3}
