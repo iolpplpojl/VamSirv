@@ -9,16 +9,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 05fb281dfcfacf249b90270e9c827cda, type: 3}
-    - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
-      propertyPath: m_Color.b
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1333662011, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+    - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
+      propertyPath: m_Color.a
+      value: 0.20784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
+      propertyPath: m_Color.b
+      value: 0.13679248
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.13679248
       objectReference: {fileID: 0}
     - target: {fileID: 1065884728270604420, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_Color.r
@@ -26,11 +34,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1470953436149211753, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1470953436149211753, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1470953436149211753, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,19 +86,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6691944344161593309, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_Size.x
-      value: 0.1
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6691944344161593309, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_Size.y
-      value: 0.3
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6691944344161593309, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 6691944344161593309, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1
+      value: 0.32
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 784116543272424807, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
@@ -100,9 +108,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6516944877753444422, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4603066893607639455}
-    - targetCorrespondingSourceObject: {fileID: 6516944877753444422, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7527059938867568987}
   m_SourcePrefab: {fileID: 100100000, guid: cf6a682c12726d34582c79df972ad14b, type: 3}
 --- !u!1 &6787473082500420283 stripped
 GameObject:
@@ -126,24 +131,4 @@ MonoBehaviour:
   bullethrough: 1
   Crit: 0
   radius: 1.5
---- !u!95 &7527059938867568987
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6787473082500420283}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c339c2e88ff14647b3ebd18fb75841f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  duration: 0

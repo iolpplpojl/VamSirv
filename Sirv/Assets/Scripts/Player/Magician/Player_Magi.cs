@@ -7,7 +7,7 @@ public class Player_Magi : Player
 
     float AttackRadius = 1.0f;
     public GameObject FireBall;
-    float FireBallRadius = 1.5f;
+    float FireBallRadius = 3f;
     public GameObject Attackpos;
     public bool rushing;
     int GenAmount = 1;
@@ -31,19 +31,19 @@ public class Player_Magi : Player
             yield return new WaitForSeconds(0.5f);
         }
     }
-    IEnumerator Knife(Vector2 attackpos)
+    IEnumerator Knife()
     {
         for(int i = 1;  i <= 2; i++)
         {
             List<Collider2D> nonTriggerHits = new List<Collider2D>(5);
 
-            var hit = Physics2D.OverlapCircleAll(attackpos, AttackRadius, LayerMask.GetMask("Enemy"));
-
+            var hit = Physics2D.OverlapCircleAll(Attackpos.transform.position, AttackRadius, LayerMask.GetMask("Enemy"));
+             
             if (hit != null)
             {
                 foreach (var collider in hit)
                 {
-                    if (!collider.isTrigger)
+                    if (collider.isTrigger)
                     {
                         nonTriggerHits.Add(collider);
                     }
@@ -77,7 +77,7 @@ public class Player_Magi : Player
     }
     public override void Attack()
     {
-        StartCoroutine(Knife(Attackpos.transform.position));
+        StartCoroutine(Knife());
     }
 
     public override void GetUniqueItem(int idx)
@@ -94,9 +94,10 @@ public class Player_Magi : Player
     {
         GameObject Bul = Instantiate(FireBall, shotpoint.position, shotpoint.rotation);
         Bullet_Fireball BulComp = Bul.GetComponent<Bullet_Fireball>();
-        BulComp.damage = (int)(20 * damagePer);
-        BulComp.bullethrough = 1;
+        BulComp.damage = (int)(50 * damagePer);
         BulComp.radius = FireBallRadius;
+        BulComp.duration = 0.07f;
+        BulComp.speed = 20;
         //SFXsystem.instance.PlaySoundFX(Effects[2], transform, 1f);
         skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
     }

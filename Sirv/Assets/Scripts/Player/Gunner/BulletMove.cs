@@ -9,7 +9,7 @@ public class BulletMove : MonoBehaviour
     public int damage;
     public int bullethrough;
     public bool Crit;
-    Rigidbody2D rigid;
+    protected Rigidbody2D rigid;
 
     private void Start()
     {

@@ -32,7 +32,7 @@ public class PlayerSelectUI : MonoBehaviour
 
     public void Select(int idx)
     {
-        Name.text = Data[idx]["NAME"].ToString();
+        Name.text = Data[idx]["NAME"].ToString();   
         DefDesc[0].text = Data[idx]["DEFNAME"].ToString();
         DefDesc[1].text = Data[idx]["DEF"].ToString();        
         SkillADesc[0].text = Data[idx]["ASKNAME"].ToString();
