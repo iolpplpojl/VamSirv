@@ -661,7 +661,10 @@ MonoBehaviour:
   speedor: 0
   dmg: 0
   col: {fileID: 0}
+  toss: {fileID: 0}
   debug: 
+  anim: {fileID: 0}
+  Stoneanim: {fileID: 0}
 --- !u!1001 &1306777269
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1087,6 +1090,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 706126c2f09e7b54f9546030a645caee, type: 3}
+--- !u!1001 &5687177299587728000
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4672072149964127540, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_Name
+      value: Knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 960.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 539.933
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508099356569749641, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
 --- !u!1001 &7418594212945265384
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1095,6 +1155,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2336845313629698206, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2336845313629698206, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966557066660603165, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3966557066660603165, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4310098774366852655, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.81
@@ -1222,3 +1298,4 @@ SceneRoots:
   - {fileID: 2017084153}
   - {fileID: 1075140166}
   - {fileID: 2242404141115986984}
+  - {fileID: 5687177299587728000}

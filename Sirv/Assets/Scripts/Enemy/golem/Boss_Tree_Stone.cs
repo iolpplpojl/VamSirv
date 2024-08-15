@@ -19,11 +19,14 @@ public class Boss_Tree_Stone : MonoBehaviour
     public string debug;
     public Animator anim;
     public GameObject Stoneanim;
+
+    bool arrive = false;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         dirvec = targetrigid.position - rigid.position;
         StartCoroutine(setSpeed());
+
     }
 
     // Update is called once per frame
@@ -39,7 +42,8 @@ public class Boss_Tree_Stone : MonoBehaviour
             {
                 moving = false;
                 col.enabled = true;
-                Destroy(this);
+                arrive = true;
+
             }
         }
 
@@ -47,16 +51,11 @@ public class Boss_Tree_Stone : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && arrive == false)
         {
             collision.GetComponent<Player>().GetDamage(dmg);
             col.enabled = true;
-            Destroy(this);
-        }
-        if (collision.CompareTag("wall"))
-        {
-            col.enabled = true;
-            Destroy(this);
+            arrive = true;
         }
     }
     IEnumerator setSpeed()
@@ -75,5 +74,7 @@ public class Boss_Tree_Stone : MonoBehaviour
             speed -= 0.005f;
             yield return new WaitForSeconds(0.01f);
         }
+        yield return new WaitForSeconds(12f);
+        Destroy(gameObject);
     }
 }

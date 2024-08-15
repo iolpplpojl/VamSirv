@@ -375,10 +375,10 @@ MonoBehaviour:
   attackspeed: 1
   attackspeed_now: 0
   attackspeedPer: 1
-  SideArmAttackSpeedper: 0
+  SideArmAttackSpeedper: 1
   damage: 32
   damagePer: 1
-  SideArmDamagePer: 0
+  SideArmDamagePer: 1
   ammo: 1
   maxammo: 1
   maxammonow: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   reloadtime: 0
   reloadtimenow: 0
   reloadtimePer: 1
-  skillAcooltime: 3
+  skillAcooltime: 9
   skillAcooltimenow: 0
   skillAcoolPer: 1
   skillBcooltime: 6
@@ -409,18 +409,26 @@ MonoBehaviour:
   bullethrough: 1
   armor: 0
   shotpoint: {fileID: 8174159504366851679}
-  Effects: []
+  Effects:
+  - {fileID: 8300000, guid: 435cf98ab01a04848a17f6b43f3dfe89, type: 3}
+  - {fileID: 8300000, guid: 483aab2c67140af4995a06e204641974, type: 3}
+  - {fileID: 8300000, guid: d46f2853cd6ea1a43ad4682dfb9c2fdf, type: 3}
+  - {fileID: 8300000, guid: ea91d670b1c5367468f2bd3a3753f999, type: 3}
+  - {fileID: 8300000, guid: cd24d51f319d40d4da7d9fd2d0ad7d58, type: 3}
+  - {fileID: 8300000, guid: 22dc51f7d88a43e4b85b9c2dfb0ee29e, type: 3}
+  - {fileID: 8300000, guid: 4ae7959f5e779b04faed7ec020a8616a, type: 3}
   ReloadSound: []
   Pain:
   - {fileID: 8300000, guid: 11d95ded16495274c9f6fb34a78424b0, type: 3}
   - {fileID: 8300000, guid: 1500f61e037b4994cba5214ea317d388, type: 3}
   - {fileID: 8300000, guid: 47aeb01ac2ddee74ba09007c4a470fd6, type: 3}
   SkillIcon:
-  - {fileID: 629179893, guid: 19f41dd6efa06c74c8ce33d8485ad6b8, type: 3}
-  - {fileID: -1412757944, guid: 19f41dd6efa06c74c8ce33d8485ad6b8, type: 3}
-  FireBall: {fileID: 6787473082500420283, guid: 1cd199eb97b01eb408bbc8ef723676b1, type: 3}
+  - {fileID: -340348600, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  - {fileID: -1865312545, guid: 91757a48667b36c4eb3fa4d128a423e8, type: 3}
+  FireBall: {fileID: 5823078116030828023, guid: 1cd199eb97b01eb408bbc8ef723676b1, type: 3}
   Attackpos: {fileID: 791768165883887568}
   rushing: 0
+  Knifes: {fileID: 4672072149964127540, guid: ac59c31207e30d24bbd28fdf588662fa, type: 3}
 --- !u!95 &5647224151300690605
 Animator:
   serializedVersion: 5

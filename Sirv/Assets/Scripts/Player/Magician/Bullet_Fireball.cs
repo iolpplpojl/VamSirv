@@ -8,6 +8,7 @@ public class Bullet_Fireball : BulletMove
     
     public float radius;
     public float duration;
+    public GameObject spin;
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -21,6 +22,11 @@ public class Bullet_Fireball : BulletMove
             Enemy m_enemy = collision.GetComponent<Enemy>();
             m_enemy.StartCoroutine(m_enemy.Fire(damage));
         }
+    }
+    private void Update()
+    {
+        spin.transform.rotation *= Quaternion.Euler(0, 0, 2);
+        spin.transform.localScale += new Vector3(0.01f, 0.01f, 0);
     }
     IEnumerator Fire()
     {

@@ -8,10 +8,15 @@ public class Player_Magi : Player
     float AttackRadius = 1.0f;
     public GameObject FireBall;
     float FireBallRadius = 3f;
+    float FireBallDuration = 0.15f;
+
     public GameObject Attackpos;
     public bool rushing;
+    bool Engage = false;
+    bool damaging = true;
     int GenAmount = 1;
     Vector2 end;
+    public GameObject Knifes;
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -33,12 +38,16 @@ public class Player_Magi : Player
     }
     IEnumerator Knife()
     {
-        for(int i = 1;  i <= 2; i++)
+        attackspeed_now = 1.0f / (attackspeed * Mathf.Clamp(attackspeedPer, 0.00001f, 99999999));
+        for (int i = 1;  i <= 2; i++)
         {
             List<Collider2D> nonTriggerHits = new List<Collider2D>(5);
+            SFXsystem.instance.PlaySoundFX(new AudioClip[] { Effects[4], Effects[5], Effects[6] }, transform, 1f);
 
             var hit = Physics2D.OverlapCircleAll(Attackpos.transform.position, AttackRadius, LayerMask.GetMask("Enemy"));
-             
+            GameObject effect = Instantiate(Knifes, Attackpos.transform.position, shotpoint.rotation);
+            effect.transform.localScale = new Vector3(6 * AttackRadius, 6 * AttackRadius, 1);
+
             if (hit != null)
             {
                 foreach (var collider in hit)
@@ -71,7 +80,6 @@ public class Player_Magi : Player
                 }
             }
 
-            attackspeed_now = 1.0f / (attackspeed * Mathf.Clamp(attackspeedPer, 0.00001f, 99999999));
             yield return new WaitForSeconds(0.33f*1/attackspeedPer);
         }
     }
@@ -92,19 +100,47 @@ public class Player_Magi : Player
 
     public override void Skill_B()
     {
+        skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
+        StartCoroutine(Fire());
+    }
+
+    IEnumerator Fire()
+    {
+        SFXsystem.instance.PlaySoundFX(new AudioClip[] { Effects[0], Effects[1] }, transform, 1f);
+        yield return new WaitForSeconds(0.4f);
         GameObject Bul = Instantiate(FireBall, shotpoint.position, shotpoint.rotation);
         Bullet_Fireball BulComp = Bul.GetComponent<Bullet_Fireball>();
         BulComp.damage = (int)(50 * damagePer);
         BulComp.radius = FireBallRadius;
-        BulComp.duration = 0.07f;
-        BulComp.speed = 20;
-        //SFXsystem.instance.PlaySoundFX(Effects[2], transform, 1f);
-        skillBcooltimenow = skillBcooltime * (1 / skillBcoolPer);
+        BulComp.duration = FireBallDuration;
+        BulComp.speed = 8;
     }
-
     public override void UniqueLevelUP(int idx)
     {
-        throw new System.NotImplementedException();
+        switch (idx)
+        {
+            case 1:
+                AttackRadius += 0.3f;
+                break;
+            case 2:
+                FireBallDuration += 0.1f;
+                FireBallRadius += 1.2f;
+                break;
+            case 3:
+                Engage = true;
+                break;
+            case 4:
+                GenAmount++;
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+        }
     }
 
     override protected void Move()
@@ -117,7 +153,7 @@ public class Player_Magi : Player
     }
     override public void GetDamage(int damage)
     {
-        if (!rushing)
+        if (damaging)
         {
             base.GetDamage(damage);
         }
@@ -128,7 +164,7 @@ public class Player_Magi : Player
         {
             if (collision.CompareTag("Enemy"))
             {
-                collision.GetComponent<Enemy>().GetDamage(120,true);
+                collision.GetComponent<Enemy>().GetDamage((int)(120*damagePer),true);
             }
         }
     }
@@ -136,6 +172,8 @@ public class Player_Magi : Player
     {
         skillAcooltimenow = 999;
         rushing = true;
+        damaging = false;
+        SFXsystem.instance.PlaySoundFX(new AudioClip[] { Effects[2], Effects[3] }, transform, 1f);
         end = (Vector2)shotpoint.position + (Vector2)shotpoint.up.normalized * 2.5f;
         Debug.Log(end);
         Debug.Log(end.normalized);
@@ -154,6 +192,18 @@ public class Player_Magi : Player
         rushing = false;
         end = Vector2.zero;
         skillAcooltimenow = skillAcooltime * (1 / skillAcoolPer);
+        if (!Engage)
+        {
+            damaging = true;
+        }
+        else
+        {
+            speedPer += 0.5000000001f;
+            yield return new WaitForSeconds(1.0f);
+            speedPer -= 0.5f;
+            damaging = true;
+        }
+
         yield break;
     }
 
