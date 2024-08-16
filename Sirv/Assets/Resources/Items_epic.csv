@@ -2,8 +2,8 @@ ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE,RAIRTY
 0,유리 대포,대미지 + <color=#00ff00ff>66%</color><br>방어력 - <color=#B90E0A>20</color>,88,0
 1,유폭탄,공격이 적중한 적이 20%<size=50%><color=#4FFBFF>곱연산</color></size> 확률로 폭발하여 8의 범위 대미지<size=50%>고정 대미지<size=100%>를 입힙니다.,84,0
 2,운명의<br>주사위,"대미지,공격속도,치명타,최대체력이 - <color=#B90E0A>20%</color> ~ + <color=#00ff00ff>40%</color> 사이의 값으로 증가하거나 감소합니다.",90,0
-3,너클,치명타 + <color=#00ff00ff>3%</color><br>대미지 + <color=#00ff00ff>3%</color><br>공격속도 - <color=#B90E0A>3%</color>,22,0
-4,벨트,체력 + <color=#00ff00ff>6%</color> <br> 이동속도 - <color=#B90E0A>2%</color>,23,0
+3,흑옥,대미지 + <color=#00ff00ff>10%</color><br>공격 속도 + <color=#00ff00ff>10%</color><br>체력 + <color=#00ff00ff>10%</color>,82,0
+4,고급 가죽,체력 + <color=#00ff00ff>12%</color><br>방어력 + <color=#00ff00ff>3</color>,60,0
 5,채찍,이동속도 + <color=#00ff00ff>7%</color><br>공격력 + <color=#00ff00ff>3%</color><br>공격속도 + <color=#00ff00ff>3%</color><br>체력 - <color=#B90E0A>5%</color>,30,0
 6,계약서,대미지 + <color=#00ff00ff>4%</color><br>공격속도 + <color=#B90E0A>1%</color>,20,0
 7,빨간 열매,일반 스킬 쿨타임 - <color=#00ff00ff>5% </color><br>치명타 - <color=#B90E0A>1%</color>,22,0

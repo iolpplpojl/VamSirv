@@ -369,13 +369,13 @@ public abstract class Player : MonoBehaviour
                         maxHealthGet(Random.Range(-0.2f, 0.4f));
                         break;
                     case 3:
-                        critPer += 0.03f;
-                        damagePer += 0.03f;
-                        attackspeedPer -= 0.03f;
+                        damagePer += 0.1f;
+                        attackspeedPer += 0.1f;
+                        maxHealthGet(0.1f);
                         break;
                     case 4:
-                        maxHealthGet(0.06f);
-                        SpeedGet(-0.02f);
+                        maxHealthGet(0.12f);
+                        armor += 3;
                         break;
                     case 5:
                         SpeedGet(0.04f);
@@ -500,7 +500,7 @@ public abstract class Player : MonoBehaviour
 
         }
     }
-    void Dead()
+    public void Dead()
     {
         Death = true;
         GameObject.FindWithTag("System").SetActive(false);

@@ -74,7 +74,7 @@ public class Boss_Tree_Stone : MonoBehaviour
             speed -= 0.005f;
             yield return new WaitForSeconds(0.01f);
         }
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(30f);
         Destroy(gameObject);
     }
 }

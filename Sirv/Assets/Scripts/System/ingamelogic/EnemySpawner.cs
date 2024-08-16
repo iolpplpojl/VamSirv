@@ -27,51 +27,57 @@ public class EnemySpawner : MonoBehaviour
 
     public void SetSpawning(int a)
     {
-
-        if (a < 8)
+        if (a == 31)
         {
-            StartCoroutine(Spawn1(a));
-        }
-        else if (a < 13)
-        {
-            StartCoroutine(Spawn1_2_2(a));
+            player.Dead();
         }
         else
         {
-            StartCoroutine(Spawn1_3_2(a));
-        }
-
-        if (a < 6)
-        {
-            StartCoroutine(Spawn1_2(a));
-        }
-        if (a >= 2)
-        {
-            StartCoroutine(Spawn4(a));
-        }
-        if (a >= 3)
-        {
-            StartCoroutine(Spawn2(a));
-        }
-        if (a >= 4)
-        {
-            if (a >= 10)
+            if (a < 8)
             {
-                StartCoroutine(Spawn3_1(a));
+                StartCoroutine(Spawn1(a));
+            }
+            else if (a < 13)
+            {
+                StartCoroutine(Spawn1_2_2(a));
             }
             else
             {
-                StartCoroutine(Spawn3(a));
+                StartCoroutine(Spawn1_3_2(a));
             }
-        }
-        if(a >= 6)
-        {
-            StartCoroutine(Spawn5(a));
-            StartCoroutine(Spawn1_3(a));
-        }
-        if (a >= 15)
-        {
-            StartCoroutine(Spawn6(a));
+
+            if (a < 6)
+            {
+                StartCoroutine(Spawn1_2(a));
+            }
+            if (a >= 2)
+            {
+                StartCoroutine(Spawn4(a));
+            }
+            if (a >= 3)
+            {
+                StartCoroutine(Spawn2(a));
+            }
+            if (a >= 4)
+            {
+                if (a >= 10)
+                {
+                    StartCoroutine(Spawn3_1(a));
+                }
+                else
+                {
+                    StartCoroutine(Spawn3(a));
+                }
+            }
+            if (a >= 6)
+            {
+                StartCoroutine(Spawn5(a));
+                StartCoroutine(Spawn1_3(a));
+            }
+            if (a >= 15)
+            {
+                StartCoroutine(Spawn6(a));
+            }
         }
 
     }

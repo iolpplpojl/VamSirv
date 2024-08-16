@@ -8,15 +8,20 @@ public class Player_Magi : Player
     float AttackRadius = 1.0f;
     public GameObject FireBall;
     float FireBallRadius = 3f;
-    float FireBallDuration = 0.15f;
+    float FireBallDuration = 0.20f;
 
     public GameObject Attackpos;
     public bool rushing;
     bool Engage = false;
     bool damaging = true;
     int GenAmount = 1;
+    int attacktarget = 5;
     Vector2 end;
     public GameObject Knifes;
+
+    bool Powerful = false;
+    bool FireSword= false;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -57,7 +62,7 @@ public class Player_Magi : Player
                         nonTriggerHits.Add(collider);
                     }
 
-                    if (nonTriggerHits.Count >= 5)
+                    if (nonTriggerHits.Count >= attacktarget)
                     {
                         break;
                     }
@@ -71,10 +76,18 @@ public class Player_Magi : Player
                         if ((int)(critPer * 100) > Random.Range(0, 100))
                         {
                             hitcol.GetCritDamage((int)(damage * damagePer), true);
+                            if(FireSword == true)
+                            {
+                                hitcol.StartCoroutine(hitcol.Fire((int)(damage * 2 * damagePer * 0.75f)));
+                            }
                         }
                         else
                         {
                             hitcol.GetDamage((int)(damage * damagePer), true);
+                        }
+                        if(Powerful == true)
+                        {
+                            hitcol.GetDamage((int)(maxHealthNow * 0.15f), true);
                         }
                     }
                 }
@@ -131,14 +144,22 @@ public class Player_Magi : Player
                 break;
             case 4:
                 GenAmount++;
+                armor += 5;
                 break;
             case 5:
+                Towersystem.instance.GetTower(3);
                 break;
             case 6:
+                AttackRadius += 0.3f;
+                attacktarget = 8;
+                FireBallDuration += 0.2f;
+                FireBallRadius += 1.8f;
                 break;
             case 7:
+                Powerful = true;
                 break;
             case 8:
+                FireSword = true;
                 break;
         }
     }
@@ -198,9 +219,9 @@ public class Player_Magi : Player
         }
         else
         {
-            speedPer += 0.5000000001f;
+            speedPer += 0.330000001f;
             yield return new WaitForSeconds(1.0f);
-            speedPer -= 0.5f;
+            speedPer -= 0.33f;
             damaging = true;
         }
 

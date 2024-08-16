@@ -76,6 +76,7 @@ public class Roundsystem : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
             counter--;
         }
+
         if (Round % 5 == 0)
         {
             setBoss();
@@ -181,6 +182,34 @@ public class Roundsystem : MonoBehaviour
                 m_SpawnTime[1] = 4.15f;
                 m_SpawnTime[2] = 6.1f;
                 break;
+        }
+        if (Round >= 10)
+        {
+            m_Time = 35;
+            m_SpawnTime[0] = 0.33f;
+            m_SpawnTime[1] = 4.15f;
+            m_SpawnTime[2] = 6.1f;
+        }
+        if (Round >= 15)
+        {
+            m_Time = 35;
+            m_SpawnTime[0] = 0.29f;
+            m_SpawnTime[1] = 4f;
+            m_SpawnTime[2] = 5.8f;
+        }
+        if (Round >= 20)
+        {
+            m_Time = 35;
+            m_SpawnTime[0] = 0.28f;
+            m_SpawnTime[1] = 3.8f;
+            m_SpawnTime[2] = 5.65f;
+        }
+        if (Round >= 25)
+        {
+            m_Time = 35;
+            m_SpawnTime[0] = 0.25f;
+            m_SpawnTime[1] = 3.5f;
+            m_SpawnTime[2] = 5.4f;
         }
         Spawner.SetSpawnTime(m_SpawnTime);
         Towersystem.instance.RoundStart();

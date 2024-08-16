@@ -69,7 +69,7 @@ public class TurretManager : MonoBehaviour
                             turret = Turret[6];
                             break;
                         case 1:
-                            turret = Turret[1];
+                            turret = Turret[7];
                             break;
                         case 2:
                             turret = Turret[2];
@@ -200,7 +200,7 @@ public class TurretManager : MonoBehaviour
                         turret = Turret[6];
                         break;
                     case 1:
-                        turret = Turret[1];
+                        turret = Turret[7];
                         break;
                     case 2:
                         turret = Turret[2];
