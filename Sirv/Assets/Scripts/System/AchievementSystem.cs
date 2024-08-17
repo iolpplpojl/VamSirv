@@ -129,7 +129,7 @@ public class AchievementSystem : MonoBehaviour
         }
         if (idx == 1002 && !SaveData.data.achievement.Contains(idx))
         {
-            SaveData.data.achievement.Add(1001);
+            SaveData.data.achievement.Add(1002);
             Achievement temp = new Achievement("무신론", "광신도의 오벨리스크 1회 처치", 7, 26);
             Loaded.Push(temp);
             Geted.Add(temp);

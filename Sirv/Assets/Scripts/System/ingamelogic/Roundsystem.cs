@@ -77,7 +77,7 @@ public class Roundsystem : MonoBehaviour
             counter--;
         }
 
-        if (Round % 5 == 0)
+        if (Round % 1 == 0)
         {
             setBoss();
         }

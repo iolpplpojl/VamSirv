@@ -108,6 +108,10 @@ public class EnemySpawner : MonoBehaviour
     }
     public void SpawnBoss(int round)
     {
+        GameObject enemy = Instantiate(Bosses_2[0], transform);
+        Enemy m_enemy = enemy.GetComponent<Enemy>();
+        m_enemy.SetMoneymanager(Moneymanager);
+        /**
         if (round / 5 <= Bosses_1.Length)
         {
             GameObject enemy = Instantiate(Bosses_1[round / 5-1], transform);
@@ -121,6 +125,7 @@ public class EnemySpawner : MonoBehaviour
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += round / 5 - Bosses_1.Length * 3500;
         }
+        **/
     }
 
     /// <summary>
