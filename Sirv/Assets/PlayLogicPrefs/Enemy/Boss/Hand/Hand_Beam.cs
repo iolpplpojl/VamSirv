@@ -9,7 +9,8 @@ public class Hand_Beam : MonoBehaviour
     BoxCollider2D col;
     public GameObject Target;
     public int damage;
-
+    public bool Rotate = true;
+    public float Duration = 2.0f;
     void Start()
     {
         StartCoroutine(Beam());
@@ -29,12 +30,15 @@ public class Hand_Beam : MonoBehaviour
 
     IEnumerator Beam()
     {
-        for(int i = 0; i < 30; i++)
+        if (Rotate)
         {
-            transform.rotation = Quaternion.LookRotation(Vector3.forward,Target.transform.position - transform.position);
-            yield return new WaitForFixedUpdate();
+            for (int i = 0; i < 30; i++)
+            {
+                transform.rotation = Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position);
+                yield return new WaitForFixedUpdate();
+            }
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(Duration);
         anim.Play("Beam_On");
         col.enabled = true;
 

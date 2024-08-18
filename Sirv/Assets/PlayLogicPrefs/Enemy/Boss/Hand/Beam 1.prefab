@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3441613662820817739}
   - component: {fileID: 5735570546325251891}
   m_Layer: 0
-  m_Name: Beam
+  m_Name: Beam 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5071031915147873360}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.1564345, w: 0.98768836}
-  m_LocalPosition: {x: 12.83, y: 5.95, z: 0.030587897}
-  m_LocalScale: {x: 0.25, y: 1000, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 32.36, y: 0.46, z: 0.030587897}
+  m_LocalScale: {x: 6, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 18}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &6517389210849329574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &3441613662820817739
 Animator:
@@ -167,5 +167,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   damage: 0
-  Rotate: 1
-  Duration: 2
+  Rotate: 0
+  Duration: 3

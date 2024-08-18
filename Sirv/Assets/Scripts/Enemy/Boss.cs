@@ -14,7 +14,7 @@ public abstract class Boss : Enemy
     public Scrollbar sb2;
     public float bewaretime;
     bool damaging = true;
-    void Start()
+    protected void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         target = GameObject.FindWithTag("Player");
