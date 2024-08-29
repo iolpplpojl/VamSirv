@@ -13,7 +13,7 @@ public class Boss_Hand : Boss
     public GameObject Dog;
     public Transform[] minionpos;
     public GameObject[] Beam2;
-
+    public AudioClip[] Effects;
     new void Start()
     {
         base.Start();
@@ -92,7 +92,7 @@ public class Boss_Hand : Boss
             {
                 GameObject enemy = Instantiate(Dog, minionpos[i].position, Quaternion.identity, transform.parent);
                 Enemy m_enemy = enemy.GetComponent<Enemy>();
-                m_enemy.HP = 60;
+                m_enemy.HP = 95;
                 m_enemy.DropPer = 0;
                 m_enemy.Damage = 25;
                 m_enemy.SetMoneymanager(moneymanager);
@@ -108,6 +108,17 @@ public class Boss_Hand : Boss
             beam.Target = target;
             beam.damage = 40;
             beam.Duration = 2.0f;
+            if (i % 7 == 0 && i != 0)
+            {
+                for (int k = 0; k < 22; k++)
+                {
+                    GameObject bul = Instantiate(Bullet, transform.position, Quaternion.Euler(0, 0, 360 / 22 * k + i/7*15), transform.parent);
+                    bul.transform.localScale = new Vector3(6, 6, 1);
+                    Enemy_Bullet BulComp = bul.GetComponent<Enemy_Bullet>();
+                    BulComp.damage = (int)(Damage * 0.7f);
+                    BulComp.speed = 6f;
+                }
+            }
             yield return new WaitForSeconds(0.1f);
         }
     }

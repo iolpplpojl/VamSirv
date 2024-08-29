@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SetSpawning(int a)
     {
+        StartCoroutine(minimum(a));
         if (a == 31)
         {
             player.Dead();
@@ -106,26 +107,49 @@ public class EnemySpawner : MonoBehaviour
         player.transform.position = new Vector3(0, 0);
 
     }
+    IEnumerator minimum(int round)
+    {
+        while (true)
+        {
+            if (transform.childCount < 6)
+            {
+
+                Vector2 pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+                while (Vector3.Distance(pos, player.transform.position) <= distan)
+                {
+                    pos = new Vector2(UnityEngine.Random.Range(-(Box.size.x / 2), Box.size.x / 2), UnityEngine.Random.Range(-(Box.size.y / 2), Box.size.y / 2));
+                }
+                GameObject enemy = Instantiate(EnemyPrefs[0], pos, Quaternion.identity, transform);
+                Enemy m_enemy = enemy.GetComponent<Enemy>();
+                m_enemy.SetMoneymanager(Moneymanager);
+                m_enemy.HP += 1 * round;
+                m_enemy.Damage += (int)(0.6 * round);
+            }
+            yield return new WaitForSeconds(SpawnTime_Mini);
+
+        }
+            
+    }
     public void SpawnBoss(int round)
     {
-        GameObject enemy = Instantiate(Bosses_2[0], transform);
-        Enemy m_enemy = enemy.GetComponent<Enemy>();
-        m_enemy.SetMoneymanager(Moneymanager);
         /**
+ GameObject enemy = Instantiate(Bosses_2[0], transform);
+ Enemy m_enemy = enemy.GetComponent<Enemy>();
+ m_enemy.SetMoneymanager(Moneymanager);
+ **/
         if (round / 5 <= Bosses_1.Length)
         {
-            GameObject enemy = Instantiate(Bosses_1[round / 5-1], transform);
+            GameObject enemy = Instantiate(Bosses_1[round / 5 - 1], transform);
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
         }
         else
         {
-            GameObject enemy = Instantiate(Bosses_1[Bosses_1.Length-1], transform);
+            GameObject enemy = Instantiate(Bosses_1[Bosses_1.Length - 1], transform);
             Enemy m_enemy = enemy.GetComponent<Enemy>();
             m_enemy.SetMoneymanager(Moneymanager);
             m_enemy.HP += round / 5 - Bosses_1.Length * 3500;
         }
-        **/
     }
 
     /// <summary>

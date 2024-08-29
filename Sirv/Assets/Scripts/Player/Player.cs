@@ -308,7 +308,7 @@ public abstract class Player : MonoBehaviour
                 {
                     case 0:
                         windwalk++;
-                        maxHealthGet(-0.01f);
+                        maxHealthGet(-0.03f);
                         break;
                     case 1:
                         damagePer += 0.12f;
@@ -343,6 +343,13 @@ public abstract class Player : MonoBehaviour
                     case 7:
                         skillBcoolPer += 0.06f;
                         damagePer -= 0.03f;
+                        break;
+                    case 8:
+                        critPer += 0.04f;
+                        damagePer += 0.06f;
+                        attackspeedPer += 0.06f;
+                        maxHealthGet(-0.04f);
+                        armor -= 2;
                         break;
                     case 500:
                         GetUniqueItem(0);
@@ -405,9 +412,13 @@ public abstract class Player : MonoBehaviour
                         bullethrough++;
                         break;
                     case 2:
-                        maxAmmoGet(0.05f);
-                        attackspeedPer += 0.02f;
-                        SpeedGet(-0.02f);
+                        float temp = (maxHealthPer - 1f) * 2.5f;
+                        if (temp > 0)
+                        {
+                            damagePer += temp;
+                        }
+                        maxHealthPer = 1f;
+                        maxHealthGet(0f);
                         break;
                     case 3:
                         critPer += 0.03f;

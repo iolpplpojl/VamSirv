@@ -68,6 +68,10 @@ public class AchievementSystem : MonoBehaviour
         {
             Geted.Add(new Achievement("무신론", "광신도의 오벨리스크 1회 처치", 7, 26));
         }
+        if (SaveData.data.achievement.Contains(1003))
+        {
+            Achievement temp = new Achievement("엑소시스트", "저주받은 유물 1회 처치", 8, 26);
+        }
     }
     public void DoAchievement()
     {
@@ -131,6 +135,14 @@ public class AchievementSystem : MonoBehaviour
         {
             SaveData.data.achievement.Add(1002);
             Achievement temp = new Achievement("무신론", "광신도의 오벨리스크 1회 처치", 7, 26);
+            Loaded.Push(temp);
+            Geted.Add(temp);
+            StartCoroutine(AchieveAnim());
+        }
+        if (idx == 1003 && !SaveData.data.achievement.Contains(idx))
+        {
+            SaveData.data.achievement.Add(1003);
+            Achievement temp = new Achievement("엑소시스트", "저주받은 유물 1회 처치", 8, 26);
             Loaded.Push(temp);
             Geted.Add(temp);
             StartCoroutine(AchieveAnim());

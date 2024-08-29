@@ -40,11 +40,6 @@ public class Boss_obelisk : Boss
                 beforepattern = temp;
                 break;
             case 2:
-                Shoot3();
-                attackTimenow = patternTimeTable[temp];
-                beforepattern = temp;
-                break;
-            case 3:
                 if (spintimenow <= 0)
                 {
                     StartCoroutine(spin());
@@ -72,6 +67,15 @@ public class Boss_obelisk : Boss
         if(spintimenow > 0)
         {
             spintimenow -= Time.fixedDeltaTime;
+        }
+
+        if (attackTimenow <= 3)
+        {
+            Sprite.color = Sprite.color + new Color(0, -1f / 150, -0.3f / 150);
+        }
+        else
+        {
+            Sprite.color = Color.white;
         }
     }
     public override void DeadUniq()

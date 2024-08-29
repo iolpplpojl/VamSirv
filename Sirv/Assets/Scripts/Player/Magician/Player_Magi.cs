@@ -123,7 +123,7 @@ public class Player_Magi : Player
         yield return new WaitForSeconds(0.4f);
         GameObject Bul = Instantiate(FireBall, shotpoint.position, shotpoint.rotation);
         Bullet_Fireball BulComp = Bul.GetComponent<Bullet_Fireball>();
-        BulComp.damage = (int)(50 * damagePer);
+        BulComp.damage = (int)(75 * damagePer);
         BulComp.radius = FireBallRadius;
         BulComp.duration = FireBallDuration;
         BulComp.speed = 8;
@@ -133,7 +133,7 @@ public class Player_Magi : Player
         switch (idx)
         {
             case 1:
-                AttackRadius += 0.3f;
+                AttackRadius += 0.35f;
                 break;
             case 2:
                 FireBallDuration += 0.1f;
@@ -151,7 +151,6 @@ public class Player_Magi : Player
                 break;
             case 6:
                 AttackRadius += 0.3f;
-                attacktarget = 8;
                 FireBallDuration += 0.2f;
                 FireBallRadius += 1.8f;
                 break;

@@ -135,8 +135,10 @@ MonoBehaviour:
   - {fileID: 5637199353950137722, guid: a46cbf5802fbdd243b9e9676c9e0ae34, type: 3}
   - {fileID: 5385765550554102021, guid: 1e4be87324b8c1741982d4062dd5e7fe, type: 3}
   - {fileID: 4111994174266715149, guid: 15f26d9d4c6efac48b2b41f708aa24a5, type: 3}
-  Bosses_2:
   - {fileID: 3913582094105761504, guid: 72df359102f2c4640bfa2c29607337c5, type: 3}
+  - {fileID: 498970776419096351, guid: 613d296780a3c6b428f38c3f3c3fef85, type: 3}
+  Bosses_2:
+  - {fileID: 498970776419096351, guid: 613d296780a3c6b428f38c3f3c3fef85, type: 3}
   Box: {fileID: 3145619300460181883}
   player: {fileID: 0}
   safepos: {fileID: 0}

@@ -897,9 +897,9 @@ MonoBehaviour:
   speed: 0
   target: {fileID: 0}
   targetrigid: {fileID: 0}
-  Value: 1
+  Value: 200
   DropPer: 1
-  exp: 1
+  exp: 200
   Death: 0
   CritEffects:
   - {fileID: 8300000, guid: 6a97574b999754ab88af555cfbc0d8f4, type: 3}
@@ -911,7 +911,7 @@ MonoBehaviour:
   Weakness: 1
   Slow: 1
   MaxHP: 30000
-  count: 5
+  count: 50
   achnum: 1003
   sb: {fileID: 3842753306478192172}
   sb2: {fileID: 4495536253266034696}
@@ -931,8 +931,8 @@ MonoBehaviour:
   - {fileID: 4429591783016347917}
   - {fileID: 7126913639597562545}
   patternTimeTable:
-  - 10
-  - 10
+  - 9
+  - 7
   - 6
   attackTimenow: 4
   Dog: {fileID: 2413756430259508831, guid: 329a1e3998569964ab6fff9a766581c4, type: 3}
@@ -941,6 +941,7 @@ MonoBehaviour:
   - {fileID: 2326629642147889793}
   Beam2:
   - {fileID: 4288407782935670967, guid: ca1e17c92d63a5a4c870302331704395, type: 3}
+  Effects: []
 --- !u!1 &4201921775603498095
 GameObject:
   m_ObjectHideFlags: 0

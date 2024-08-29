@@ -11,11 +11,15 @@ public class Hand_Beam : MonoBehaviour
     public int damage;
     public bool Rotate = true;
     public float Duration = 2.0f;
+    public AudioClip Aim;
+    public AudioClip Fire;
+    public int rotatetime = 30;
     void Start()
     {
         StartCoroutine(Beam());
         anim = GetComponent<Animator>();
         col = GetComponent<BoxCollider2D>();
+        SFXsystem.instance.PlaySoundFX(Aim, transform, 1.0f);
     }
 
 
@@ -32,13 +36,15 @@ public class Hand_Beam : MonoBehaviour
     {
         if (Rotate)
         {
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < rotatetime; i++)
             {
                 transform.rotation = Quaternion.LookRotation(Vector3.forward, Target.transform.position - transform.position);
                 yield return new WaitForFixedUpdate();
             }
         }
         yield return new WaitForSeconds(Duration);
+        SFXsystem.instance.PlaySoundFX(Fire, transform, 1.0f);
+
         anim.Play("Beam_On");
         col.enabled = true;
 

@@ -148,6 +148,14 @@ public class Boss_Moose : Boss
         {
             if (collision.gameObject.layer == Mathf.Log(LayerMask.GetMask("Enemy"),2))
             {
+                for (int i = 0; i < 9; i++)
+                {
+                    GameObject bul = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, (360 / 9) * i), transform.parent);
+                    bul.transform.localScale = new Vector3(6, 6, 1);
+                    Enemy_Bullet m_Bullet = bul.GetComponent<Enemy_Bullet>();
+                    m_Bullet.damage = Damage;
+                    m_Bullet.speed = 5;
+                }
                 collision.gameObject.GetComponent<Enemy>().GetCritDamage(5000, false);
             }
         }

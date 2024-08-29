@@ -169,3 +169,5 @@ MonoBehaviour:
   damage: 0
   Rotate: 0
   Duration: 3
+  Aim: {fileID: 8300000, guid: e4c6fa4a086a95c48bca38bcf947b16c, type: 3}
+  Fire: {fileID: 8300000, guid: 77ad40ce69d9661419942305e8774f22, type: 3}
