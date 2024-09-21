@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public GameObject Achievements;
     public GameObject Achievement;
     public GameObject Content;
+    public GameObject Wiki;
+
     private void Start()
     {
         setAchievement();
@@ -32,6 +34,19 @@ public class MainMenu : MonoBehaviour
          
     }
 
+    public void OnClickWiki()
+    {
+        Wiki.SetActive(true);
+        Start2.SetActive(false);
+        StartMenu.SetActive(false);
+    }
+
+    public void OnClickWikiTurn()
+    {
+        Wiki.SetActive(false);
+        Start2.SetActive(true);
+        StartMenu.SetActive(true);
+    }
     public void OnClickExit()
     {
         SaveSystem.instance.Save();

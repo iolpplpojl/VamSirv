@@ -125,7 +125,7 @@ public class EnemySpawner : MonoBehaviour
                 m_enemy.HP += 1 * round;
                 m_enemy.Damage += (int)(0.6 * round);
             }
-            yield return new WaitForSeconds(SpawnTime_Mini);
+            yield return new WaitForSeconds(SpawnTime_Mini/12);
 
         }
             
