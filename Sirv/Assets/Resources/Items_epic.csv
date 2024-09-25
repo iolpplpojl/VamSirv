@@ -4,8 +4,5 @@ ITEMNO,ITEMNAME,ITEMDESC,ITEMPRICE,RAIRTY
 2,운명의<br>주사위,"대미지,공격속도,치명타,최대체력이 - <color=#B90E0A>20%</color> ~ + <color=#00ff00ff>40%</color> 사이의 값으로 증가하거나 감소합니다.",90,0
 3,흑옥,대미지 + <color=#00ff00ff>10%</color><br>공격 속도 + <color=#00ff00ff>10%</color><br>체력 + <color=#00ff00ff>10%</color>,82,0
 4,고급 가죽,체력 + <color=#00ff00ff>12%</color><br>방어력 + <color=#00ff00ff>3</color>,71,0
-5,채찍,이동속도 + <color=#00ff00ff>7%</color><br>공격력 + <color=#00ff00ff>3%</color><br>공격속도 + <color=#00ff00ff>3%</color><br>체력 - <color=#B90E0A>5%</color>,30,0
-6,계약서,대미지 + <color=#00ff00ff>4%</color><br>공격속도 + <color=#B90E0A>1%</color>,20,0
-7,빨간 열매,일반 스킬 쿨타임 - <color=#00ff00ff>5% </color><br>치명타 - <color=#B90E0A>1%</color>,22,0
-8,휴대용 로켓,대미지 : 60 <br>공격속도 : 0.2/초 <br>원거리<br>피격 시 범위 대미지를 입히는 미사일을 발사합니다.<br>보조 무기,72,0
-9,투척용 도끼,대미지 : 8 <br>공격속도 : 0.3/초 <br>원거리 <br>산탄(x8) <br>치명타 확률 : 20%,40,0
+5,휴대용 로켓,대미지 : 60 <br>공격속도 : 0.2/초 <br>원거리<br>피격 시 범위 대미지를 입히는 미사일을 발사합니다.<br>보조 무기,72,0
+6,투척용 도끼,대미지 : 8 <br>공격속도 : 0.3/초 <br>원거리 <br>산탄(x8) <br>치명타 확률 : 20%,40,0

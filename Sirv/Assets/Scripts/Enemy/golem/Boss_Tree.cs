@@ -91,7 +91,7 @@ public class Boss_Tree : Boss
                 {
                     StartCoroutine(SummonMinions());
                     attackTimenow = patternTimeTable[1];
-                    SummonCoolDown = 12f;
+                    SummonCoolDown = 15f;
                     SFXsystem.instance.PlaySoundFX(Summonsf, transform, 0.3f,2.0f);
                 }
                 break;
@@ -140,7 +140,7 @@ public class Boss_Tree : Boss
         Slowing = true;
         Player tempp = target.GetComponent<Player>();
         Windstormnow = Instantiate(windstorm, target.transform);
-        tempp.StartCoroutine(tempp.Slow(0.44f, 4f));
+        tempp.StartCoroutine(tempp.Slow(0.22f, 4f));
         yield return new WaitForSeconds(4.0f);
         Destroy(Windstormnow);
         Slowing = false;
